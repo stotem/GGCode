@@ -1,4 +1,5 @@
 # GGCode
+源代码生成器，通过对数据表和数据列的元数据分析, 生成项目源代码。
 ## 基础框架
 源代码生成框架: [rapid-framework](https://code.google.com/archive/p/rapid-framework/)
 
@@ -7,9 +8,6 @@ UI框架: [sb-admin-2](https://startbootstrap.com/template-overviews/sb-admin-2/
 代码框架: SpringMVC + mybatis + Velocity。
 
 代码架构: 经典三层架构(MVC), 增加rpc模块做为调用三方api模块, 增加manager模块设置为缓存层与事务层。
-
-## 原理
-通过对数据表和数据列的元数据分析, 生成项目源代码。
 
 主要转换规则:
 
