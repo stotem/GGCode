@@ -1,0 +1,2 @@
+<#assign className = table.className/>
+<#assign classNameLower = table.classNameFirstLower/>

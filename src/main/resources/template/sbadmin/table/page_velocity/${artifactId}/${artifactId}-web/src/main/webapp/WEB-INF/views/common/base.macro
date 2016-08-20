@@ -1,0 +1,92 @@
+#macro(printCrumbs $crumbsString)
+    #set($crumbsArray = $crumbsString.split(","))
+    #foreach($item in $crumbsArray)
+        #set($itemInfo = $item.split(":"))
+        #if($itemInfo.size() > 1)
+        <a href="$!{itemInfo[1]}">${itemInfo[0]}</a>
+        #else
+            ${itemInfo[0]}
+        #end
+        #if($velocityCount lt $crumbsArray.size())/#end
+    #end
+#end
+
+#macro(printPagination $totalSize $totalPage $pageNum $startRow $endRow)
+<script>
+    function goPage(pageNum) {
+        var form = document.getElementById("queryForm");
+        if(!form) {
+            alert("Did not find #queryForm");
+            return;
+        }
+        var pageNumField = document.getElementById("pageNumField");
+        if(!pageNumField) {
+            alert("Did not find #pageNumField");
+            return;
+        }
+        pageNumField.value = pageNum;
+        form.submit();
+    }
+</script>
+<div class="row">
+    <div class="col-sm-6">
+        <div class="dataTables_info" id="list-dataTables_info" role="alert" aria-live="polite" aria-relevant="all">
+            #if($totalSize gt 0)
+            #set($printStartRow = $startRow+1)
+            ( $printStartRow - $endRow ) / ${totalSize}
+            #end
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="dataTables_paginate paging_simple_numbers" id="list-dataTables_paginate">
+            <ul class="pagination">
+                #set($tmp = $!{pageNum} - 1)
+                <li class="paginate_button previous#if($!{pageNum} le 1) disabled#end" aria-controls="list-dataTables" tabindex="0"
+                    id="list-dataTables_previous"><a href="javascript:#if($!{pageNum} le 1) void(0)#else goPage(${tmp})#end">Previous</a></li>
+                ## 基础运算
+                #set($showPageNum = 5)
+                #set($startNum = $!{pageNum} - $showPageNum / 2)
+                #set($endNum = $!{pageNum} + $showPageNum / 2)
+                #if($endNum gt $totalPage)
+                    #set($endNum = $totalPage)
+                #end
+                #if($startNum lt 1)
+                    #set($startNum=1)
+                #end
+                ## 如果数量不够,则进行补数
+                #set($tmp = $endNum - $startNum)
+                #if($tmp lt $showPageNum)
+                    #set($tmp = $endNum - $showPageNum + 1)
+                    #if($tmp gt 0)
+                        #set($startNum=$tmp)
+                    #else
+                        #set($tmp = $startNum + $showPageNum - 1)
+                        #if($tmp lt $totalPage)
+                            #set($endNum = $tmp)
+                        #end
+                    #end
+                #end
+                ## 页码输出
+                #if($startNum le $endNum)
+                #if($startNum gt 1)
+                <li class="paginate_button" aria-controls="list-dataTables" tabindex="0"><a href="javascript: goPage(1)">1</a></li>
+                <li class="paginate_button disabled" aria-controls="list-dataTables" tabindex="0"
+                id="list-dataTables_ellipsis"><a href="javascript: void(0)">…</a></li>
+                #end
+                #foreach($page in [$startNum..$endNum])
+                <li class="paginate_button#if($page == $!{pageNum}) active#end" aria-controls="list-dataTables" tabindex="0"><a href="javascript: goPage(${page})">${page}</a></li>
+                #end
+                #if($endNum lt $totalPage)
+                <li class="paginate_button disabled" aria-controls="list-dataTables" tabindex="0"
+                id="list-dataTables_ellipsis"><a href="javascript: void(0)">…</a></li>
+                <li class="paginate_button" aria-controls="list-dataTables" tabindex="0"><a href="javascript: goPage($totalPage)">$totalPage</a></li>
+                #end
+                #end
+                #set($tmp = $!pageNum+1)
+                <li class="paginate_button next#if($!{pageNum} ge $totalPage) disabled#end" aria-controls="list-dataTables" tabindex="0" id="list-dataTables_next">
+                    <a href="javascript:#if($!{pageNum} ge $totalPage) void(0)#else goPage($tmp)#end">Next</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+#end
