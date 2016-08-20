@@ -6,7 +6,7 @@ css
 js
 xml
 woff
-httl
+vm
 view
 less
 otf
