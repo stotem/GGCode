@@ -12,6 +12,7 @@ UI框架: [sb-admin-2](https://startbootstrap.com/template-overviews/sb-admin-2/
 通过对数据表和数据列的元数据分析, 生成项目源代码。
 
 主要转换规则:
+
 1. 数据表与数据列的注释做为UI展示title。
 2. 数据列的为空性、数据长度和是否可为空等属性转换为javax.validation的判断规则。
 3. 数据列的数据类型转换为实体对象属性的数据类型。
