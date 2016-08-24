@@ -3,7 +3,7 @@
     <parent>
         <artifactId>${artifactId}</artifactId>
         <groupId>${groupId}</groupId>
-        <version>${mvnVersion}</version>
+        <version>${mvnVersion?default('1.0-SNAPSHOT')}</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -11,7 +11,6 @@
     <packaging>jar</packaging>
 
     <name>${artifactId}-rpc</name>
-    <url>${mvnURL}</url>
 
     <properties>
     </properties>

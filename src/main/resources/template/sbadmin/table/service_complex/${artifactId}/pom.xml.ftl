@@ -4,12 +4,16 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>${groupId}</groupId>
     <artifactId>${artifactId}</artifactId>
-    <version>${mvnVersion}</version>
+    <version>${mvnVersion?default('1.0-SNAPSHOT')}</version>
 
     <packaging>pom</packaging>
 
+    <#if (mvnURL)??>
+    <url>${mvnURL}</url>
+    </#if>
+
     <properties>
-        <project.web.basePath>${contentPath}</project.web.basePath>
+        <project.web.basePath>${contentPath?default('/')}</project.web.basePath>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.build.sourceVersion>1.7</project.build.sourceVersion>
         <project.build.targetVersion>1.7</project.build.targetVersion>

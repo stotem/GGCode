@@ -7,7 +7,7 @@ package ${groupId}.${artifactId}.common.objects.expt;
 
 /**
  * <B>Project: common-tools</B><BR/>
- * <B>Description: TODO </B><BR/>
+ * <B>Description: RollbackException </B><BR/>
  * <B>Copyright:Copyright(c)2014 by FORWAY R&D Corporation, Inc. All rights reserved.</B><BR/>
  * @createtime Jun 1, 2014 6:13:06 PM
  * @author <a href="mailto:china.wujianjun@gmail.com">Wujianjun</a>

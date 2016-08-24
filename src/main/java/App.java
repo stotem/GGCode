@@ -19,7 +19,11 @@ public class App {
             GeneratorProperties.load("generator.xml");
             GLogger.info("GeneratorPropeties Load Success, file["+file.getAbsolutePath()+"]");
         }
-        final String outRootFilePath = GeneratorProperties.getProperty("dir_crud_out_root");
+        String outRootFilePath = GeneratorProperties.getProperty("dir_crud_out_root");
+        if (outRootFilePath == null || outRootFilePath.trim().length() == 0) {
+            outRootFilePath = "code_out";
+            GeneratorProperties.setProperty("dir_crud_out_root", outRootFilePath);
+        }
         g.getGenerator().setOutRootDir(outRootFilePath);
         g.getGenerator().setExcludes(".scss,.ttf,.eot,.woff");
         final String templatesRoot = GeneratorProperties.getProperty("dir_crud_template_root");

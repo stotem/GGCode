@@ -1,8 +1,7 @@
 /**
 * <B>Description</B> ${table.remarks} <br />
 * <B>Copyright</B> Copyright (c) ${.now?string("yyyy")} ${groupId} All rights reserved. <br />
-* 本软件源代码版权归${groupId},未经许可不得任意复制与传播.<br />
 * <B>Project</B> ${artifactId}
 * @createtime ${.now?string("yyyy/hh/mm HH:mm:ss")}
-* @author ${author}
+* @author ${author?default('GGCode')}
 */

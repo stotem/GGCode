@@ -8,7 +8,7 @@ package ${groupId}.${artifactId}.common.objects;
 
 /**
  * <B>Project: common-tools</B><BR />
- * <B>Description: TODO </B><BR />
+ * <B>Description: Output </B><BR />
  * <B>Copyright:Copyright(c)2014 by FORWAY R&D Corporation, Inc. All rights
  * reserved.</B><BR />
  * @createtime Jun 12, 2014 8:43:53 PM

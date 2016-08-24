@@ -10,7 +10,7 @@ import java.util.Map;
 
 /**
  * <B>Project: common-tools</B><BR/>
- * <B>Description: TODO </B><BR/>
+ * <B>Description: MapOutput </B><BR/>
  * <B>Copyright:Copyright(c)2014 by FORWAY R&D Corporation, Inc. All rights
  * reserved.</B><BR/>
  * @createtime May 29, 2014 10:38:05 PM

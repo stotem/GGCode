@@ -4,7 +4,7 @@
     <parent>
         <artifactId>${artifactId}</artifactId>
         <groupId>${groupId}</groupId>
-        <version>${mvnVersion}</version>
+        <version>${mvnVersion?default('1.0-SNAPSHOT')}</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -12,7 +12,7 @@
     <packaging>war</packaging>
 
     <name>${artifactId}-web Maven Webapp</name>
-    <url>${mvnURL}</url>
+
 
     <properties>
     </properties>

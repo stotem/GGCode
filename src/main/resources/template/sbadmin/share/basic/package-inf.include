@@ -1,5 +1,5 @@
 /**
 * package-info.java
 * @createtime ${.now?string("yyyy/hh/mm HH:mm:ss")}
-* @author ${author}
+* @author ${author?default('GGCode')}
 */

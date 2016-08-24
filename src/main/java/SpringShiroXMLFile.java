@@ -32,6 +32,7 @@ public class SpringShiroXMLFile extends PreTemplateFile {
         groupIdDir = groupIdDir.replace(".",File.separator);
         utilFilePath.append(File.separator).append(groupIdDir);
         utilFilePath.append(File.separator).append(artifactId);
+        utilFilePath.append(File.separator).append("web");
         utilFilePath.append(File.separator).append("utils");
         utilFilePath.append(File.separator).append("ShiroUtils.java");
         shiroxmlFilePath.append(File.separator).append("resources");

@@ -7,7 +7,7 @@ package ${groupId}.${artifactId}.common.objects.expt;
 
 /**
  * <B>Project: common-tools</B><BR/>
- * <B>Description: TODO </B><BR/>
+ * <B>Description: DataAlreadyExistsException </B><BR/>
  * <B>Copyright:Copyright(c)2014 by FORWAY R&D Corporation, Inc. All rights reserved.</B><BR/>
  * @createtime May 29, 2014 11:21:51 PM
  * @author <a href="mailto:china.wujianjun@gmail.com">Wujianjun</a>

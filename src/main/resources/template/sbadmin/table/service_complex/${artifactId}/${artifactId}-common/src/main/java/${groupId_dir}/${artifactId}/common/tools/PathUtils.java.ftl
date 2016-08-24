@@ -7,7 +7,7 @@ package ${groupId}.${artifactId}.common.tools;
 
 /**
  * <B>Project: common-com.forway.common.tools</B><BR />
- * <B>Description: TODO </B><BR />
+ * <B>Description: PathUtils </B><BR />
  * <B>Copyright:Copyright(c)2014 by FORWAY R&D Corporation, Inc. All rights
  * reserved.</B><BR />
  * @createtime Jun 14, 2014 11:17:22 AM
