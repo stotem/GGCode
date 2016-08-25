@@ -1,4 +1,4 @@
-package ${groupId}.${artifactId}.controller;
+package ${groupId}.${artifactId}.web.controller;
 
 import com.google.code.kaptcha.Constants;
 import com.google.code.kaptcha.Producer;

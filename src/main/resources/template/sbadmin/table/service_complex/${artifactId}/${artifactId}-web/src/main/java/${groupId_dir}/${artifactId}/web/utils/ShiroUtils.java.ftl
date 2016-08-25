@@ -24,7 +24,7 @@
  * | Copyright @ 2013-2014 Buession.com Inc.														|
  * +------------------------------------------------------------------------------------------------+
  */
-package ${groupId}.${artifactId}.utils;
+package ${groupId}.${artifactId}.web.utils;
 
 import java.beans.BeanInfo;
 import java.beans.Introspector;

@@ -1,5 +1,5 @@
 <#include "/basic/macro.include"/>
-package ${groupId}.${artifactId}.controller;
+package ${groupId}.${artifactId}.web.controller;
 
 <#if support_Shiro == "true">
 import org.apache.shiro.authz.annotation.RequiresPermissions;

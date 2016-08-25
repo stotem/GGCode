@@ -32,5 +32,23 @@
             <groupId>${groupId}</groupId>
             <version><#noparse>${project.parent.version}</#noparse></version>
         </dependency>
+    <#if support_mongoDB == "true">
+        <!-- mongodb & spring -->
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-mongodb</artifactId>
+        </dependency>
+    </#if>
+    <#if support_Redis == "true">
+        <!-- redis & spring -->
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-redis</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+        </dependency>
+    </#if>
     </dependencies>
 </project>

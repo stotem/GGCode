@@ -1,4 +1,4 @@
-package ${groupId}.${artifactId}.interceptor;
+package ${groupId}.${artifactId}.web.interceptor;
 
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;

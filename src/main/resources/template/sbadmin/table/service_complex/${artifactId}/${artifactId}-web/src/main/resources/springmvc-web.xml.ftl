@@ -55,7 +55,7 @@
         <property name="registerDefaultFormatters" value="true" />
         <property name="formatters">
             <set>
-                <bean class="${groupId}.${artifactId}.formatter.TimestampFormatter" />
+                <bean class="${groupId}.${artifactId}.web.formatter.TimestampFormatter" />
             </set>
         </property>
     </bean>
@@ -89,7 +89,7 @@
 	<util:map id="viewTools">
         <#if support_Shiro == "true">
         <entry key="shiro">
-            <bean class="${groupId}.${artifactId}.utils.ShiroUtils"/>
+            <bean class="${groupId}.${artifactId}.web.utils.ShiroUtils"/>
         </entry>
         </#if>
         <entry key="basePath" value="<#noparse>${app.basePath}</#noparse>" />
@@ -192,7 +192,7 @@
     <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/**/*"/>
-            <bean class="${groupId}.${artifactId}.interceptor.ThreadContextInterceptor" />
+            <bean class="${groupId}.${artifactId}.web.interceptor.ThreadContextInterceptor" />
         </mvc:interceptor>
     </mvc:interceptors>
 

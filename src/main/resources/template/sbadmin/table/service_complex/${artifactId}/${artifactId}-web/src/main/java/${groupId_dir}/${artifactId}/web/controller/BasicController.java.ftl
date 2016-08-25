@@ -1,4 +1,4 @@
-package ${groupId}.${artifactId}.controller;
+package ${groupId}.${artifactId}.web.controller;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;

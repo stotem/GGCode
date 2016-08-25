@@ -1,8 +1,7 @@
-package ${groupId}.${artifactId}.formatter;
+package ${groupId}.${artifactId}.web.formatter;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.core.convert.converter.Converter;
 import org.springframework.format.Formatter;
 
 import java.sql.Timestamp;
