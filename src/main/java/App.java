@@ -19,6 +19,10 @@ public class App {
             GeneratorProperties.load("generator.xml");
             GLogger.info("GeneratorPropeties Load Success, file["+file.getAbsolutePath()+"]");
         }
+        if (GeneratorProperties.getProperties().isEmpty()) {
+            GLogger.error("GeneratorPropeties Load Fail, file[generator.xml]");
+            return;
+        }
         String outRootFilePath = GeneratorProperties.getProperty("dir_crud_out_root");
         if (outRootFilePath == null || outRootFilePath.trim().length() == 0) {
             outRootFilePath = "code_out";
@@ -66,7 +70,6 @@ public class App {
                 }
                 GeneratorProperties.setProperty("gg_table_name_list", tableNames.substring(1));
                 GLogger.info("Generate by table" + tableList);
-                g.generateByTable(tableList.toArray(new String[0]));
             }
             // 自动搜索数据库中的所有表并生成文件,template为模板的根目录
             else {
@@ -78,8 +81,8 @@ public class App {
                 }
                 GeneratorProperties.setProperty("gg_table_name_list", tableNames.substring(1));
                 GLogger.info("Generate by table" + tableList);
-                g.generateByAllTable();
             }
+            g.generateByTable(tableList.toArray(new String[0]));
         }
         finally {
             for (PreTemplateFile preTemplateFile : preTemplateFiles) {

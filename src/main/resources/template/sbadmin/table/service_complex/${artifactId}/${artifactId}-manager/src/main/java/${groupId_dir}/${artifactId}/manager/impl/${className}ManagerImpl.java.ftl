@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 <#if support_mongoDB == "true">import org.springframework.data.mongodb.core.MongoTemplate;</#if>
+<#if support_Redis == "true">import org.springframework.data.redis.core.RedisTemplate;</#if>
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 
@@ -18,7 +19,7 @@ import ${groupId}.${artifactId}.manager.${className}Manager;
 import ${groupId}.${artifactId}.common.objects.expt.RollbackException;
 import ${groupId}.${artifactId}.common.objects.PageCondition;
 import ${groupId}.${artifactId}.common.objects.MapOutput;
-import ${groupId}.${artifactId}.common.objects.expt.ServiceException;
+import ${groupId}.${artifactId}.common.objects.expt.RollbackException;
 import javax.annotation.Resource;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -36,10 +37,14 @@ public class ${className}ManagerImpl implements ${className}Manager {
     @Resource
     private MongoTemplate mongoTemplate;
     </#if>
+    <#if support_Redis == "true">
+    @Resource
+    private RedisTemplate redisTemplate;
+    </#if>
 
     @Override
     @Transactional(rollbackFor = RollbackException.class)
-    public void save(${className} ${classNameLower}) throws ServiceException {
+    public void save(${className} ${classNameLower}) throws RollbackException {
         Integer rows = ${classNameLower}Dao.save(${classNameLower});
         if (rows < 1) {
             throw new DataAlreadyExistsException();
@@ -48,7 +53,7 @@ public class ${className}ManagerImpl implements ${className}Manager {
 
     @Override
     @Cacheable(value = "<#if cache_ForRedis == "true" && support_Redis == "true">transient<#else>default</#if>", key = "'${classNameLower}_page_'+#condition.getPageNum()")
-    public MapOutput getPage(PageCondition condition) throws ServiceException {
+    public MapOutput getPage(PageCondition condition) throws RollbackException {
         Long totalSize = ${classNameLower}Dao.countByCondition(condition);
         condition.setTotalSize(totalSize);
         List<${className}> pageData = ${classNameLower}Dao.listPageByCondition(condition);
@@ -60,14 +65,14 @@ public class ${className}ManagerImpl implements ${className}Manager {
 
     @Override
     @Cacheable(value = "<#if cache_ForRedis == "true" && support_Redis == "true">fiveMinutes<#else>default</#if>", key = "'${classNameLower}_'+#id")
-    public ${className} getById(Long id) throws ServiceException {
+    public ${className} getById(Long id) throws RollbackException {
         return ${classNameLower}Dao.getById(id);
     }
 
     @Override
     @Transactional(rollbackFor = RollbackException.class)
     @CacheEvict(value = "<#if cache_ForRedis == "true" && support_Redis == "true">fiveMinutes<#else>default</#if>", key = "'${classNameLower}_'+#obj.getId()")
-    public void updateByCheck(${className} obj) throws ServiceException {
+    public void updateByCheck(${className} obj) throws RollbackException {
         if (${classNameLower}Dao.updateByCheck(obj) < 1) {
             throw new DataFalsifyException();
         }
@@ -76,7 +81,7 @@ public class ${className}ManagerImpl implements ${className}Manager {
     @Override
     @Transactional(rollbackFor = RollbackException.class)
     @CacheEvict(value = "<#if cache_ForRedis == "true" && support_Redis == "true">fiveMinutes<#else>default</#if>", key = "'${classNameLower}_'+#id")
-    public void deleteById(Long id) throws ServiceException {
+    public void deleteById(Long id) throws RollbackException {
         if (${classNameLower}Dao.deleteById(id) < 1) {
             throw new DataNotFoundException();
         }

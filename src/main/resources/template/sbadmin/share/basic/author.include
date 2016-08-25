@@ -1,7 +1,6 @@
 /**
-* <B>Description</B> ${table.remarks} <br />
+* ${table.remarks} <br />
 * <B>Copyright</B> Copyright (c) ${.now?string("yyyy")} ${groupId} All rights reserved. <br />
-* <B>Project</B> ${artifactId}
-* @createtime ${.now?string("yyyy/hh/mm HH:mm:ss")}
+* <B>CreateTime</B> ${.now?string("yyyy/MM/dd HH:mm:ss")}
 * @author ${author?default('GGCode')}
 */
