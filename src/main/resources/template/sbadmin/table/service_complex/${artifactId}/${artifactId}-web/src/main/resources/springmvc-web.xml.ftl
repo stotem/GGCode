@@ -61,18 +61,22 @@
     </bean>
 
     <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
-		<property name="defaultContentType" value="text/html;charset=UTF-8" />
-		<!-- not by accept header -->
-		<property name="ignoreAcceptHeader" value="true"/>
-		<property name="favorPathExtension" value="true"/>
-		<property name="favorParameter" value="true"/>
-		<!-- by extension -->
-		<property name="mediaTypes">
-			<map>
-			    <entry key="xml" value="application/xml" />
-				<entry key="json" value="application/json" />
-			</map>
-		</property>
+        <property name="contentNegotiationManager">
+            <bean class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+                <property name="defaultContentType" value="text/html;charset=UTF-8" />
+                <!-- not by accept header -->
+                <property name="ignoreAcceptHeader" value="true"/>
+                <property name="favorPathExtension" value="true"/>
+                <property name="favorParameter" value="true"/>
+                <!-- by extension -->
+                <property name="mediaTypes">
+                    <map>
+                        <entry key="xml" value="application/xml" />
+                        <entry key="json" value="application/json" />
+                    </map>
+                </property>
+            </bean>
+        </property>
 		<property name="viewResolvers">
 			<list>
                 <ref bean="viewResolver"/>

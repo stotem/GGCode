@@ -6,10 +6,6 @@
          version="3.0">
     <display-name>Archetype Created Web Application</display-name>
     <context-param>
-        <param-name>httl.properties</param-name>
-        <param-value>config/httl.properties</param-value>
-    </context-param>
-    <context-param>
         <param-name>webAppRootKey</param-name>
         <param-value>${artifactId}.webapp.root</param-value>
     </context-param>
