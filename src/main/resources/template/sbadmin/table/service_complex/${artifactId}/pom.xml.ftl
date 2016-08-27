@@ -95,7 +95,17 @@
                             </goals>
                         </execution>
                     </executions>
-                  </plugin>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.tomcat.maven</groupId>
+                    <artifactId>tomcat7-maven-plugin</artifactId>
+                    <version>2.2</version>
+                    <configuration>
+                        <path><#noparse>${project.web.basePath}</#noparse></path>
+                        <port>8080</port>
+                        <uriEncoding>UTF-8</uriEncoding>
+                    </configuration>
+                </plugin>
             </plugins>
         </pluginManagement>
         <plugins>
