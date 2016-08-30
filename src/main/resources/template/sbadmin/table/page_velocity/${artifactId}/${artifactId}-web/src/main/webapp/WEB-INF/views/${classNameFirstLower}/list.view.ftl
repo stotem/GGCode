@@ -27,7 +27,7 @@
             <i class="fa fa-check"></i>&nbsp; $!{result["_message_"]}
         </div>
         #end
-        <form id="queryForm" method="post" action="$!{basePath}${classNameLower}/list">
+        <form id="queryForm" class="form-inline" method="post" action="$!{basePath}${classNameLower}/list">
             <input type="hidden" id="pageNumField" name="K_PAGE_NUM" value="$pageNum"/>
         </form>
         <#if support_Shiro == "true">
@@ -94,7 +94,7 @@
                 #end
                 #else
                 <tr class="even">
-                    <td colspan="${table.columns?size}" class="center">暂无数据</td>
+                    <td colspan="${table.columns?size}" class="center"><i class="fa fa-info-circle" /> 暂无数据</td>
                 </tr>
                 #end
                 </tbody>
@@ -131,7 +131,6 @@
 <script>
     $("a[data-target=#delWarnModal]").click(function(){
         var id = $(this).attr("data-id");
-        console.log(id);
         $("#delWarnModal").find("input[name=id]").val(id);
     });
 </script>

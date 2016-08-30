@@ -22,9 +22,9 @@
                 <#if column.columnNameLowerCase != "delflag" && column.columnNameLowerCase != "createtime" &&
                      column.columnNameLowerCase != "updatetime" && column.columnNameLowerCase != table.pkColumn.columnNameLowerCase>
                     <div class="form-group">
-                        <label>${column.columnAlias}</label>
-                        <input class="form-control" name="${column.columnNameFirstLower}" placeholder="${column.columnAlias}"/>
-                        <p class="help-block"><#if column.nullable>选填<#else>必填</#if>(需控制在${column.size}个字符内),${column.columnAlias}</p>
+                        <label> <#if column.nullable><#else>*</#if> ${column.columnAlias}</label>
+                        <input class="form-control" name="${column.columnNameFirstLower}"/>
+                        <p class="help-block">${column.columnAlias}需控制在${column.size}个字符内</p>
                     </div>
                 </#if>
             </#list>
