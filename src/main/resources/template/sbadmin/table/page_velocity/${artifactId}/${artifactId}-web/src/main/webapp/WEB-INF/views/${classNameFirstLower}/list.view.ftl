@@ -92,7 +92,7 @@
                     <td>$!{velocityCount}</td>
             <#list table.columns as column>
                 <#if column.columnNameLowerCase != "delflag" && column.columnNameLowerCase != table.pkColumn.columnNameLowerCase>
-                    <td>$!{obj.${column.columnNameFirstLower}}</td>
+                    <td>#if( "$!{obj.${column.columnNameFirstLower}}" == "")--#else$!{obj.${column.columnNameFirstLower}}#end</td>
                 </#if>
             </#list>
                     <td class="center">

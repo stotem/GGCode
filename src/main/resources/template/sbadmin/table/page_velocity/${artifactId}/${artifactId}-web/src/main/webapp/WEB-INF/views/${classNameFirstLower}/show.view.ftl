@@ -27,7 +27,7 @@
                 <#else>
                     <label>${column.columnAlias}</label>
                 </#if>
-                    <p class="help-block">$!{_model_.${column.columnNameFirstLower}}</p>
+                    <p class="help-block">#if( "$!{_model_.${column.columnNameFirstLower}}" == "")--#else$!{_model_.${column.columnNameFirstLower}}#end</p>
                 </div>
             </#if>
         </#list>
