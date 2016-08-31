@@ -1,5 +1,7 @@
 package ${groupId}.${artifactId}.web.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
@@ -20,6 +22,7 @@ import java.util.Map;
 
 <#include "/basic/author.include"/>
 public abstract class BasicController {
+    protected final Logger logger = LoggerFactory.getLogger(getClass());
     protected static final String DEFAULT_MESSAGE_KEY = "_message_";
     protected static final String DEFAULT_MODEL_KEY = "_model_";
     private static final String JUMP_REDIRECT = "redirect";
@@ -50,22 +53,14 @@ public abstract class BasicController {
         return forward(path, null);
     }
 
-    private ModelAndView doJump(String path, String type, Object data) {
+    private ModelAndView doJump(String uri, String type, Object data) {
         if(Tools.isNull(data)) {
-            return new ModelAndView(type+":"+path);
+            return new ModelAndView(type+":"+uri);
         }
         if(data instanceof Map) {
-            return new ModelAndView(type+":"+path, (Map)data);
+            return new ModelAndView(type+":"+uri, (Map)data);
         }
-        return new ModelAndView(type+":"+path, DEFAULT_MODEL_KEY, data);
-    }
-
-    protected ModelAndView toErrorView() {
-        return getView("errors/error");
-    }
-
-    protected ModelAndView toErrorView(Object obj) {
-        return getView("errors/error", obj);
+        return new ModelAndView(type+":"+uri, DEFAULT_MODEL_KEY, data);
     }
 
     protected ModelAndView getView(String view) {

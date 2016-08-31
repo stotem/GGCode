@@ -16,8 +16,7 @@ import ${groupId}.${artifactId}.common.objects.expt.ServiceException;
 <#include "/basic/author.include"/>
 @Service
 public class ${className}ServiceImpl implements ${className}Service {
-    private final static Logger LOG = LoggerFactory
-            .getLogger(${className}ServiceImpl.class);
+    private final Logger logger = LoggerFactory.getLogger(getClass());
 
     @Resource
     private ${className}Manager ${classNameLower}Manager;

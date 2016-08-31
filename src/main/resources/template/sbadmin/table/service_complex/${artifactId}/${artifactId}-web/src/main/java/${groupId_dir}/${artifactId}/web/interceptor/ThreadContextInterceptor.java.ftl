@@ -7,15 +7,7 @@ import ${groupId}.${artifactId}.common.objects.ThreadContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * <B>Description</B> 用于将当前Request与Response放入到ThreadLocal中 <br />
- * <B>Copyright</B> Copyright (c) 2014 FORWAY R&D All rights reserved. <br />
- * 本软件源代码版权归FORWAY R&D,未经许可不得任意复制与传播.<br />
- * <B>Project</B> common
- *
- * @author Wujianjun
- * @createtime 2014/9/1 23:22
- */
+<#include "/basic/author.include"/>
 public class ThreadContextInterceptor implements HandlerInterceptor {
 
     @Override

@@ -12,22 +12,6 @@
 #end
 
 #macro(printPagination $totalSize $totalPage $pageNum $startRow $endRow)
-<script>
-    function goPage(pageNum) {
-        var form = document.getElementById("queryForm");
-        if(!form) {
-            alert("Did not find #queryForm");
-            return;
-        }
-        var pageNumField = document.getElementById("pageNumField");
-        if(!pageNumField) {
-            alert("Did not find #pageNumField");
-            return;
-        }
-        pageNumField.value = pageNum;
-        form.submit();
-    }
-</script>
 <div class="row">
     <div class="col-sm-6">
         <div class="dataTables_info" id="list-dataTables_info" role="alert" aria-live="polite" aria-relevant="all">

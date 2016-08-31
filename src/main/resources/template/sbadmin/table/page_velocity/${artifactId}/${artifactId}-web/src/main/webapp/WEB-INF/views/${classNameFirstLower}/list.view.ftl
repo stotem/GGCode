@@ -27,17 +27,39 @@
             <i class="fa fa-check"></i>&nbsp; $!{result["_message_"]}
         </div>
         #end
-        <form id="queryForm" class="form-inline" method="post" action="$!{basePath}${classNameLower}/list">
-            <input type="hidden" id="pageNumField" name="K_PAGE_NUM" value="$pageNum"/>
-        </form>
-        <#if support_Shiro == "true">
-        #if($!{shiro.hasPermission("${artifactId}:${classNameLower}:create")})
-        <a href="$!{basePath}views/${classNameLower}/add" class="btn btn-default">添加记录</a>
-        #end
-        <#else>
-        <a href="$!{basePath}views/${classNameLower}/add" class="btn btn-default">添加记录</a>
-        </#if>
-        <br />
+        <div class="panel panel-default">
+            <form id="queryForm" class="form-inline" method="post" action="$!{basePath}${classNameLower}/list">
+                <div class="panel-body">
+                    <input type="hidden" id="pageNumField" name="K_PAGE_NUM" value="$pageNum"/>
+                    <div class="search-item-container">
+                        <!--Search Items -->
+                <#list table.columns as column>
+                    <#if column.nullable == false && column.columnNameLowerCase != "delflag"
+                            && column.columnNameLowerCase != "createtime" && column.columnNameLowerCase != "updatetime">
+                        <div class="form-group">
+                            <label>${column.columnAlias}</label>
+                            <label class="input-inline">
+                                <input class="form-control" type="input" name="${column.columnNameFirstLower}" value="$!{result.${column.columnNameFirstLower}}">
+                            </label>
+                        </div>
+                    </#if>
+                </#list>
+                    </div>
+                    <div class="search-button-container">
+                        <button type="button" class="btn btn-link search-control-btn">隐藏搜索</button>
+                    <#if support_Shiro == "true">
+                        #if($!{shiro.hasPermission("${artifactId}:${classNameLower}:create")})
+                        <a href="$!{basePath}views/${classNameLower}/add" class="btn btn-link">添加记录</a>
+                        #end
+                    <#else>
+                        <a href="$!{basePath}views/${classNameLower}/add" class="btn btn-link">添加记录</a>
+                    </#if>
+                        <button type="submit" class="btn btn-default search-btn">开始搜索</button>
+                        <button type="reset" class="btn btn-default search-btn">重置条件</button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
     <!-- /.col-lg-12 -->
 </div>
@@ -128,9 +150,3 @@
     </div>
     <!-- /.modal-dialog -->
 </div>
-<script>
-    $("a[data-target=#delWarnModal]").click(function(){
-        var id = $(this).attr("data-id");
-        $("#delWarnModal").find("input[name=id]").val(id);
-    });
-</script>

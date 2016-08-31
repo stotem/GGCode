@@ -11,7 +11,7 @@ import java.util.Locale;
 
 <#include "/basic/author.include"/>
 public class TimestampFormatter implements Formatter<Timestamp> {
-    private final static Logger LOG = LoggerFactory.getLogger(TimestampFormatter.class);
+    private final Logger logger = LoggerFactory.getLogger(getClass());
     private String format;
 
     public TimestampFormatter() {
@@ -28,7 +28,7 @@ public class TimestampFormatter implements Formatter<Timestamp> {
             return new Timestamp(new SimpleDateFormat(this.format, locale).parse(s).getTime());
         }
         catch (ParseException e) {
-            LOG.info("日期转换出错 "+s, e);
+            logger.info("日期转换出错 "+s, e);
         }
         return null;
     }

@@ -18,7 +18,19 @@
 	</context:component-scan>
 	<!-- 启用缓存注解功能，这个是必须的，否则注解不会生效，另外，该注解一定要声明在spring主配置文件中才会生效 -->
     <cache:annotation-driven cache-manager="cacheManager" key-generator="cacheKeyGenerator"/>
+
+	<bean id="processTimeAspect" class="${groupId}.${artifactId}.web.aspect.ProcessTimeAspect" />
     <aop:aspectj-autoproxy/>
+	<aop:config>
+		<aop:aspect ref="processTimeAspect">
+			<aop:around method="loggerProcessTime" pointcut="within(${groupId}.${artifactId}.web.controller..*)" />
+			<aop:around method="loggerProcessTime" pointcut="within(${groupId}.${artifactId}.web.api..*)" />
+			<aop:around method="loggerProcessTime" pointcut="within(${groupId}.${artifactId}.service..*)" />
+			<aop:around method="loggerProcessTime" pointcut="within(${groupId}.${artifactId}.manager..*)" />
+			<aop:around method="loggerProcessTime" pointcut="within(${groupId}.${artifactId}.rpc..*)" />
+			<aop:around method="loggerProcessTime" pointcut="within(${groupId}.${artifactId}.dao..*)" />
+		</aop:aspect>
+	</aop:config>
 
 	<bean id="configure" class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
 		<property name="locations">

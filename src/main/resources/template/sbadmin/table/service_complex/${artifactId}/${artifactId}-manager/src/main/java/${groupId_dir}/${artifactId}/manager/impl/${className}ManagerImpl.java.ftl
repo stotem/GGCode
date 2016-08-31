@@ -28,8 +28,7 @@ import java.util.List;
 <#include "/basic/author.include"/>
 @Component
 public class ${className}ManagerImpl implements ${className}Manager {
-    private final static Logger LOG = LoggerFactory
-            .getLogger(${className}ManagerImpl.class);
+    private final Logger logger = LoggerFactory.getLogger(getClass());
 
     @Resource
     private ${className}Dao ${classNameLower}Dao;

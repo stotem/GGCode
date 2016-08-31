@@ -115,15 +115,18 @@
     <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
         <property name="securityManager" ref="securityManager" />
     </bean>
-    <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+</#if>
+
+    <bean class="${groupId}.${artifactId}.web.resolver.ExceptionMappingResolver">
+        <property name="defaultErrorView" value="/common/error" />
+    <#if support_Shiro == "true">
         <property name="exceptionMappings">
             <props>
                 <prop key="org.apache.shiro.authz.UnauthorizedException">/common/unauthorized</prop>
             </props>
         </property>
+    </#if>
     </bean>
-
-</#if>
 <#if spring_viewresolver == "jsp">
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="contentType" value="text/html;charset=UTF-8" />
