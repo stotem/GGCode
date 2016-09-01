@@ -35,25 +35,25 @@
             <div class="panel-footer">
             <#if support_Shiro == "true">
                 #if($!{shiro.hasPermission("${artifactId}:${classNameLower}:create")})
-                <a href="$!{basePath}views/${classNameLower}/add" class="btn btn-link">新记录</a>
+                <a href="$!{basePath}${classNameLower}/add?K_PAGE_NUM=$!{K_PAGE_NUM}" class="btn btn-link">新记录</a>
                 #end
             <#else>
-                <a href="$!{basePath}views/${classNameLower}/add" class="btn btn-link">新记录</a>
+                <a href="$!{basePath}${classNameLower}/add?K_PAGE_NUM=$!{K_PAGE_NUM}" class="btn btn-link">新记录</a>
             </#if>
-                <a href="$menuURI?K_PAGE_NUM=$!{pageNum}" class="btn btn-link">返回列表</a>
+                <a href="$menuURI?K_PAGE_NUM=$!{K_PAGE_NUM}" class="btn btn-link">返回列表</a>
             <#if support_Shiro == "true">
                 #if($!{shiro.hasPermission("${artifactId}:${classNameLower}:update")})
-                <a href="$!{basePath}${classNameLower}/toupdate?id=$!{_model_.id}&pageNum=$!{pageNum}" class="btn btn-default">修改记录</a>
+                <a href="$!{basePath}${classNameLower}/toupdate?id=$!{_model_.id}&K_PAGE_NUM=$!{K_PAGE_NUM}" class="btn btn-warning">修改记录</a>
                 #end
             <#else>
-                <a href="$!{basePath}${classNameLower}/toupdate?id=$!{_model_.id}&pageNum=$!{pageNum}" class="btn btn-default">修改记录</a>
+                <a href="$!{basePath}${classNameLower}/toupdate?id=$!{_model_.id}&K_PAGE_NUM=$!{K_PAGE_NUM}" class="btn btn-warning">修改记录</a>
             </#if>
             <#if support_Shiro == "true">
                 #if($!{shiro.hasPermission("${artifactId}:${classNameLower}:delete")})
-                <a href="javascript:void(0)" data-id="$!{_model_.id}" data-action="$!{basePath}${classNameLower}/del" data-toggle="modal" data-target="#delWarnModal" class="btn btn-default">删除记录</a>
+                <a href="#" data-id="$!{_model_.id}" data-action="$!{basePath}${classNameLower}/del" data-toggle="modal" data-target="#delWarnModal" class="btn btn-danger">删除记录</a>
                 #end
             <#else>
-                <a href="javascript:void(0)" data-id="$!{_model_.id}" data-action="$!{basePath}${classNameLower}/del" data-toggle="modal" data-target="#delWarnModal" class="btn btn-default">删除记录</a>
+                <a href="#" data-id="$!{_model_.id}" data-action="$!{basePath}${classNameLower}/del" data-toggle="modal" data-target="#delWarnModal" class="btn btn-danger">删除记录</a>
             </#if>
             </div>
         </div>

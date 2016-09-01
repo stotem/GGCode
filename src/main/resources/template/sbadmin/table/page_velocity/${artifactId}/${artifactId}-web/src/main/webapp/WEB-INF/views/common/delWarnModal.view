@@ -12,11 +12,11 @@
             <div class="modal-footer">
                 <form id="delWarnModalForm" action="" method="post">
                     <input type="hidden" name="id"/>
-                    #if("$!{pageNum}" != "")
-                    <input type="hidden" name="K_PAGE_NUM" value="$!{pageNum}"/>
+                    #if("$!{K_PAGE_NUM}" != "")
+                    <input type="hidden" name="K_PAGE_NUM" value="$!{K_PAGE_NUM}"/>
                     #end
                     <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                    <button type="submit" class="btn btn-primary">继续</button>
+                    <button type="submit" class="btn btn-danger">继续</button>
                 </form>
             </div>
         </div>
@@ -24,10 +24,3 @@
     </div>
     <!-- /.modal-dialog -->
 </div>
-<script>
-    $("a[data-target=#delWarnModal]").click(function(){
-        var action = $(this).attr("data-action");
-        var id = $(this).attr("data-id");
-        $("#delWarnModalForm").prop("action", action).find("input[name=id]").val(id);
-    });
-</script>

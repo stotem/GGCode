@@ -1,7 +1,8 @@
 $(function(){
     $("a[data-target=#delWarnModal]").click(function(){
+        var action = $(this).attr("data-action");
         var id = $(this).attr("data-id");
-        $("#delWarnModal").find("input[name=id]").val(id);
+        $("#delWarnModalForm").prop("action", action).find("input[name=id]").val(id);
     });
     $(".search-control-btn").click(function(){
         var formItem = $(".search-item-container");

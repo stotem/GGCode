@@ -27,9 +27,8 @@
             <div class="panel-body">
                 <form action="$!{basePath}${classNameLower}/update" method="post">
                     <input type="hidden" name="id" value="$!{_model_.id}"/>
-                    #if($!{pageNum})
-                    <input type="hidden" name="pageNum" value="$!{pageNum}"/>
-                    #end
+                    <input type="hidden" name="K_PAGE_NUM" value="$!{K_PAGE_NUM}"/>
+                    <input type="hidden" class="form-stay-flag" name="stay"/>
             <#list table.columns as column>
                 <#if column.columnNameLowerCase != "delflag" && column.columnNameLowerCase != "createtime" &&
                         column.columnNameLowerCase != "updatetime" && column.columnNameLowerCase != table.pkColumn.columnNameLowerCase>
@@ -40,10 +39,18 @@
                     </div>
                 </#if>
             </#list>
-                    <button type="submit" class="btn btn-default">保存</button>
+                    <button type="submit" class="btn btn-success">保存并返回</button>
+                    <button type="submit" class="btn form-btn-stay btn-primary">保存</button>
                     <button type="reset" class="btn btn-default">重置</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
+<script>
+    $(function(){
+        $("button[type=submit]").click(function(){
+            $(".form-stay-flag").val($(this).hasClass("form-btn-stay"));
+        });
+    })
+</script>

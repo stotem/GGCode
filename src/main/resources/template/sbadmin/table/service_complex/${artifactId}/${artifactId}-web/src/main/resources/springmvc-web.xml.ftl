@@ -119,13 +119,14 @@
 
     <bean class="${groupId}.${artifactId}.web.resolver.ExceptionMappingResolver">
         <property name="defaultErrorView" value="/common/error" />
-    <#if support_Shiro == "true">
         <property name="exceptionMappings">
             <props>
+                <prop key="${groupId}.${artifactId}.common.objects.expt.ServiceException">/common/error</prop>
+            <#if support_Shiro == "true">
                 <prop key="org.apache.shiro.authz.UnauthorizedException">/common/unauthorized</prop>
+            </#if>
             </props>
         </property>
-    </#if>
     </bean>
 <#if spring_viewresolver == "jsp">
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">

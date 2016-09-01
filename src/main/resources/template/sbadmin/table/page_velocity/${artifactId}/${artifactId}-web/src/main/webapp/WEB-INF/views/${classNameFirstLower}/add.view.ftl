@@ -9,7 +9,15 @@
     </div>
     <!-- /.col-lg-12 -->
 </div>
-
+#if($!{_message_})
+<div class="row">
+    <div class="col-lg-12">
+        <div class="alert alert-success">
+            <i class="fa fa-check"></i>&nbsp; $!{_message_}
+        </div>
+    </div>
+</div>
+#end
 <div class="row">
     <div class="col-lg-12">
         <div class="panel panel-default">
@@ -18,6 +26,8 @@
             </div>
             <div class="panel-body">
                 <form action="$!{basePath}${classNameLower}/save" method="post">
+                    <input type="hidden" name="K_PAGE_NUM" value="$!{K_PAGE_NUM}"/>
+                    <input type="hidden" class="form-stay-flag" name="stay"/>
             <#list table.columns as column>
                 <#if column.columnNameLowerCase != "delflag" && column.columnNameLowerCase != "createtime" &&
                      column.columnNameLowerCase != "updatetime" && column.columnNameLowerCase != table.pkColumn.columnNameLowerCase>
@@ -28,10 +38,18 @@
                     </div>
                 </#if>
             </#list>
-                    <button type="submit" class="btn btn-default">保存</button>
+                    <button type="submit" class="btn btn-success">保存并返回</button>
+                    <button type="submit" class="btn form-btn-stay btn-primary">保存</button>
                     <button type="reset" class="btn btn-default">重填</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
+<script>
+    $(function(){
+        $("button[type=submit]").click(function(){
+            $(".form-stay-flag").val($(this).hasClass("form-btn-stay"));
+        });
+    })
+</script>

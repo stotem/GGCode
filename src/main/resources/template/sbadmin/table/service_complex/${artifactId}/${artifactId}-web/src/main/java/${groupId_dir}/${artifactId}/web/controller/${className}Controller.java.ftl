@@ -52,12 +52,13 @@ public class ${className}Controller extends BasicController {
     @RequiresPermissions("${artifactId}:${classNameLower}:view")
 </#if>
     public ModelAndView doShowById(@RequestParam Long id,
-                                    @RequestParam(required = false) Long pageNum) throws ServiceException {
+                                    @RequestParam(required = false, value = PageCondition.PAGE_NUM) Long pageNum)
+                                    throws ServiceException {
         ${className} ${classNameLower} = ${classNameLower}Service.getById(id);
         Map<String, Object> output = new HashMap<>();
         output.put(DEFAULT_MODEL_KEY, ${classNameLower});
         if (!Tools.isNull(pageNum) && pageNum > 0) {
-            output.put("pageNum", pageNum);
+            output.put(PageCondition.PAGE_NUM, pageNum);
         }
         return getView(VIEW_PREFIX + "/show", output);
     }
@@ -70,12 +71,11 @@ public class ${className}Controller extends BasicController {
         if (Tools.isEmpty(param)) {
             throw new NullArgumentException();
         }
-        final Object id = param.get("id");
+        final Object id = param.remove("id");
         if (Tools.isNull(id)) {
             throw new NullArgumentException();
         }
         ${classNameLower}Service.delById(Long.valueOf(id.toString()));
-        param.remove("id");
         param.put(DEFAULT_MESSAGE_KEY, "数据已被删除");
         return super.redirectByPost(VIEW_PREFIX + "/list", param);
     }
@@ -84,26 +84,21 @@ public class ${className}Controller extends BasicController {
 <#if support_Shiro == "true">
     @RequiresPermissions("${artifactId}:${classNameLower}:update")
 </#if>
-    public ModelAndView doToUpdate(@RequestParam Long id,
-                                    @RequestParam(required = false) Long pageNum,
-                                    @RequestParam(required = false, value = DEFAULT_MESSAGE_KEY) String message)
+    public ModelAndView toUpdateView(@RequestParam Map param)
                                 throws ServiceException {
-        if (id <= 0) {
+        if (Tools.isEmpty(param)) {
             throw new NullArgumentException();
         }
-        ${className} ${classNameLower} = ${classNameLower}Service.getById(id);
+        final Object id = param.remove("id");
+        if (Tools.isNull(id)) {
+            throw new NullArgumentException();
+        }
+        ${className} ${classNameLower} = ${classNameLower}Service.getById(Long.valueOf(id.toString()));
         if (Tools.isNull(${classNameLower})) {
             throw new DataNotFoundException();
         }
-        Map<String, Object> output = new HashMap<>();
-        output.put(DEFAULT_MODEL_KEY, ${classNameLower});
-        if (!Tools.isEmpty(message)) {
-            output.put(DEFAULT_MESSAGE_KEY, message);
-        }
-        if (!Tools.isNull(pageNum) && pageNum > 0) {
-            output.put("pageNum", pageNum);
-        }
-        return getView(VIEW_PREFIX + "/update", output);
+        param.put(DEFAULT_MODEL_KEY, ${classNameLower});
+        return getView(VIEW_PREFIX + "/update", param);
     }
 
     @RequestMapping("/update")
@@ -111,7 +106,9 @@ public class ${className}Controller extends BasicController {
     @RequiresPermissions("${artifactId}:${classNameLower}:update")
 </#if>
     public ModelAndView doUpdateById(@Valid @ModelAttribute ${className} ${classNameLower}, BindingResult result,
-                                    @RequestParam(required = false) Long pageNum) throws ServiceException {
+                                    @RequestParam(required = false, value = PageCondition.PAGE_NUM) Long pageNum,
+                                    @RequestParam(required = false) boolean stay)
+                                    throws ServiceException {
         if (result.hasErrors()) {
             throw new ValidateException(super.getBindingErrorMessage(result));
         }
@@ -125,12 +122,23 @@ public class ${className}Controller extends BasicController {
         ${classNameLower}Service.updateById(${classNameLower});
         Map<String, Object> param = new HashMap<>();
         param.put(DEFAULT_MESSAGE_KEY, "数据更新成功");
-        if (Tools.isNull(pageNum)) {
-            param.put("id", id);
-            return super.redirectByPost(VIEW_PREFIX + "/toupdate", param);
+        if (!Tools.isNull(pageNum)  && pageNum > 0) {
+            param.put(PageCondition.PAGE_NUM, pageNum);
         }
-        param.put(PageCondition.PAGE_NUM, pageNum);
-        return super.redirectByPost(VIEW_PREFIX + "/list", param);
+        if(!stay) {
+            return super.redirectByPost(VIEW_PREFIX + "/list", param);
+        }
+        param.put("id", id);
+        return super.redirectByPost(VIEW_PREFIX + "/toupdate", param);
+    }
+
+    @RequestMapping("/add")
+<#if support_Shiro == "true">
+    @RequiresPermissions("${artifactId}:${classNameLower}:create")
+</#if>
+    public ModelAndView toAddView(@RequestParam(required = false) Map param)
+                                throws ServiceException {
+        return getView(VIEW_PREFIX + "/add", param);
     }
 
     @RequestMapping("/save")
@@ -138,7 +146,8 @@ public class ${className}Controller extends BasicController {
     @RequiresPermissions("${artifactId}:${classNameLower}:create")
 </#if>
     public ModelAndView doSave(@Valid @ModelAttribute ${className} ${classNameLower}, BindingResult result,
-                                @RequestParam(required = false) Long pageNum) throws ServiceException {
+                                @RequestParam(required = false, value = PageCondition.PAGE_NUM) Long pageNum,
+                                @RequestParam(required = false) boolean stay) throws ServiceException {
         if (result.hasErrors()) {
             throw new ValidateException(super.getBindingErrorMessage(result));
         }
@@ -148,9 +157,9 @@ public class ${className}Controller extends BasicController {
         ${classNameLower}Service.save(${classNameLower});
         Map<String, Object> param = new HashMap<>();
         param.put(DEFAULT_MESSAGE_KEY, "数据添加成功");
-        if (!Tools.isNull(pageNum)) {
+        if(!Tools.isNull(pageNum) && pageNum > 0) {
             param.put(PageCondition.PAGE_NUM, pageNum);
         }
-        return super.redirectByPost(VIEW_PREFIX + "/list", param);
+        return super.redirectByPost(VIEW_PREFIX + (stay ? "/add":"/list"), param);
     }
 }

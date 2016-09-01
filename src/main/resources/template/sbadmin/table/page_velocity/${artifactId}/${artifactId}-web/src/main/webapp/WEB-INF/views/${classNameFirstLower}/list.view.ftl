@@ -6,7 +6,7 @@
 #set($startRow = $result["K_START_ROW"])
 #set($endRow = $result["K_END_ROW"])
 #set($dataSize = $result["K_DATA_SIZE"])
-#set($pageNum = $result['K_PAGE_NUM'])
+#set($K_PAGE_NUM = $result['K_PAGE_NUM'])
 #set($totalPage = $result['K_TOTAL_PAGE_NUM'])
 
 #set($menuURI="$!{basePath}${classNameLower}/list")
@@ -30,7 +30,7 @@
         <div class="panel panel-default">
             <form id="queryForm" class="form-inline" method="post" action="$!{basePath}${classNameLower}/list">
                 <div class="panel-body">
-                    <input type="hidden" id="pageNumField" name="K_PAGE_NUM" value="$pageNum"/>
+                    <input type="hidden" id="pageNumField" name="K_PAGE_NUM" value="$!{K_PAGE_NUM}"/>
                     <div class="search-item-container">
                         <!--Search Items -->
                 <#list table.columns as column>
@@ -49,12 +49,12 @@
                         <button type="button" class="btn btn-link search-control-btn">隐藏搜索</button>
                     <#if support_Shiro == "true">
                         #if($!{shiro.hasPermission("${artifactId}:${classNameLower}:create")})
-                        <a href="$!{basePath}views/${classNameLower}/add" class="btn btn-link">添加记录</a>
+                        <a href="$!{basePath}${classNameLower}/add?K_PAGE_NUM=$!{K_PAGE_NUM}" class="btn btn-link">添加记录</a>
                         #end
                     <#else>
-                        <a href="$!{basePath}views/${classNameLower}/add" class="btn btn-link">添加记录</a>
+                        <a href="$!{basePath}${classNameLower}/add?K_PAGE_NUM=$!{K_PAGE_NUM}" class="btn btn-link">添加记录</a>
                     </#if>
-                        <button type="submit" class="btn btn-default search-btn">开始搜索</button>
+                        <button type="submit" class="btn btn-primary search-btn">开始搜索</button>
                         <button type="reset" class="btn btn-default search-btn">重置条件</button>
                     </div>
                 </div>
@@ -96,20 +96,20 @@
                 </#if>
             </#list>
                     <td class="center">
-                        <a href="$!{basePath}${classNameLower}/show?id=$!{obj.id}&pageNum=$!{pageNum}">详情</a>&nbsp;
+                        <a href="$!{basePath}${classNameLower}/show?id=$!{obj.id}&K_PAGE_NUM=$!{K_PAGE_NUM}">详情</a>&nbsp;
                     <#if support_Shiro == "true">
                         #if($!{shiro.hasPermission("${artifactId}:${classNameLower}:update")})
-                        <a href="$!{basePath}${classNameLower}/toupdate?id=$!{obj.id}&pageNum=$!{pageNum}">编辑</a>&nbsp;
+                        <a href="$!{basePath}${classNameLower}/toupdate?id=$!{obj.id}&K_PAGE_NUM=$!{K_PAGE_NUM}">编辑</a>&nbsp;
                         #end
                     <#else>
-                        <a href="$!{basePath}${classNameLower}/toupdate?id=$!{obj.id}&pageNum=$!{pageNum}">编辑</a>&nbsp;
+                        <a href="$!{basePath}${classNameLower}/toupdate?id=$!{obj.id}&K_PAGE_NUM=$!{K_PAGE_NUM}">编辑</a>&nbsp;
                     </#if>
                     <#if support_Shiro == "true">
                         #if($!{shiro.hasPermission("${artifactId}:${classNameLower}:delete")})
-                        <a href="javascript:void(0)" data-id="$!{obj.id}" data-action="$!{basePath}${classNameLower}/del" data-toggle="modal" data-target="#delWarnModal">删除</a>
+                        <a href="#" data-id="$!{obj.id}" data-action="$!{basePath}${classNameLower}/del" data-toggle="modal" data-target="#delWarnModal">删除</a>
                         #end
                     <#else>
-                        <a href="javascript:void(0)" data-id="$!{obj.id}" data-action="$!{basePath}${classNameLower}/del" data-toggle="modal" data-target="#delWarnModal">删除</a>
+                        <a href="#" data-id="$!{obj.id}" data-action="$!{basePath}${classNameLower}/del" data-toggle="modal" data-target="#delWarnModal">删除</a>
                     </#if>
                     </td>
                 </tr>
@@ -125,28 +125,5 @@
     </div>
 </div>
 <!-- /.row -->
-#printPagination($totalSize, $totalPage, $pageNum, $startRow, $endRow)
-
-<div class="modal fade" id="delWarnModal" tabindex="-1" role="dialog" aria-labelledby="delWarnModalLabel" aria-hidden="true" style="display: none;">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title" id="delWarnModalLabel">删除确认</h4>
-            </div>
-            <div class="modal-body">
-                您正在执行数据删除操作,删除后将不可恢复,请谨慎操作,是否继续?
-            </div>
-            <div class="modal-footer">
-                <form id="delWarnModalForm" action="$!{basePath}${classNameLower}/del" method="post">
-                    <input type="hidden" name="id"/>
-                    <input type="hidden" name="K_PAGE_NUM" value="$pageNum"/>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                    <button type="submit" class="btn btn-primary">继续</button>
-                </form>
-            </div>
-        </div>
-        <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-</div>
+#printPagination($totalSize, $totalPage, $!{K_PAGE_NUM}, $startRow, $endRow)
+#parse("common/delWarnModal.view")
