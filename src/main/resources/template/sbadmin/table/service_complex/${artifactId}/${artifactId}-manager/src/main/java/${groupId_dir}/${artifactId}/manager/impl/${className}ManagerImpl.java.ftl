@@ -50,7 +50,6 @@ public class ${className}ManagerImpl implements ${className}Manager {
     }
 
     @Override
-    @Cacheable(value = "<#if cache_ForRedis == "true" && support_Redis == "true">transient<#else>default</#if>", key = "'${classNameLower}_page_'+#condition.getPageNum()")
     public MapOutput getPage(PageCondition condition) throws RollbackException {
         Long totalSize = ${classNameLower}Dao.countByCondition(condition);
         condition.setTotalSize(totalSize);

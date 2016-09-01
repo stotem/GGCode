@@ -127,3 +127,10 @@
 <!-- /.row -->
 #printPagination($totalSize, $totalPage, $!{K_PAGE_NUM}, $startRow, $endRow)
 #parse("common/delWarnModal.view")
+<script>
+    $(function(){
+        $(".search-btn[type=submit]").click(function(){
+            $("#pageNumField").val(0);
+        });
+    })
+</script>
