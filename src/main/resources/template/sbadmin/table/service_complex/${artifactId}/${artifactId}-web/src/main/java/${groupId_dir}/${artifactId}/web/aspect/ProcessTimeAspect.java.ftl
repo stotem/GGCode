@@ -1,11 +1,8 @@
 package ${groupId}.${artifactId}.web.aspect;
 
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.Around;
-import org.aspectj.lang.annotation.Aspect;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Repository;
 
 <#include "/basic/author.include"/>
 public class ProcessTimeAspect {
