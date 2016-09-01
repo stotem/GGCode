@@ -3,7 +3,6 @@ package ${groupId}.${artifactId}.manager;
 
 import ${groupId}.${artifactId}.domain.${className};
 import ${groupId}.${artifactId}.common.objects.PageCondition;
-import ${groupId}.${artifactId}.common.objects.Condition;
 import ${groupId}.${artifactId}.common.objects.MapOutput;
 import ${groupId}.${artifactId}.common.objects.expt.RollbackException;
 

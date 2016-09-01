@@ -16,7 +16,6 @@ import ${groupId}.${artifactId}.common.objects.expt.DataAlreadyExistsException;
 import ${groupId}.${artifactId}.dao.${className}Dao;
 import ${groupId}.${artifactId}.domain.${className};
 import ${groupId}.${artifactId}.manager.${className}Manager;
-import ${groupId}.${artifactId}.common.objects.expt.RollbackException;
 import ${groupId}.${artifactId}.common.objects.PageCondition;
 import ${groupId}.${artifactId}.common.objects.MapOutput;
 import ${groupId}.${artifactId}.common.objects.expt.RollbackException;
