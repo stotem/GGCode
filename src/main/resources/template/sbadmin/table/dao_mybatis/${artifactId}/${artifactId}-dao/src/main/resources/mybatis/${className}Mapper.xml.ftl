@@ -4,13 +4,13 @@
 <mapper namespace="${groupId}.${artifactId}.dao.${className}Dao">
     <!-- table column and class field-->
     <resultMap id="${className}RM" type="${groupId}.${artifactId}.domain.${className}">
-    <#list table.columns as column>
-        <#if column.columnNameLowerCase == table.pkColumn.columnNameLowerCase>
-            <id property="id" column="${column.sqlName}"/>
-        <#else>
-            <result property="${column.columnNameFirstLower}" column="${column.sqlName}"/>
-        </#if>
-    </#list>
+<#list table.columns as column>
+    <#if column.columnNameLowerCase == table.pkColumn.columnNameLowerCase>
+        <id property="id" column="${column.sqlName}"/>
+    <#else>
+        <result property="${column.columnNameFirstLower}" column="${column.sqlName}"/>
+    </#if>
+</#list>
     </resultMap>
 
     <!--select field-->
@@ -38,11 +38,11 @@
         <#if column.columnNameLowerCase != "delflag" && column.columnNameLowerCase != "createtime"
         && column.columnNameLowerCase != "updatetime">
         <if test="${column.columnNameFirstLower} != null and ${column.columnNameFirstLower} != ''">
-            and `${column.sqlName}` = <#noparse>#{</#noparse>${column.columnNameFirstLower}<#noparse>}</#noparse>
+            AND `${column.sqlName}` = <#noparse>#{</#noparse>${column.columnNameFirstLower}<#noparse>}</#noparse>
         </if>
         <#elseif column.columnNameLowerCase == table.pkColumn.columnNameLowerCase>
         <if test="id != null and id != ''">
-            and `${column.sqlName}` = <#noparse>#{</#noparse>id<#noparse>}</#noparse>
+            AND `${column.sqlName}` = <#noparse>#{</#noparse>id<#noparse>}</#noparse>
         </if>
         </#if>
     </#list>
@@ -50,34 +50,34 @@
 
     <!--update set field normal first check null or empty string-->
     <sql id="set-field-normal-check">
-    <#assign isFirst=true />
-    <#list table.columns as column>
-        <#if column.columnNameLowerCase == table.pkColumn.columnNameLowerCase>
-        <#elseif column.columnNameLowerCase == "delflag">
-        <#elseif column.columnNameLowerCase == "createtime">
-        <#elseif column.columnNameLowerCase == "updatetime">
-            <#if isFirst==false>, </#if><#assign isFirst=false />`${column.sqlName}` = now()
-        <#else>
-            <if test="${column.columnNameFirstLower} != null and ${column.columnNameFirstLower} != ''">
-            <#if isFirst==false>, </#if><#assign isFirst=false />`${column.sqlName}` = <#noparse>#{</#noparse>${column.columnNameFirstLower}<#noparse>}</#noparse>
-            </if>
-        </#if>
-    </#list>
+<#assign isFirst=true />
+<#list table.columns as column>
+    <#if column.columnNameLowerCase == table.pkColumn.columnNameLowerCase>
+    <#elseif column.columnNameLowerCase == "delflag">
+    <#elseif column.columnNameLowerCase == "createtime">
+    <#elseif column.columnNameLowerCase == "updatetime">
+        <#if isFirst==false>, </#if><#assign isFirst=false />`${column.sqlName}` = NOW()
+    <#else>
+        <if test="${column.columnNameFirstLower} != null and ${column.columnNameFirstLower} != ''">
+        <#if isFirst==false>, </#if><#assign isFirst=false />`${column.sqlName}` = <#noparse>#{</#noparse>${column.columnNameFirstLower}<#noparse>}</#noparse>
+        </if>
+    </#if>
+</#list>
     </sql>
 
     <!--update set field normal-->
     <sql id="set-field-normal">
-    <#assign isFirst=true />
-    <#list table.columns as column>
-        <#if column.columnNameLowerCase == table.pkColumn.columnNameLowerCase>
-        <#elseif column.columnNameLowerCase == "delflag">
-        <#elseif column.columnNameLowerCase == "createtime">
-        <#elseif column.columnNameLowerCase == "updatetime">
-            <#if isFirst==false>, </#if><#assign isFirst=false />`${column.sqlName}` = now()
-        <#else>
-            <#if isFirst==false>, </#if><#assign isFirst=false />`${column.sqlName}` = <#noparse>#{</#noparse>${column.columnNameFirstLower}<#noparse>}</#noparse>
-        </#if>
-    </#list>
+<#assign isFirst=true />
+<#list table.columns as column>
+    <#if column.columnNameLowerCase == table.pkColumn.columnNameLowerCase>
+    <#elseif column.columnNameLowerCase == "delflag">
+    <#elseif column.columnNameLowerCase == "createtime">
+    <#elseif column.columnNameLowerCase == "updatetime">
+        <#if isFirst==false>, </#if><#assign isFirst=false />`${column.sqlName}` = NOW()
+    <#else>
+        <#if isFirst==false>, </#if><#assign isFirst=false />`${column.sqlName}` = <#noparse>#{</#noparse>${column.columnNameFirstLower}<#noparse>}</#noparse>
+    </#if>
+</#list>
     </sql>
 
     <!-- where field full-->
@@ -86,11 +86,11 @@
     <#list table.columns as column>
         <#if column.columnNameLowerCase == table.pkColumn.columnNameLowerCase>
         <if test="id != null and id != ''">
-            and `${column.sqlName}` = <#noparse>#{</#noparse>id<#noparse>}</#noparse>
+            AND `${column.sqlName}` = <#noparse>#{</#noparse>id<#noparse>}</#noparse>
         </if>
         <#else>
         <if test="${column.columnNameFirstLower} != null and ${column.columnNameFirstLower} != ''">
-            and `${column.sqlName}` = <#noparse>#{</#noparse>${column.columnNameFirstLower}<#noparse>}</#noparse>
+            AND `${column.sqlName}` = <#noparse>#{</#noparse>${column.columnNameFirstLower}<#noparse>}</#noparse>
         </if>
         </#if>
     </#list>
@@ -119,9 +119,9 @@
         <#elseif column.columnNameLowerCase == "delflag">
             <#if isFirst==false>, </#if><#assign isFirst=false />1
         <#elseif column.columnNameLowerCase == "createtime">
-            <#if isFirst==false>, </#if><#assign isFirst=false />now()
+            <#if isFirst==false>, </#if><#assign isFirst=false />NOW()
         <#elseif column.columnNameLowerCase == "updatetime">
-            <#if isFirst==false>, </#if><#assign isFirst=false />now()
+            <#if isFirst==false>, </#if><#assign isFirst=false />NOW()
         <#else>
             <#if isFirst==false>, </#if><#assign isFirst=false /><#noparse>#{</#noparse>${column.columnNameFirstLower}<#noparse>}</#noparse>
         </#if>
@@ -131,20 +131,20 @@
     </insert>
 
     <update id="update" parameterType="${groupId}.${artifactId}.domain.${className}">
-        <![CDATA[ UPDATE ${table.sqlName} set ]]>
+        <![CDATA[ UPDATE ${table.sqlName} SET ]]>
         <include refid="set-field-normal" />
-        <![CDATA[ where del_flag = 1 AND ${table.pkColumn.sqlName} =<#noparse> #{id}</#noparse> ]]>
+        <![CDATA[ WHERE del_flag = 1 AND ${table.pkColumn.sqlName} =<#noparse> #{id}</#noparse> ]]>
     </update>
 
     <update id="updateByCheck" parameterType="${groupId}.${artifactId}.domain.${className}">
         <![CDATA[ UPDATE ${table.sqlName} set ]]>
         <include refid="set-field-normal-check" />
-        <![CDATA[ where del_flag = 1 AND ${table.pkColumn.sqlName} =<#noparse> #{id}</#noparse> ]]>
+        <![CDATA[ WHERE del_flag = 1 AND ${table.pkColumn.sqlName} =<#noparse> #{id}</#noparse> ]]>
     </update>
 
     <select id="countByCondition" parameterType="map" resultType="Long">
         <![CDATA[
-        SELECT count(1) FROM ${table.sqlName}
+        SELECT COUNT(1) FROM ${table.sqlName}
         ]]>
         <where>
         <include refid="where-field-normal" />
@@ -160,7 +160,7 @@
         </where>
     <#noparse>
         <![CDATA[
-        limit #{K_START_ROW},#{K_DATA_SIZE}
+        LIMIT #{K_START_ROW},#{K_DATA_SIZE}
         ]]>
     </#noparse>
     </select>
@@ -189,13 +189,13 @@
 
     <update id="deleteById" parameterType="Long">
         <![CDATA[
-        update ${table.sqlName} set <#noparse> del_flag = 2,update_time = now() where </#noparse> ${table.pkColumn.sqlName} = <#noparse>#{id}</#noparse>
+        UPDATE ${table.sqlName} SET <#noparse>del_flag = 2,update_time = NOW() where </#noparse>${table.pkColumn.sqlName} = <#noparse>#{id}</#noparse>
         ]]>
     </update>
 
     <update id="deleteByCondition" parameterType="map">
         <![CDATA[
-        update ${table.sqlName} set <#noparse> del_flag = 2,update_time = now() </#noparse>
+        UPDATE ${table.sqlName} SET <#noparse>del_flag = 2,update_time = NOW() </#noparse>
         ]]>
         <where>
             <include refid="where-field-normal" />
