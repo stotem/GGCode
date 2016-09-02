@@ -46,6 +46,8 @@
                 </#list>
                     </div>
                     <div class="search-button-container">
+                        <button type="submit" class="btn btn-primary search-btn">开始搜索</button>
+                        <button type="reset" class="btn btn-default search-btn">重置条件</button>
                         <button type="button" class="btn btn-link search-control-btn">隐藏搜索</button>
                     <#if support_Shiro == "true">
                         #if($!{shiro.hasPermission("${artifactId}:${classNameLower}:create")})
@@ -54,8 +56,7 @@
                     <#else>
                         <a href="$!{basePath}${classNameLower}/add?K_PAGE_NUM=$!{K_PAGE_NUM}" class="btn btn-link">添加记录</a>
                     </#if>
-                        <button type="submit" class="btn btn-primary search-btn">开始搜索</button>
-                        <button type="reset" class="btn btn-default search-btn">重置条件</button>
+
                     </div>
                 </div>
             </form>

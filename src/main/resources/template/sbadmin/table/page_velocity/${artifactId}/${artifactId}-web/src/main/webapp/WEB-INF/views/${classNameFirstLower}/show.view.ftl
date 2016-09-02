@@ -41,15 +41,8 @@
         </#list>
             </div>
             <div class="panel-footer">
-            <#if support_Shiro == "true">
-                #if($!{shiro.hasPermission("${artifactId}:${classNameLower}:create")})
-                <a href="$!{basePath}${classNameLower}/add?K_PAGE_NUM=$!{K_PAGE_NUM}" class="btn btn-link">新记录</a>
-                #end
-            <#else>
-                <a href="$!{basePath}${classNameLower}/add?K_PAGE_NUM=$!{K_PAGE_NUM}" class="btn btn-link">新记录</a>
-            </#if>
-                <a href="$menuURI?K_PAGE_NUM=$!{K_PAGE_NUM}" class="btn btn-link">返回列表</a>
-            #if( "$!{_model_.delflag}" != "2")
+
+                #if( "$!{_model_.delflag}" != "2")
             <#if support_Shiro == "true">
                 #if($!{shiro.hasPermission("${artifactId}:${classNameLower}:update")})
                 <a href="$!{basePath}${classNameLower}/toupdate?id=$!{_model_.id}&K_PAGE_NUM=$!{K_PAGE_NUM}" class="btn btn-warning">修改记录</a>
@@ -64,7 +57,15 @@
             <#else>
                 <a href="#" data-id="$!{_model_.id}" data-action="$!{basePath}${classNameLower}/del" data-toggle="modal" data-target="#delWarnModal" class="btn btn-danger">删除记录</a>
             </#if>
-            #end
+                #end
+                <#if support_Shiro == "true">
+                    #if($!{shiro.hasPermission("${artifactId}:${classNameLower}:create")})
+                    <a href="$!{basePath}${classNameLower}/add?K_PAGE_NUM=$!{K_PAGE_NUM}" class="btn btn-link">新记录</a>
+                    #end
+                    <#else>
+                        <a href="$!{basePath}${classNameLower}/add?K_PAGE_NUM=$!{K_PAGE_NUM}" class="btn btn-link">新记录</a>
+                </#if>
+                <a href="$menuURI?K_PAGE_NUM=$!{K_PAGE_NUM}" class="btn btn-link">返回列表</a>
             </div>
         </div>
     </div>
