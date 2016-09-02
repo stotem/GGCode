@@ -32,7 +32,7 @@
                 <#if column.columnNameLowerCase != "delflag" && column.columnNameLowerCase != "createtime" &&
                      column.columnNameLowerCase != "updatetime" && column.columnNameLowerCase != table.pkColumn.columnNameLowerCase>
                     <div class="form-group">
-                        <label> <#if column.nullable><#else>*</#if> ${column.columnAlias}</label>
+                        <label><#if column.nullable><#else> * </#if>${column.columnAlias}</label>
                         <input class="form-control" name="${column.columnNameFirstLower}"/>
                         <p class="help-block">${column.columnAlias}需控制在${column.size}个字符内</p>
                     </div>
