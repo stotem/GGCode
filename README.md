@@ -28,8 +28,8 @@ UI框架: [sb-admin-2](https://startbootstrap.com/template-overviews/sb-admin-2/
 * 默认支持mariadb与mysql数据库环境下运行，在bin目录中通过配置generator.xml后直接`java -jar GGCode-0.0.1.jar`
 * 当在使用其它类型的数据库运行时，需要import相应的数据库驱动jar。
 主要操作方法有两个:
-1、fork源码在pom.xml中增加数据库驱动依赖，重新打包再以jar -jar GGCode-xxx.jar运行
-2、将驱动包下载到GGCode-0.0.1.jar同级目录，使用java -cp GGCode-0.0.1.jar:[driver.jar] App运行(windows则使用java -cp GGCode-0.0.1.jar;[driver.jar] App运行)
+1. fork源码在pom.xml中增加数据库驱动依赖，重新打包再以jar -jar GGCode-xxx.jar运行
+2. 将驱动包下载到GGCode-0.0.1.jar同级目录，使用java -cp GGCode-0.0.1.jar:[driver.jar] App运行(windows则使用java -cp GGCode-0.0.1.jar;[driver.jar] App运行)
 
 ## generator.xml配置说明
 详见generator.xml注释
