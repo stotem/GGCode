@@ -11,6 +11,12 @@
 		<setting name="useGeneratedKeys" value="false" />
 		<setting name="defaultExecutorType" value="SIMPLE" />
 	</settings>
+
 	<typeAliases />
+
+	<typeHandlers>
+		<typeHandler handler="${groupId}.${artifactId}.dao.typehandler.DelFlagTypeHandler" javaType="${groupId}.${artifactId}.domain.enum.DelFlag" />
+	</typeHandlers>
+
 	<mappers />
 </configuration>

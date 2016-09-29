@@ -3,15 +3,13 @@ package ${groupId}.${artifactId}.domain;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import ${groupId}.${artifactId}.domain.enum;
 
 <#include "/basic/author.include"/>
 public abstract class BaseDomain implements Serializable {
 
-    public static final long DELFLAG_VALID = 1;
-    public static final long DELFLAG_INVALID = 2;
-
     private long id;
-    private long delFlag;
+    private DelFlag delFlag;
     private Timestamp createTime;
     private Timestamp updateTime;
 
@@ -35,7 +33,7 @@ public abstract class BaseDomain implements Serializable {
      * get delFlag value
      * @return the delFlag
      */
-    public long getDelFlag() {
+    public DelFlag getDelFlag() {
         return delFlag;
     }
 
@@ -43,7 +41,7 @@ public abstract class BaseDomain implements Serializable {
      * set delFlag value
      * @param delFlag the delFlag to set
      */
-    public void setDelFlag(long delFlag) {
+    public void setDelFlag(DelFlag delFlag) {
         this.delFlag = delFlag;
     }
 
