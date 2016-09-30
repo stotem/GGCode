@@ -15,7 +15,7 @@
 	<typeAliases />
 
 	<typeHandlers>
-		<typeHandler handler="${groupId}.${artifactId}.dao.typehandler.DelFlagTypeHandler" javaType="${groupId}.${artifactId}.domain.enum.DelFlag" />
+		<typeHandler handler="${groupId}.${artifactId}.dao.typehandler.DelFlagTypeHandler" javaType="${groupId}.${artifactId}.domain.enums.DelFlag" />
 	</typeHandlers>
 
 	<mappers />

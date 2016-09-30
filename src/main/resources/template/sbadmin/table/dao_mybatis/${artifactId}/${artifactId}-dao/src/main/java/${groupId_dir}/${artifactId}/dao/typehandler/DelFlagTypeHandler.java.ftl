@@ -1,6 +1,6 @@
 package ${groupId}.${artifactId}.dao.typehandler;
 
-import ${groupId}.${artifactId}.domain.enum.DelFlag;
+import ${groupId}.${artifactId}.domain.enums.DelFlag;
 import org.apache.ibatis.type.BaseTypeHandler;
 import org.apache.ibatis.type.JdbcType;
 

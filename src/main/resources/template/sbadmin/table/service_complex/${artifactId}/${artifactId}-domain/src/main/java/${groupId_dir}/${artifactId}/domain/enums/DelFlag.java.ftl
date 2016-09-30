@@ -1,9 +1,9 @@
-package ${groupId}.${artifactId}.domain.enum;
+package ${groupId}.${artifactId}.domain.enums;
 
 <#include "/basic/author.include"/>
 public enum DelFlag {
-    VALID(1, "有效数据"),
-    INVALID(2, "无效数据");
+    VALID((short)1, "有效数据"),
+    INVALID((short)2, "无效数据");
 
     private short index;
     private String name;

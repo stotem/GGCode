@@ -3,7 +3,7 @@ package ${groupId}.${artifactId}.domain;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
-import ${groupId}.${artifactId}.domain.enum;
+import ${groupId}.${artifactId}.domain.enums.DelFlag;
 
 <#include "/basic/author.include"/>
 public abstract class BaseDomain implements Serializable {
