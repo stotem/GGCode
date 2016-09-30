@@ -16,10 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import ${groupId}.${artifactId}.common.Asserts;
 import ${groupId}.${artifactId}.common.objects.MapOutput;
 import ${groupId}.${artifactId}.common.objects.PageCondition;
-import ${groupId}.${artifactId}.common.objects.expt.NullArgumentException;
-import ${groupId}.${artifactId}.common.objects.expt.DataNotFoundException;
 import ${groupId}.${artifactId}.common.objects.expt.ServiceException;
-import ${groupId}.${artifactId}.common.objects.expt.ValidateException;
 import ${groupId}.${artifactId}.common.tools.Tools;
 
 import javax.annotation.Resource;
@@ -69,13 +66,9 @@ public class ${className}Controller extends BasicController {
     @RequiresPermissions("${artifactId}:${classNameLower}:delete")
 </#if>
     public ModelAndView doDelById(@RequestParam Map param) throws ServiceException {
-        if (Tools.isEmpty(param)) {
-            throw new NullArgumentException();
-        }
+        Asserts.notEmpty(param, "未获取到参数");
         final Object id = param.remove("id");
-        if (Tools.isNull(id)) {
-            throw new NullArgumentException();
-        }
+        Asserts.notNull(id, "未获取到数据ID");
         ${classNameLower}Service.delById(Long.valueOf(id.toString()));
         param.put(DEFAULT_MESSAGE_KEY, "数据已被删除");
         return super.redirectByPost(VIEW_PREFIX + "/list", param);
@@ -87,17 +80,11 @@ public class ${className}Controller extends BasicController {
 </#if>
     public ModelAndView toUpdateView(@RequestParam Map param)
                                 throws ServiceException {
-        if (Tools.isEmpty(param)) {
-            throw new NullArgumentException();
-        }
+        Asserts.notEmpty(param, "未获取到参数");
         final Object id = param.remove("id");
-        if (Tools.isNull(id)) {
-            throw new NullArgumentException();
-        }
+        Asserts.notNull(id, "未获取到数据ID");
         ${className} ${classNameLower} = ${classNameLower}Service.getById(Long.valueOf(id.toString()));
-        if (Tools.isNull(${classNameLower})) {
-            throw new DataNotFoundException();
-        }
+        Asserts.notNull(${classNameLower}, "未查找到源数据,id=%s", id);
         param.put(DEFAULT_MODEL_KEY, ${classNameLower});
         return getView(VIEW_PREFIX + "/update", param);
     }
@@ -110,16 +97,10 @@ public class ${className}Controller extends BasicController {
                                     @RequestParam(required = false, value = PageCondition.PAGE_NUM) Long pageNum,
                                     @RequestParam(required = false) boolean stay)
                                     throws ServiceException {
-        if (result.hasErrors()) {
-            throw new ValidateException(super.getBindingErrorMessage(result));
-        }
-        if (Tools.isNull(${classNameLower})) {
-            throw new NullArgumentException();
-        }
+        Asserts.isTrue(!result.hasErrors(), super.getBindingErrorMessage(result));
+        Asserts.notNull(${classNameLower}, "未获取到用户录入数据");
         final long id = ${classNameLower}.getId();
-        if (id <= 0) {
-            throw new NullArgumentException();
-        }
+        Asserts.isTrue(id > 0, "未获取到数据ID");
         ${classNameLower}Service.updateById(${classNameLower});
         Map<String, Object> param = new HashMap<>();
         param.put(DEFAULT_MESSAGE_KEY, "数据更新成功");
@@ -149,12 +130,8 @@ public class ${className}Controller extends BasicController {
     public ModelAndView doSave(@Valid @ModelAttribute ${className} ${classNameLower}, BindingResult result,
                                 @RequestParam(required = false, value = PageCondition.PAGE_NUM) Long pageNum,
                                 @RequestParam(required = false) boolean stay) throws ServiceException {
-        if (result.hasErrors()) {
-            throw new ValidateException(super.getBindingErrorMessage(result));
-        }
-        if (Tools.isNull(${classNameLower})) {
-            throw new NullArgumentException();
-        }
+        Asserts.isTrue(!result.hasErrors(), super.getBindingErrorMessage(result));
+        Asserts.notNull(${classNameLower}, "未获取到用户录入数据");
         ${classNameLower}Service.save(${classNameLower});
         Map<String, Object> param = new HashMap<>();
         param.put(DEFAULT_MESSAGE_KEY, "数据添加成功");
