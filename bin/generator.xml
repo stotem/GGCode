@@ -40,7 +40,7 @@
 
 	<!-- Mysql -->
 	<!--<entry key="jdbc_url">jdbc:mysql://jkwin7:3306/zhangzhong?useUnicode=true&amp;characterEncoding=UTF-8</entry>-->
-	<entry key="jdbc_url">jdbc:mysql://198.12.67.128:5306/account_db?useUnicode=true&amp;characterEncoding=utf8</entry>
+	<entry key="jdbc_url">jdbc:mysql://10.28.10.188:3306/test?useUnicode=true&amp;characterEncoding=utf8</entry>
 	<entry key="jdbc_driver">org.mariadb.jdbc.Driver</entry>
 
 	<!-- oracle使用oci的连接方式需要设置PATH环境变量及ORACLE_HOME环境变量 -->
