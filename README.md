@@ -45,3 +45,14 @@ update_time timestamp COMMENT '数据最后update时间',
 ## 其它说明
 1. controller的访问URI不带后缀.
 2. 所有的页面文件后缀为view.
+
+## 生成后程序截图
+![](http://www.wujianjun.org/images/list.png)
+
+![](http://www.wujianjun.org/images/add.png)
+
+![](http://www.wujianjun.org/images/update.png)
+
+![](http://www.wujianjun.org/images/show.png)
+
+![](http://www.wujianjun.org/images/delete.png)
