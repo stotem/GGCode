@@ -18,11 +18,6 @@
 
     <dependencies>
         <dependency>
-            <artifactId>${artifactId}-manager</artifactId>
-            <groupId>${groupId}</groupId>
-            <version><#noparse>${project.parent.version}</#noparse></version>
-        </dependency>
-        <dependency>
             <artifactId>${artifactId}-common</artifactId>
             <groupId>${groupId}</groupId>
             <version><#noparse>${project.parent.version}</#noparse></version>

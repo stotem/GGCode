@@ -23,7 +23,7 @@ public class StringRedisSerializerJava extends PreTemplateFile {
         final String artifactId = GeneratorProperties.getProperty("artifactId");
         utilFilePath.append(File.separator).append(artifactId);
         utilFilePath.append(File.separator).append(artifactId);
-        utilFilePath.append("-manager");
+        utilFilePath.append("-provider");
         utilFilePath.append(File.separator).append("src");
         utilFilePath.append(File.separator).append("main");
         utilFilePath.append(File.separator).append("java");
@@ -31,7 +31,7 @@ public class StringRedisSerializerJava extends PreTemplateFile {
         groupIdDir = groupIdDir.replace(".",File.separator);
         utilFilePath.append(File.separator).append(groupIdDir);
         utilFilePath.append(File.separator).append(artifactId);
-        utilFilePath.append(File.separator).append("manager");
+        utilFilePath.append(File.separator).append("provider");
         utilFilePath.append(File.separator).append("utils");
         utilFilePath.append(File.separator).append("StringRedisSerializer.java");
         File utilFile = new File(utilFilePath.toString()).getAbsoluteFile();

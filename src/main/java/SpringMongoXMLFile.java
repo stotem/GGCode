@@ -22,7 +22,7 @@ public class SpringMongoXMLFile extends PreTemplateFile {
         final String artifactId = GeneratorProperties.getProperty("artifactId");
         filePath.append(File.separator).append(artifactId);
         filePath.append(File.separator).append(artifactId);
-        filePath.append("-manager");
+        filePath.append("-provider");
         filePath.append(File.separator).append("src");
         filePath.append(File.separator).append("main");
         filePath.append(File.separator).append("resources");
