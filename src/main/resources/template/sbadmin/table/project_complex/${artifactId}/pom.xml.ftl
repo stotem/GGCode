@@ -247,7 +247,11 @@
                 <artifactId>cglib</artifactId>
                 <version>3.1</version>
             </dependency>
-
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>19.0</version>
+            </dependency>
             <!-- url rewrite -->
             <dependency>
                 <groupId>org.tuckey</groupId>
@@ -383,6 +387,10 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
         </dependency>
         <!-- logging BEGIN-->
         <dependency>

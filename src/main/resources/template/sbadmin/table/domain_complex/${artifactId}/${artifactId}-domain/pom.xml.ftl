@@ -12,7 +12,7 @@
 
     <packaging>jar</packaging>
 
-    <name>${artifactId}-domain Maven</name>
+    <name>${artifactId}-domain</name>
 
 
     <properties>

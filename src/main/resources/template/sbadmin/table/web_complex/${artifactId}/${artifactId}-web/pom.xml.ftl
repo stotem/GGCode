@@ -13,8 +13,7 @@
 
     <name>${artifactId}-web Maven Webapp</name>
 
-    <properties>
-    </properties>
+    <properties />
 
     <dependencies>
         <dependency>
