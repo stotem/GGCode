@@ -112,6 +112,8 @@
 	<entry key="support_Redis">true</entry>
 	<!-- 是否需要开启Shiro支持, true/false -->
 	<entry key="support_Shiro">true</entry>
+	<!-- 是否需要开启Dubbo支持, true/false -->
+	<entry key="support_Dubbo">true</entry>
 	<!-- 是否需要开启Redis缓存支持, true/false -->
 	<entry key="cache_ForRedis">true</entry>
 

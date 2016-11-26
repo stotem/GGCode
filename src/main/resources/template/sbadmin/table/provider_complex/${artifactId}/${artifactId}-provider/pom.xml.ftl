@@ -56,5 +56,11 @@
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis-spring</artifactId>
         </dependency>
+    <#if support_Dubbo == "true">
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>dubbo</artifactId>
+        </dependency>
+    </#if>
     </dependencies>
 </project>

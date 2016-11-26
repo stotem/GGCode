@@ -8,16 +8,24 @@ import ${groupId}.${artifactId}.domain.enums.DelFlag;
 <#include "/basic/author.include"/>
 public abstract class BaseDomain implements Serializable {
 
-    private long id;
+    private Long id;
     private DelFlag delFlag;
     private Timestamp createTime;
     private Timestamp updateTime;
+    private Long version;
 
+    public Long getVersion() {
+        return this.version;
+    }
+
+    public void setVersion(Long version) {
+        this.version = version;
+    }
     /**
      * get id value
      * @return the id
      */
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -25,7 +33,7 @@ public abstract class BaseDomain implements Serializable {
      * set id value
      * @param id the id to set
      */
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

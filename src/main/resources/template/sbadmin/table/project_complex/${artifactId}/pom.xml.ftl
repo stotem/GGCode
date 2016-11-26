@@ -35,6 +35,10 @@
     <#if support_Shiro == "true">
         <shiro.version>1.2.5</shiro.version>
     </#if>
+    <#if support_Dubbo == "true">
+        <dubbo.version>2.5.3</dubbo.version>
+    </#if>
+
     </properties>
 
     <modules>
@@ -277,6 +281,19 @@
                 <groupId>redis.clients</groupId>
                 <artifactId>jedis</artifactId>
                 <version>2.7.3</version>
+            </dependency>
+        </#if>
+        <#if support_Dubbo == "true">
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>dubbo</artifactId>
+                <version><#noparse>${dubbo.version}</#noparse></version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.springframework</groupId>
+                        <artifactId>spring</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
         </#if>
         <#if support_Shiro == "true">

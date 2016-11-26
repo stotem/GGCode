@@ -55,6 +55,8 @@
     <#if column.columnNameLowerCase == table.pkColumn.columnNameLowerCase>
     <#elseif column.columnNameLowerCase == "delflag">
     <#elseif column.columnNameLowerCase == "createtime">
+    <#elseif column.columnNameLowerCase == "version">
+        <#if isFirst==false>, </#if><#assign isFirst=false />`${column.sqlName}` = `${column.sqlName}`+1
     <#elseif column.columnNameLowerCase == "updatetime">
         <#if isFirst==false>, </#if><#assign isFirst=false />`${column.sqlName}` = NOW()
     <#else>
@@ -72,6 +74,8 @@
     <#if column.columnNameLowerCase == table.pkColumn.columnNameLowerCase>
     <#elseif column.columnNameLowerCase == "delflag">
     <#elseif column.columnNameLowerCase == "createtime">
+    <#elseif column.columnNameLowerCase == "version">
+        <#if isFirst==false>, </#if><#assign isFirst=false />`${column.sqlName}` = `${column.sqlName}`+1
     <#elseif column.columnNameLowerCase == "updatetime">
         <#if isFirst==false>, </#if><#assign isFirst=false />`${column.sqlName}` = NOW()
     <#else>
@@ -122,6 +126,8 @@
             <#if isFirst==false>, </#if><#assign isFirst=false />NOW()
         <#elseif column.columnNameLowerCase == "updatetime">
             <#if isFirst==false>, </#if><#assign isFirst=false />NOW()
+        <#elseif column.columnNameLowerCase == "version">
+            <#if isFirst==false>, </#if><#assign isFirst=false />1
         <#else>
             <#if isFirst==false>, </#if><#assign isFirst=false /><#noparse>#{</#noparse>${column.columnNameFirstLower}<#noparse>}</#noparse>
         </#if>
@@ -131,7 +137,7 @@
     </insert>
 
     <update id="update" parameterType="${groupId}.${artifactId}.domain.${className}">
-        <![CDATA[ UPDATE ${table.sqlName} SET ]]>
+        <![CDATA[ UPDATE ${table.sqlName} SET]]>
         <include refid="set-field-normal" />
         <![CDATA[ WHERE del_flag = 1 AND ${table.pkColumn.sqlName} =<#noparse> #{id}</#noparse> ]]>
     </update>
@@ -189,13 +195,13 @@
 
     <update id="deleteById" parameterType="Long">
         <![CDATA[
-        UPDATE ${table.sqlName} SET <#noparse>del_flag = 2,update_time = NOW() where </#noparse>${table.pkColumn.sqlName} = <#noparse>#{id}</#noparse>
+        UPDATE ${table.sqlName} SET <#noparse>del_flag = 2,update_time = NOW(),version=version+1 where </#noparse>${table.pkColumn.sqlName} = <#noparse>#{id}</#noparse>
         ]]>
     </update>
 
     <update id="deleteByCondition" parameterType="map">
         <![CDATA[
-        UPDATE ${table.sqlName} SET <#noparse>del_flag = 2,update_time = NOW() </#noparse>
+        UPDATE ${table.sqlName} SET <#noparse>del_flag = 2,update_time = NOW(),version=version+1 </#noparse>
         ]]>
         <where>
             <include refid="where-field-normal" />

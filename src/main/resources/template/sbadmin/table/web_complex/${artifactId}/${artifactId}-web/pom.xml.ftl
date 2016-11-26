@@ -88,6 +88,12 @@
             <artifactId>shiro-web</artifactId>
         </dependency>
     </#if>
+    <#if support_Dubbo == "true">
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>dubbo</artifactId>
+        </dependency>
+    </#if>
     </dependencies>
 
     <build>
