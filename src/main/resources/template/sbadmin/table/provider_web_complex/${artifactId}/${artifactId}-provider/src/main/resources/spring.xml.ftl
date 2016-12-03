@@ -23,8 +23,6 @@
     <aop:aspectj-autoproxy/>
 	<aop:config>
 		<aop:aspect ref="processTimeAspect">
-			<aop:around method="loggerProcessTime" pointcut="within(${groupId}.${artifactId}.web.controller..*)" />
-			<aop:around method="loggerProcessTime" pointcut="within(${groupId}.${artifactId}.web.api..*)" />
 			<aop:around method="loggerProcessTime" pointcut="within(${groupId}.${artifactId}.provider..*)" />
 		</aop:aspect>
 	</aop:config>

@@ -1,11 +1,11 @@
-package ${groupId}.${artifactId}.web.aspect;
+package ${groupId}.${artifactId}.common.aspect;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 <#include "/basic/author.include"/>
-public class ProcessTimeAspect {
+public final class ProcessTimeAspect {
     private final Logger logger = LoggerFactory.getLogger(getClass());
     private long warnLimit = 5000L;
     private long infoLimit = 1000L;
