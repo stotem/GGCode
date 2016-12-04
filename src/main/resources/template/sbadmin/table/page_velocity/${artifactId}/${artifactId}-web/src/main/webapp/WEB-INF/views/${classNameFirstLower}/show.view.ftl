@@ -26,7 +26,9 @@
             </div>
             <div class="panel-body">
         <#list table.columns as column>
-            <#if column.columnNameLowerCase != table.pkColumn.columnNameLowerCase && column.columnNameLowerCase != "delflag">
+            <#if column.columnNameLowerCase != table.pkColumn.columnNameLowerCase
+                && column.columnNameLowerCase != "version"
+                && column.columnNameLowerCase != "delflag">
                 <div class="form-group">
                 <#if column.columnNameLowerCase == "createtime">
                     <label>创建时间</label>

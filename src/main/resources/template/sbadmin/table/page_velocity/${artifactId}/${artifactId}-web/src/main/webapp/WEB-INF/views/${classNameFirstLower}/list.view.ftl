@@ -35,7 +35,8 @@
                         <!--Search Items -->
                 <#list table.columns as column>
                     <#if column.nullable == false && column.columnNameLowerCase != "delflag"
-                            && column.columnNameLowerCase != "createtime" && column.columnNameLowerCase != "updatetime">
+                        && column.columnNameLowerCase != "createtime" && column.columnNameLowerCase != "updatetime"
+                        && column.columnNameLowerCase != "version">
                         <div class="form-group">
                             <label>${column.columnAlias}</label>
                             <label class="input-inline">
@@ -73,7 +74,8 @@
                 <tr>
                     <th>#</th>
         <#list table.columns as column>
-            <#if column.columnNameLowerCase != "delflag" && column.columnNameLowerCase != table.pkColumn.columnNameLowerCase>
+            <#if column.columnNameLowerCase != "delflag" && column.columnNameLowerCase != "version"
+                    && column.columnNameLowerCase != table.pkColumn.columnNameLowerCase>
                 <#if column.columnNameLowerCase == "createtime">
                     <th>创建时间</th>
                 <#elseif column.columnNameLowerCase == "updatetime">
@@ -92,7 +94,8 @@
                 <tr class="#if($!{velocityCount} % 2 == 0) odd #else even #end">
                     <td>$!{velocityCount}</td>
             <#list table.columns as column>
-                <#if column.columnNameLowerCase != "delflag" && column.columnNameLowerCase != table.pkColumn.columnNameLowerCase>
+                <#if column.columnNameLowerCase != "delflag" && column.columnNameLowerCase != "version"
+                    && column.columnNameLowerCase != table.pkColumn.columnNameLowerCase>
                     <td>#if( "$!{obj.${column.columnNameFirstLower}}" == "")--#else$!{obj.${column.columnNameFirstLower}}#end</td>
                 </#if>
             </#list>

@@ -29,8 +29,11 @@
                     <input type="hidden" name="K_PAGE_NUM" value="$!{K_PAGE_NUM}"/>
                     <input type="hidden" class="form-stay-flag" name="stay"/>
             <#list table.columns as column>
-                <#if column.columnNameLowerCase != "delflag" && column.columnNameLowerCase != "createtime" &&
-                     column.columnNameLowerCase != "updatetime" && column.columnNameLowerCase != table.pkColumn.columnNameLowerCase>
+                <#if column.columnNameLowerCase != "delflag"
+                    && column.columnNameLowerCase != "createtime"
+                    && column.columnNameLowerCase != "updatetime"
+                    && column.columnNameLowerCase != "version"
+                    && column.columnNameLowerCase != table.pkColumn.columnNameLowerCase>
                     <div class="form-group">
                         <label><#if column.nullable><#else> * </#if>${column.columnAlias}</label>
                         <input class="form-control" name="${column.columnNameFirstLower}"/>
