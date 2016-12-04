@@ -30,7 +30,11 @@ public class App {
         }
         g.getGenerator().setOutRootDir(outRootFilePath);
         g.getGenerator().setExcludes(".scss,.ttf,.eot,.woff");
-        final String templatesRoot = GeneratorProperties.getProperty("dir_crud_template_root");
+        String templatesRoot = GeneratorProperties.getProperty("dir_crud_template_root");
+        final String exportProviderService = GeneratorProperties.getProperty("export_provider_service");
+        if (Boolean.valueOf(exportProviderService)) {
+            templatesRoot+=","+GeneratorProperties.getProperty("dir_templates_root")+"/table/provider_web_complex";
+        }
         GLogger.info("Template Root ==> "+templatesRoot);
         g.getGenerator().setTemplateRootDirs(templatesRoot.split(","));
         // 按配置增加预处理文件
