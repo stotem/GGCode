@@ -337,7 +337,7 @@
             <dependency>
                 <groupId>com.jolbox</groupId>
                 <artifactId>bonecp-provider</artifactId>
-                <version><#noparse>${bonecp.version}</#noparse></version>
+                <version>0.8.0-alpha1</version>
             </dependency>
             <dependency>
                 <groupId>com.jolbox</groupId>
