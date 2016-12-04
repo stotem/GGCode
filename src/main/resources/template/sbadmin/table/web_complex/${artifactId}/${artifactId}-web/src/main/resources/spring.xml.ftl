@@ -16,9 +16,10 @@
 	<context:component-scan base-package="${groupId}.${artifactId}">
 		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
+	<#if export_provider_service != "true">
 	<!-- 启用缓存注解功能，这个是必须的，否则注解不会生效，另外，该注解一定要声明在spring主配置文件中才会生效 -->
     <cache:annotation-driven cache-manager="cacheManager" key-generator="cacheKeyGenerator"/>
-
+	</#if>
 	<bean id="processTimeAspect" class="${groupId}.${artifactId}.common.aspect.ProcessTimeAspect" />
     <aop:aspectj-autoproxy/>
 	<aop:config>
