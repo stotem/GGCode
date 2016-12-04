@@ -29,7 +29,11 @@ import java.util.HashMap;
 @RequestMapping("/${classNameLower}")
 public class ${className}Controller extends BasicController {
     private static final String VIEW_PREFIX = "/${classNameLower}";
+    <#if support_Dubbo == "true">
+    @com.alibaba.dubbo.config.annotation.Reference(group="default")
+    <#else>
     @Resource
+    </#if>
     private ${className}Service ${classNameLower}Service;
 
     @RequestMapping("/list")

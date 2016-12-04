@@ -1,4 +1,4 @@
-package ${groupId}.${artifactId}.web.resolver;
+package ${groupId}.${artifactId}.common.resolver;
 
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.ModelAndView;

@@ -15,6 +15,9 @@ import ${groupId}.${artifactId}.common.objects.expt.ServiceException;
 
 <#include "/basic/author.include"/>
 @Service
+<#if support_Dubbo == "true">
+@com.alibaba.dubbo.config.annotation.Service(group="default")
+</#if>
 public class ${className}ServiceImpl implements ${className}Service {
     private final Logger logger = LoggerFactory.getLogger(getClass());
 

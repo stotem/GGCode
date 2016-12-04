@@ -1,4 +1,4 @@
-package ${groupId}.${artifactId}.web.formatter;
+package ${groupId}.${artifactId}.common.formatter;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

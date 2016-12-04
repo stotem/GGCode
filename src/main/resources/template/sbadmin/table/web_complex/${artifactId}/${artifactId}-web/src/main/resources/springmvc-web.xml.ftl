@@ -55,7 +55,7 @@
         <property name="registerDefaultFormatters" value="true" />
         <property name="formatters">
             <set>
-                <bean class="${groupId}.${artifactId}.web.formatter.TimestampFormatter" />
+                <bean class="${groupId}.${artifactId}.common.formatter.TimestampFormatter" />
             </set>
         </property>
     </bean>
@@ -117,7 +117,7 @@
     </bean>
 </#if>
 
-    <bean class="${groupId}.${artifactId}.web.resolver.ExceptionMappingResolver">
+    <bean class="${groupId}.${artifactId}.common.resolver.ExceptionMappingResolver">
         <property name="defaultErrorView" value="/common/error" />
         <property name="exceptionMappings">
             <props>
@@ -200,7 +200,7 @@
     <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/**/*"/>
-            <bean class="${groupId}.${artifactId}.web.interceptor.ThreadContextInterceptor" />
+            <bean class="${groupId}.${artifactId}.common.interceptor.ThreadContextInterceptor" />
         </mvc:interceptor>
     </mvc:interceptors>
 
