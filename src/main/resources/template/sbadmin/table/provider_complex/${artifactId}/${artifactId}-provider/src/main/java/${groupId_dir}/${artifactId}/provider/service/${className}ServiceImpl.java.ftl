@@ -15,7 +15,7 @@ import ${groupId}.${artifactId}.common.objects.expt.ServiceException;
 
 <#include "/basic/author.include"/>
 @Service
-<#if support_Dubbo == "true">
+<#if export_provider_service == "true">
 @com.alibaba.dubbo.config.annotation.Service(group="default")
 </#if>
 public class ${className}ServiceImpl implements ${className}Service {

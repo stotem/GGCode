@@ -1,19 +1,24 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <#if export_provider_service == "true">
+    <artifactId>${artifactId}-provider</artifactId>
+    <groupId>${groupId}</groupId>
+    <version>${mvnVersion?default('1.0-SNAPSHOT')}</version>
+    <packaging>war</packaging>
+    <#else>
     <parent>
         <artifactId>${artifactId}</artifactId>
         <groupId>${groupId}</groupId>
         <version>${mvnVersion?default('1.0-SNAPSHOT')}</version>
     </parent>
-    <modelVersion>4.0.0</modelVersion>
-
-    <artifactId>${artifactId}-provider</artifactId>
     <packaging>jar</packaging>
-
+    <artifactId>${artifactId}-provider</artifactId>
+    </#if>
+    <modelVersion>4.0.0</modelVersion>
     <name>${artifactId}-provider</name>
 
-    <properties>
-    </properties>
+    <properties />
 
     <dependencies>
         <dependency>
@@ -63,4 +68,24 @@
         </dependency>
     </#if>
     </dependencies>
+    <build>
+        <finalName>${artifactId}-provider</finalName>
+        <filters>
+            <filter>src/main/resources/config/<#noparse>${profile-name}.properties</#noparse></filter>
+        </filters>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <#if export_provider_service == "true">
+        <plugins>
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+        </#if>
+    </build>
 </project>

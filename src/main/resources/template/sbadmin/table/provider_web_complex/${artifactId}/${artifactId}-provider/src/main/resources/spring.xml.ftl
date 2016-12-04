@@ -30,8 +30,7 @@
 	<bean id="configure" class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
 		<property name="locations">
 			<list>
-				<value>classpath:config/data.properties</value>
-				<value>classpath:config/env.properties</value>
+				<value>classpath:module-config.properties</value>
 			</list>
 		</property>
 		<property name="ignoreUnresolvablePlaceholders" value="true" />

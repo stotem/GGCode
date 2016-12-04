@@ -14,7 +14,7 @@
     <bean id="webConfigure" class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
         <property name="locations">
             <list>
-                <value>classpath:config/env.properties</value>
+                <value>classpath:module-config.properties</value>
             </list>
         </property>
         <property name="ignoreUnresolvablePlaceholders" value="true" />

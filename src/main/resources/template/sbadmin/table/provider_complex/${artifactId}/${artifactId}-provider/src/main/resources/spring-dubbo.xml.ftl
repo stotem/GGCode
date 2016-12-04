@@ -7,6 +7,6 @@
        default-lazy-init="true">
     <dubbo:application name="${artifactId}-provider"/>
     <dubbo:annotation/>
-    <dubbo:registry address="<#noparse>${dubbo.registry.address}</#noparse>" check="false"/>
-    <dubbo:protocol name="dubbo" port="<#noparse>${dubbo.port}</#noparse>" />
+    <dubbo:registry address="<#noparse>${config.dubbo.registry.address}</#noparse>" check="false"/>
+    <dubbo:protocol name="dubbo" port="<#noparse>${config.dubbo.local.port}</#noparse>" />
 </beans>

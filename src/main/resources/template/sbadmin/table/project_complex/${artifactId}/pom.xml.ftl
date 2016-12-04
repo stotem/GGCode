@@ -13,7 +13,6 @@
     </#if>
 
     <properties>
-        <project.web.basePath>${contentPath?default('/')}</project.web.basePath>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.build.sourceVersion>1.7</project.build.sourceVersion>
         <project.build.targetVersion>1.7</project.build.targetVersion>
@@ -45,17 +44,13 @@
     <modules>
         <module>${artifactId}-service</module>
         <module>${artifactId}-web</module>
+        <#if export_provider_service != "true">
         <module>${artifactId}-provider</module>
+        </#if>
         <module>${artifactId}-domain</module>
         <module>${artifactId}-common</module>
     </modules>
     <build>
-        <resources>
-            <resource>
-                <directory><#noparse>${project.basedir}</#noparse>/src/main/resources</directory>
-                <filtering>true</filtering>
-            </resource>
-        </resources>
         <pluginManagement>
             <plugins>
                 <plugin>
@@ -517,32 +512,7 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <#if support_Redis == "true">
-                <!--Cache Configuration-->
-                <project.redis1.host></project.redis1.host>
-                <project.redis1.port></project.redis1.port>
-                <project.redis1.password></project.redis1.password>
-                </#if>
-                <#if support_mongoDB == "true">
-                <!--MongoDB Configuration-->
-                <project.mongo.host></project.mongo.host>
-                <project.mongo.port></project.mongo.port>
-                <project.mongo.username></project.mongo.username>
-                <project.mongo.password></project.mongo.password>
-                </#if>
-                <!--Database Configuration-->
-                <project.dbpool.driverClass>${jdbc_driver}</project.dbpool.driverClass>
-                <project.dbpool.jdbcUrl>${jdbc_url?replace('&', '&amp;')}</project.dbpool.jdbcUrl>
-                <project.dbpool.username>${jdbc_username}</project.dbpool.username>
-                <project.dbpool.password>${jdbc_password}</project.dbpool.password>
-                <project.dbpool.idleConnectionTestPeriodInMinutes>1</project.dbpool.idleConnectionTestPeriodInMinutes>
-                <project.dbpool.idleMaxAgeInMinutes>4</project.dbpool.idleMaxAgeInMinutes>
-                <project.dbpool.partitionCount>1</project.dbpool.partitionCount>
-                <project.dbpool.maxConnectionsPerPartition>30</project.dbpool.maxConnectionsPerPartition>
-                <project.dbpool.minConnectionsPerPartition>2</project.dbpool.minConnectionsPerPartition>
-                <project.dbpool.acquireIncrement>2</project.dbpool.acquireIncrement>
-                <project.dbpool.statementsCacheSize>50</project.dbpool.statementsCacheSize>
-                <project.dbpool.releaseHelperThreads>3</project.dbpool.releaseHelperThreads>
+                <profile-name>Dev</profile-name>
                 <!--Log Configuration-->
                 <catalina.base>target</catalina.base>
                 <catalina.log.priority>INFO</catalina.log.priority>
@@ -551,32 +521,7 @@
         <profile>
             <id>Pro</id>
             <properties>
-                <#if support_Redis == "true">
-                <!--Cache Configuration-->
-                <project.redis1.host></project.redis1.host>
-                <project.redis1.port></project.redis1.port>
-                <project.redis1.password></project.redis1.password>
-                </#if>
-                <#if support_mongoDB == "true">
-                <!--MongoDB Configuration-->
-                <project.mongo.host></project.mongo.host>
-                <project.mongo.port></project.mongo.port>
-                <project.mongo.username></project.mongo.username>
-                <project.mongo.password></project.mongo.password>
-                </#if>
-                <!--Database Configuration-->
-                <project.dbpool.driverClass>${jdbc_driver}</project.dbpool.driverClass>
-                <project.dbpool.jdbcUrl>${jdbc_url?replace('&', '&amp;')}</project.dbpool.jdbcUrl>
-                <project.dbpool.username>${jdbc_username}</project.dbpool.username>
-                <project.dbpool.password>${jdbc_password}</project.dbpool.password>
-                <project.dbpool.idleConnectionTestPeriodInMinutes>1</project.dbpool.idleConnectionTestPeriodInMinutes>
-                <project.dbpool.idleMaxAgeInMinutes>4</project.dbpool.idleMaxAgeInMinutes>
-                <project.dbpool.partitionCount>1</project.dbpool.partitionCount>
-                <project.dbpool.maxConnectionsPerPartition>30</project.dbpool.maxConnectionsPerPartition>
-                <project.dbpool.minConnectionsPerPartition>2</project.dbpool.minConnectionsPerPartition>
-                <project.dbpool.acquireIncrement>2</project.dbpool.acquireIncrement>
-                <project.dbpool.statementsCacheSize>50</project.dbpool.statementsCacheSize>
-                <project.dbpool.releaseHelperThreads>3</project.dbpool.releaseHelperThreads>
+                <profile-name>Pro</profile-name>
                 <!--Log Configuration-->
                 <catalina.base>~/apps</catalina.base>
                 <catalina.log.priority>WARN</catalina.log.priority>

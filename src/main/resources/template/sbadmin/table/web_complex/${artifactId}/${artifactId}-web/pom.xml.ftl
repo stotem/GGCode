@@ -13,7 +13,9 @@
 
     <name>${artifactId}-web Maven Webapp</name>
 
-    <properties />
+    <properties>
+        <project.web.basePath>${contentPath?default('/')}</project.web.basePath>
+    </properties>
 
     <dependencies>
         <dependency>
@@ -93,17 +95,27 @@
             <groupId>com.alibaba</groupId>
             <artifactId>dubbo</artifactId>
         </dependency>
-    <#else>
-    <dependency>
-        <artifactId>shop-provider</artifactId>
-        <groupId>org.wujianjun.apps</groupId>
-        <version><#noparse>${project.parent.version}</#noparse></version>
-    </dependency>
+    </#if>
+    <#if export_provider_service != "true">
+        <dependency>
+            <artifactId>${artifactId}-provider</artifactId>
+            <groupId>${groupId}</groupId>
+            <version><#noparse>${project.parent.version}</#noparse></version>
+        </dependency>
     </#if>
     </dependencies>
 
     <build>
         <finalName>${artifactId}-web</finalName>
+        <filters>
+            <filter>src/main/resources/config/<#noparse>${profile-name}.properties</#noparse></filter>
+        </filters>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>
