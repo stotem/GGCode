@@ -24,17 +24,29 @@
         <dependency>
             <artifactId>${artifactId}-service</artifactId>
             <groupId>${groupId}</groupId>
+            <#if export_provider_service == "true">
+            <version><#noparse>${project.version}</#noparse></version>
+            <#else>
             <version><#noparse>${project.parent.version}</#noparse></version>
+            </#if>
         </dependency>
         <dependency>
             <artifactId>${artifactId}-common</artifactId>
             <groupId>${groupId}</groupId>
+            <#if export_provider_service == "true">
+            <version><#noparse>${project.version}</#noparse></version>
+            <#else>
             <version><#noparse>${project.parent.version}</#noparse></version>
+            </#if>
         </dependency>
         <dependency>
             <artifactId>${artifactId}-domain</artifactId>
             <groupId>${groupId}</groupId>
+            <#if export_provider_service == "true">
+            <version><#noparse>${project.version}</#noparse></version>
+            <#else>
             <version><#noparse>${project.parent.version}</#noparse></version>
+            </#if>
         </dependency>
         <!-- drivers & middle ware -->
         <dependency>
