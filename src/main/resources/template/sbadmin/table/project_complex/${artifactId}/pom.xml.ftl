@@ -32,6 +32,7 @@
         <velocity-dep.version>1.4</velocity-dep.version>
         <velocity-tools.version>2.0</velocity-tools.version>
         <velocity.version>1.7</velocity.version>
+        <bonecp.version>0.8.0.RELEASE</bonecp.version>
     <#if support_Shiro == "true">
         <shiro.version>1.2.5</shiro.version>
     </#if>
@@ -331,17 +332,17 @@
             <dependency>
                 <groupId>com.jolbox</groupId>
                 <artifactId>bonecp-spring</artifactId>
-                <version>0.7.1.RELEASE</version>
+                <version><#noparse>${bonecp.version}</#noparse></version>
             </dependency>
             <dependency>
                 <groupId>com.jolbox</groupId>
                 <artifactId>bonecp-provider</artifactId>
-                <version>0.7.1.RELEASE</version>
+                <version><#noparse>${bonecp.version}</#noparse></version>
             </dependency>
             <dependency>
                 <groupId>com.jolbox</groupId>
                 <artifactId>bonecp</artifactId>
-                <version>0.7.1.RELEASE</version>
+                <version><#noparse>${bonecp.version}</#noparse></version>
             </dependency>
             <dependency>
                 <groupId>org.mariadb.jdbc</groupId>

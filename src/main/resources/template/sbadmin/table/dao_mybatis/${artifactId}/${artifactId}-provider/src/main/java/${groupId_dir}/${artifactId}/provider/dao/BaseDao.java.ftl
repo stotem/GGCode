@@ -1,6 +1,6 @@
 <#include "/basic/macro.include"/>
 
-package ${groupId}.${artifactId}.dao;
+package ${groupId}.${artifactId}.provider.dao;
 
 import java.util.List;
 import ${groupId}.${artifactId}.common.objects.Condition;

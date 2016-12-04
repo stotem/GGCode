@@ -6,7 +6,7 @@
 		1.会为所有的property生成property_dir属性,如pkg=com.company => pkg_dir=com/company
 	</comment>
 	<!-- 配置需要在生成代码之前需要文件预处理的处理类全名,多个使用","隔开 -->
-	<entry key="gg_crud_pre_bean">SpringMongoXMLFile,SpringShiroXMLFile,StringRedisSerializerJava</entry>
+	<entry key="gg_crud_pre_bean">DubboXMLFile,SpringMongoXMLFile,SpringShiroXMLFile,StringRedisSerializerJava</entry>
 	<!-- 配置需要生成代码的数据表:默认为扫描数据库所有的数据表,多个使用","隔开 -->
 	<entry key="gg_crud_tables"></entry>
 

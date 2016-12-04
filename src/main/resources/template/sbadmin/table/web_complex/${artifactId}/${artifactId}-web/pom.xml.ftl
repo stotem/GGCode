@@ -93,6 +93,12 @@
             <groupId>com.alibaba</groupId>
             <artifactId>dubbo</artifactId>
         </dependency>
+    <#else>
+    <dependency>
+        <artifactId>shop-provider</artifactId>
+        <groupId>org.wujianjun.apps</groupId>
+        <version><#noparse>${project.parent.version}</#noparse></version>
+    </dependency>
     </#if>
     </dependencies>
 

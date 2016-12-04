@@ -13,7 +13,7 @@ import ${groupId}.${artifactId}.common.objects.expt.DataNotFoundException;
 import ${groupId}.${artifactId}.common.objects.expt.DataFalsifyException;
 import ${groupId}.${artifactId}.common.objects.expt.DataAlreadyExistsException;
 
-import ${groupId}.${artifactId}.dao.${className}Dao;
+import ${groupId}.${artifactId}.provider.dao.${className}Dao;
 import ${groupId}.${artifactId}.domain.${className};
 import ${groupId}.${artifactId}.provider.manager.${className}Manager;
 import ${groupId}.${artifactId}.common.objects.PageCondition;
