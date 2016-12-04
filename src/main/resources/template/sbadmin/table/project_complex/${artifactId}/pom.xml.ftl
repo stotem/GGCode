@@ -44,9 +44,7 @@
     <modules>
         <module>${artifactId}-service</module>
         <module>${artifactId}-web</module>
-        <#if export_provider_service != "true">
         <module>${artifactId}-provider</module>
-        </#if>
         <module>${artifactId}-domain</module>
         <module>${artifactId}-common</module>
     </modules>
