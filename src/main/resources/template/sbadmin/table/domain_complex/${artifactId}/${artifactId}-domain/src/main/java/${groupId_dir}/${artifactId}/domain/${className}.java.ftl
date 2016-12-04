@@ -17,6 +17,7 @@ public class ${className} extends BaseDomain {
     || column.columnNameLowerCase == "createtime"
     || column.columnNameLowerCase == "updatetime"
     || column.columnNameLowerCase == "delflag"
+    || column.columnNameLowerCase == "version"
     ><#else>
     /**
      * ${column.columnAlias}
@@ -53,6 +54,7 @@ public class ${className} extends BaseDomain {
     || column.columnNameLowerCase == "createtime"
     || column.columnNameLowerCase == "updatetime"
     || column.columnNameLowerCase == "delflag"
+    || column.columnNameLowerCase == "version"
     ><#else>
 
     public void set${column.columnName} (${column.simpleJavaType} ${column.columnNameFirstLower}){
@@ -80,6 +82,8 @@ public class ${className} extends BaseDomain {
         stringBuffer.append("createTime = ").append(super.getCreateTime());
         <#elseif column.columnNameLowerCase == "updatetime">
         stringBuffer.append("updateTime = ").append(super.getUpdateTime());
+        <#elseif column.columnNameLowerCase == "version">
+        stringBuffer.append("version = ").append(super.getVersion());
         <#else>
         stringBuffer.append("${column.columnNameFirstLower} = ").append(this.get${column.columnName}());
         </#if>
