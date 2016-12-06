@@ -4,7 +4,7 @@
 
 <head>
     #parse("layouts/meta-inf.view")
-    <title>support</title>
+    <title>${artifactId}</title>
     #parse("layouts/import.view")
 </head>
 
