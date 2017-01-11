@@ -83,6 +83,7 @@
                 /js/** = anon
                 /font-awesome-4.1.0/** = anon
                 /captcha-image = anon
+                /favicon.ico = anon
                 /login = authc
                 /logout = logout
                 /** = authc
