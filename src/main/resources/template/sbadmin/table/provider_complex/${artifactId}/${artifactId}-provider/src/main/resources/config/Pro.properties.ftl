@@ -1,7 +1,7 @@
 <#if support_Redis == "true">
-config.redis1.host=
-config.redis1.port=
-config.redis1.password=
+config.redis.host1=
+config.redis.host2=
+config.redis.host3=
 </#if>
 <#if support_mongoDB == "true">
 config.mongo.host=
@@ -23,5 +23,5 @@ config.dbpool.statementsCacheSize=50
 config.dbpool.releaseHelperThreads=3
 <#if support_Dubbo == "true">
 config.dubbo.registry.address=
-config.local.dubbo.port=
+config.dubbo.local.port=20881
 </#if>

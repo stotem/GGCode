@@ -4,7 +4,8 @@ package ${groupId}.${artifactId}.domain;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import ${groupId}.${artifactId}.domain.enums.DelFlag;
-import java.utils.Objects;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 <#include "/basic/author.include"/>
 public abstract class BaseDomain implements Serializable {
@@ -73,14 +74,21 @@ public abstract class BaseDomain implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
+
         if (o == null || getClass() != o.getClass()) return false;
+
         BaseDomain that = (BaseDomain) o;
-        return Objects.equals(id, that.id);
+
+        return new EqualsBuilder()
+            .append(id, that.id)
+            .isEquals();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return new HashCodeBuilder(17, 37)
+        .append(id)
+        .toHashCode();
     }
 
     /*

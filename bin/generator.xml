@@ -8,9 +8,8 @@
 	<!-- 配置需要在生成代码之前需要文件预处理的处理类全名,多个使用","隔开 -->
 	<entry key="gg_crud_pre_bean">ExportServiceFile,DubboXMLFile,SpringMongoXMLFile,SpringShiroXMLFile,StringRedisSerializerJava</entry>
 	<!-- 配置需要生成代码的数据表:默认为扫描数据库所有的数据表,多个使用","隔开 -->
-	<entry key="gg_crud_tables"></entry>
-	<entry key="export_provider_service">false</entry>
-
+	<entry key="gg_crud_tables">driver,car</entry>
+	<entry key="export_provider_service">true</entry>
 	<!-- 需要移除的表名前缀,使用逗号进行分隔多个前缀,示例值: t_,v_ -->
 	<entry key="tableRemovePrefixes">t_</entry>
 	<entry key="tableNameSingularize">true</entry>
@@ -31,8 +30,8 @@
 	<entry key="java_typemapping.java.sql.Clob">String</entry>
 
 	<!-- 数据库相关配置 -->
-	<entry key="jdbc_username">root</entry>
-	<entry key="jdbc_password">123456</entry>
+	<entry key="jdbc_username">smapp</entry>
+	<entry key="jdbc_password">smcdyanfa</entry>
 
 	<!-- 切换不同的数据库驱动，可以影响如分页语句的生成. 因为生成器会根据jdbc_driver自动生成一个databaseType=mysql,oracle,postgresql变量 -->
 	<!-- H2 -->
@@ -41,7 +40,7 @@
 
 	<!-- Mysql -->
 	<!--<entry key="jdbc_url">jdbc:mysql://jkwin7:3306/zhangzhong?useUnicode=true&amp;characterEncoding=UTF-8</entry>-->
-	<entry key="jdbc_url">jdbc:mysql://10.28.10.188:3306/test?useUnicode=true&amp;characterEncoding=utf8</entry>
+	<entry key="jdbc_url">jdbc:mysql://master.dbsmzc.yw.vvip-u.com:3306/smzc?useUnicode=true&amp;characterEncoding=utf8</entry>
 	<entry key="jdbc_driver">org.mariadb.jdbc.Driver</entry>
 
 	<!-- oracle使用oci的连接方式需要设置PATH环境变量及ORACLE_HOME环境变量 -->
@@ -97,22 +96,22 @@
 	<!-- 模板根目录,此处使用sbadmin模板配置
 	-->
 	<entry key="dir_templates_root">classpath:template/sbadmin</entry>
-	<entry key="dir_crud_template_root">${dir_templates_root}/share,${dir_templates_root}/table/dao_mybatis,${dir_templates_root}/table/service_complex,${dir_templates_root}/table/page_velocity</entry>
+	<entry key="dir_crud_template_root">${dir_templates_root}/share,${dir_templates_root}/table/common_complex,${dir_templates_root}/table/web_complex,${dir_templates_root}/table/dao_mybatis,${dir_templates_root}/table/project_complex,${dir_templates_root}/table/provider_complex,${dir_templates_root}/table/service_complex</entry>
 	<!-- template/sbadmin模块专属参数配置 -->
-	<entry key="artifactId">account</entry>
-	<entry key="groupId">org.fastbuy.apps</entry>
-	<entry key="mvnURL">http://www.wujianjun.org</entry>
+	<entry key="artifactId">smot</entry>
+	<entry key="groupId">com.smzc</entry>
+	<entry key="mvnURL">http://www.vvip-u.com</entry>
 	<entry key="mvnVersion">1.0-SNAPSHOT</entry>
-	<entry key="contentPath">/account</entry>
-	<entry key="author">WuJianjun</entry>
+	<entry key="contentPath">/</entry>
+	<entry key="author">smzc</entry>
 	<!-- viewresolver: velocity(default), jsp-->
-	<entry key="spring_viewresolver">velocity</entry>
+	<entry key="spring_viewresolver">jsp</entry>
 	<!-- 是否需要开启mongoDB支持, true/false -->
-	<entry key="support_mongoDB">false</entry>
+	<entry key="support_mongoDB">true</entry>
 	<!-- 是否需要开启Redis支持, true/false -->
 	<entry key="support_Redis">true</entry>
 	<!-- 是否需要开启Shiro支持, true/false -->
-	<entry key="support_Shiro">true</entry>
+	<entry key="support_Shiro">false</entry>
 	<!-- 是否需要开启Dubbo支持, true/false -->
 	<entry key="support_Dubbo">true</entry>
 	<!-- 是否需要开启Redis缓存支持, true/false -->

@@ -35,6 +35,10 @@ public class App {
         if (Boolean.valueOf(exportProviderService)) {
             templatesRoot+=","+GeneratorProperties.getProperty("dir_templates_root")+"/table/provider_web_complex";
         }
+        final String viewresolver = GeneratorProperties.getProperty("spring_viewresolver");
+        if ("velocity".equalsIgnoreCase(viewresolver)) {
+            templatesRoot+=","+GeneratorProperties.getProperty("dir_templates_root")+"/table/page_velocity";
+        }
         GLogger.info("Template Root ==> "+templatesRoot);
         g.getGenerator().setTemplateRootDirs(templatesRoot.split(","));
         // 按配置增加预处理文件

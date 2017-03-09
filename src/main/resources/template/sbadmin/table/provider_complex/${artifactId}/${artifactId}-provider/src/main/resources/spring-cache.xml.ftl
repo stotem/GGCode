@@ -74,32 +74,28 @@
         <property name="prefix" value="<#noparse>${config.cache.key.prefix}</#noparse>"/>
     </bean>
 
-	<bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+	<bean id="redis.poolConfig" class="redis.clients.jedis.JedisPoolConfig">
 		<!-- <property name="maxActive" value="1000" /> -->
 		<property name="maxIdle" value="500" />
 		<!-- <property name="maxWait" value="1000" /> -->
 		<property name="testOnBorrow" value="true" />
 	</bean>
-	<bean id="jedis.shardInfo1" class="redis.clients.jedis.JedisShardInfo">
-        <constructor-arg index="0" value="<#noparse>${config.redis1.host}</#noparse>" type="java.lang.String"/>
-        <constructor-arg index="1" value="<#noparse>${config.redis1.port}</#noparse>" type="int"/>
-        <constructor-arg index="2" value="jedis.shardInfo1" type="java.lang.String"/>
-        <property name="password" value="<#noparse>${config.redis1.password}</#noparse>" />
+
+    <bean id="redis.sentinelConfig" class="org.springframework.data.redis.connection.RedisSentinelConfiguration">
+        <constructor-arg index="0" value="mymaster" />
+        <constructor-arg index="1">
+            <set>
+                <value><#noparse>${config.redis.host1}</#noparse></value>
+                <value><#noparse>${config.redis.host2}</#noparse></value>
+                <value><#noparse>${config.redis.host3}</#noparse></value>
+            </set>
+        </constructor-arg>
     </bean>
 
-	<bean id="shardedJedisPool" class="redis.clients.jedis.ShardedJedisPool">
-		<constructor-arg index="0" ref="jedisPoolConfig" />
-		<constructor-arg index="1">
-			<list>
-				<ref bean="jedis.shardInfo1" />
-			</list>
-		</constructor-arg>
-	</bean>
-
 	<bean id="cache.connectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
-		<property name="shardInfo" ref="jedis.shardInfo1" />
-		<property name="poolConfig" ref="jedisPoolConfig" />
-		<property name="usePool" value="true" />
+        <constructor-arg index="0" ref="redis.sentinelConfig"/>
+        <constructor-arg index="1" ref="redis.poolConfig" />
+        <property name="usePool" value="true" />
 	</bean>
 	<bean id="cache.template" class="org.springframework.data.redis.core.RedisTemplate">
         <property name="connectionFactory" ref="cache.connectionFactory" />

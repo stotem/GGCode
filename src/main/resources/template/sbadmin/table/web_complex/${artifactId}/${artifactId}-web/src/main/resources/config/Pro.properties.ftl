@@ -1,4 +1,4 @@
 <#if support_Dubbo == "true">
 config.dubbo.registry.address=
-config.local.dubbo.port=
+config.dubbo.local.port=20880
 </#if>
