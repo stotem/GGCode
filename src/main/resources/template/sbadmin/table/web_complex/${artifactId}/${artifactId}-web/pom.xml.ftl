@@ -70,7 +70,7 @@
             <groupId>javax.el</groupId>
             <artifactId>javax.el-api</artifactId>
         </dependency>
-    <#if spring_viewresolver == "velocity">
+    <#if spring_viewresolver?lower_case?trim == 'velocity'>
         <dependency>
             <groupId>org.apache.velocity</groupId>
             <artifactId>velocity</artifactId>

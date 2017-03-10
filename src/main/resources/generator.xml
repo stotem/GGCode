@@ -2,7 +2,7 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 	<comment>
-		代码生成器配置文件: 
+		代码生成器配置文件:
 		1.会为所有的property生成property_dir属性,如pkg=com.company => pkg_dir=com/company
 	</comment>
 	<!-- 配置需要在生成代码之前需要文件预处理的处理类全名,多个使用","隔开 -->
@@ -16,7 +16,7 @@
 	<entry key="gg_isOverride">true</entry>
 
 	<!-- 代码生成输出目录 -->
-	<entry key="dir_crud_out_root">target/generator-code-out</entry>
+	<entry key="dir_crud_out_root">code-out</entry>
 
 	<!-- 数据库类型至java类型映射  -->
 	<entry key="java_typemapping.java.sql.Timestamp">java.sql.Timestamp</entry>
@@ -29,19 +29,41 @@
 	<entry key="java_typemapping.java.math.BigDecimal">Long</entry>
 	<entry key="java_typemapping.java.sql.Clob">String</entry>
 
+	<entry key="dir_templates_root">classpath:template/sbadmin</entry>
+	<entry key="dir_crud_template_root">${dir_templates_root}/share,${dir_templates_root}/table/common_complex,${dir_templates_root}/table/web_complex,${dir_templates_root}/table/dao_mybatis,${dir_templates_root}/table/domain_complex,${dir_templates_root}/table/project_complex,${dir_templates_root}/table/provider_complex,${dir_templates_root}/table/service_complex,${dir_templates_root}/table/page_velocity</entry>
+	<!-- template/sbadmin模块专属参数配置 -->
+	<entry key="artifactId">support</entry>
+	<entry key="groupId">org.wujianjun.apps</entry>
+	<entry key="mvnURL">http://www.wujianjun.org</entry>
+	<entry key="mvnVersion">1.0-SNAPSHOT</entry>
+	<entry key="contentPath">/support</entry>
+	<entry key="author">WuJianjun</entry>
+	<!-- viewresolver: velocity(default), jsp-->
+	<entry key="spring_viewresolver">velocity</entry>
+	<!-- 是否需要开启mongoDB支持, true/false -->
+	<entry key="support_mongoDB">true</entry>
+	<!-- 是否需要开启Redis支持, true/false -->
+	<entry key="support_Redis">true</entry>
+	<!-- 是否需要开启Shiro支持, true/false -->
+	<entry key="support_Shiro">true</entry>
+	<!-- 是否需要开启Dubbo支持, true/false -->
+	<entry key="support_Dubbo">true</entry>
+	<!-- 是否需要开启Redis缓存支持, true/false -->
+	<entry key="cache_ForRedis">true</entry>
+
 	<!-- 数据库相关配置 -->
 	<entry key="jdbc_username">root</entry>
-	<entry key="jdbc_password">123456</entry>
+	<entry key="jdbc_password">root</entry>
+
+	<!-- Mysql -->
+	<!--<entry key="jdbc_url">jdbc:mysql://jkwin7:3306/zhangzhong?useUnicode=true&amp;characterEncoding=UTF-8</entry>-->
+	<entry key="jdbc_url">jdbc:mysql://master.wujianjun.com:3306/support?useUnicode=true&amp;characterEncoding=utf8</entry>
+	<entry key="jdbc_driver">org.mariadb.jdbc.Driver</entry>
 
 	<!-- 切换不同的数据库驱动，可以影响如分页语句的生成. 因为生成器会根据jdbc_driver自动生成一个databaseType=mysql,oracle,postgresql变量 -->
 	<!-- H2 -->
 	<!--<entry key="jdbc_url">jdbc:h2:H:/template/dili/db/database;AUTO_SERVER=TRUE</entry>-->
 	<!--<entry key="jdbc_driver">org.h2.Driver</entry>-->
-
-	<!-- Mysql -->
-	<!--<entry key="jdbc_url">jdbc:mysql://jkwin7:3306/zhangzhong?useUnicode=true&amp;characterEncoding=UTF-8</entry>-->
-	<entry key="jdbc_url">jdbc:mysql://10.28.10.188:3306/test?useUnicode=true&amp;characterEncoding=utf8</entry>
-	<entry key="jdbc_driver">org.mariadb.jdbc.Driver</entry>
 
 	<!-- oracle使用oci的连接方式需要设置PATH环境变量及ORACLE_HOME环境变量 -->
 	<!-- oracle需要指定jdbc_schema,并且可能要大写，其它数据库忽略此项配置
@@ -92,30 +114,6 @@
 	<entry key="jdbc_url">jdbc:derby://localhost/databaseName</entry>
 	<entry key="jdbc_driver">org.apache.derby.jdbc.ClientDriver</entry>
 	-->
-
-	<!-- 模板根目录,此处使用sbadmin模板配置
-	-->
-	<entry key="dir_templates_root">classpath:template/sbadmin</entry>
-	<entry key="dir_crud_template_root">${dir_templates_root}/share,${dir_templates_root}/table/common_complex,${dir_templates_root}/table/web_complex,${dir_templates_root}/table/dao_mybatis,${dir_templates_root}/table/domain_complex,${dir_templates_root}/table/project_complex,${dir_templates_root}/table/provider_complex,${dir_templates_root}/table/service_complex</entry>
-	<!-- template/sbadmin模块专属参数配置 -->
-	<entry key="artifactId">support</entry>
-	<entry key="groupId">org.fastbuy.apps</entry>
-	<entry key="mvnURL">http://www.wujianjun.org</entry>
-	<entry key="mvnVersion">1.0-SNAPSHOT</entry>
-	<entry key="contentPath">/support</entry>
-	<entry key="author">WuJianjun</entry>
-	<!-- viewresolver: velocity(default), jsp-->
-	<entry key="spring_viewresolver">velocity</entry>
-	<!-- 是否需要开启mongoDB支持, true/false -->
-	<entry key="support_mongoDB">true</entry>
-	<!-- 是否需要开启Redis支持, true/false -->
-	<entry key="support_Redis">true</entry>
-	<!-- 是否需要开启Shiro支持, true/false -->
-	<entry key="support_Shiro">true</entry>
-	<!-- 是否需要开启Dubbo支持, true/false -->
-	<entry key="support_Dubbo">true</entry>
-	<!-- 是否需要开启Redis缓存支持, true/false -->
-	<entry key="cache_ForRedis">true</entry>
 
 	<!-- 以下为开源框架内置的模板配置, 使用sbadmin模块时可忽略以下配置 -->
 	<!-- 模板目录配置,内置模块为:rapid. 可以为: 1. c:/some.jar!/subfolder   2. classpath:some_folder. 模板文件存放在jar包中

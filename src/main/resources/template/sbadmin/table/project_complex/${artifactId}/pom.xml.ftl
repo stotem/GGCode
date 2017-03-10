@@ -28,10 +28,12 @@
         <maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
         <findbugs-maven-plugin.version>2.5.5</findbugs-maven-plugin.version>
         <org.aspectj.version>1.7.4</org.aspectj.version>
+        <bonecp.version>0.8.0.RELEASE</bonecp.version>
+    <#if spring_viewresolver?lower_case?trim == 'velocity'>
         <velocity-dep.version>1.4</velocity-dep.version>
         <velocity-tools.version>2.0</velocity-tools.version>
         <velocity.version>1.7</velocity.version>
-        <bonecp.version>0.8.0.RELEASE</bonecp.version>
+    </#if>
     <#if support_Shiro == "true">
         <shiro.version>1.2.5</shiro.version>
     </#if>
@@ -137,6 +139,7 @@
     </reporting>
     <dependencyManagement>
         <dependencies>
+        <#if spring_viewresolver?lower_case?trim == 'velocity'>
             <dependency>
                 <groupId>org.apache.velocity</groupId>
                 <artifactId>velocity</artifactId>
@@ -152,6 +155,7 @@
                 <artifactId>velocity-tools</artifactId>
                 <version><#noparse>${velocity-tools.version}</#noparse></version>
             </dependency>
+        </#if>
             <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>

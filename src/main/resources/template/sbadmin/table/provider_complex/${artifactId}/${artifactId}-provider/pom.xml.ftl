@@ -58,6 +58,23 @@
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis-spring</artifactId>
         </dependency>
+    <#if support_mongoDB == "true">
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-mongodb</artifactId>
+        </dependency>
+    </#if>
+    <#if support_Redis == "true">
+        <!-- redis & spring -->
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-redis</artifactId>
+        </dependency>
+    </#if>
     <#if support_Dubbo == "true">
         <dependency>
             <groupId>com.alibaba</groupId>

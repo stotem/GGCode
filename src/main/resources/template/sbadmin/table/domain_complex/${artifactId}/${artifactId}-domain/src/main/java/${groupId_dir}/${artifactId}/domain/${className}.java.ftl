@@ -1,4 +1,4 @@
-<#include "/basic/macro.include"/>
+<#include "/basic/macro.include" />
 package ${groupId}.${artifactId}.domain;
 
 import javax.validation.constraints.Size;
@@ -28,16 +28,11 @@ public class ${className} extends BaseDomain {
     <#assign nullable = "必填项" />
     </#if>
     <#assign message = "${column.columnAlias}为${nullable}(需控制在${column.size}个字符内)" />
-    <#assign maxValueString = "" />
-    <#list 1..column.size as idx>
-    <#assign maxValueString = maxValueString + "9" />
-    </#list>
 <#if column.isNumberColumn>
     <#if column.nullable == false>
     @NotNull(message = "${message}")
     @Min(value = 1, message = "${message}")
     </#if>
-    @Max(value = ${maxValueString}L, message = "${message}")
 <#elseif column.isDateTimeColumn>
     <#if column.nullable == false>
     @NotNull(message = "${message}")
@@ -48,6 +43,7 @@ public class ${className} extends BaseDomain {
     private ${column.simpleJavaType} ${column.columnNameFirstLower};
     </#if>
 </#list>
+
 <#--set get方法-->
 <#list table.columns as column>
     <#if column.columnNameLowerCase == table.pkColumn.columnNameLowerCase
