@@ -39,6 +39,7 @@
     </#if>
     <#if support_Dubbo == "true">
         <dubbo.version>2.5.3</dubbo.version>
+        <zkclient.version>0.10</zkclient.version>
     </#if>
 
     </properties>
@@ -324,6 +325,11 @@
                         <artifactId>spring</artifactId>
                     </exclusion>
                 </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>com.101tec</groupId>
+                <artifactId>zkclient</artifactId>
+                <version><#noparse>${zkclient.version}</#noparse></version>
             </dependency>
         </#if>
         <#if support_Shiro == "true">
