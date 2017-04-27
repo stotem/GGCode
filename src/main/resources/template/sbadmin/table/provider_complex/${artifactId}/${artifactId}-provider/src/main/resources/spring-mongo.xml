@@ -12,7 +12,7 @@
 					   socket-keep-alive="true" socket-timeout="60000" slave-ok="true"
 					   write-number="1" write-timeout="0" write-fsync="true" />
 	</mongo:mongo>
-	<mongo:db-factory dbname="mongoDBName" mongo-ref="mongo" />
+	<mongo:db-factory dbname="${config.mongo.dbname}" mongo-ref="mongo" />
 	<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
 		<constructor-arg name="mongoDbFactory" ref="mongoDbFactory" />
 	</bean>

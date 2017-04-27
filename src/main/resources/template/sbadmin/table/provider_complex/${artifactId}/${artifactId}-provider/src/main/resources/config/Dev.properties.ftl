@@ -5,6 +5,7 @@ config.redis.host3=
 </#if>
 <#if support_mongoDB == "true">
 config.mongo.hosts=
+config.mongo.dbname=
 </#if>
 config.dbpool.driverClass=${jdbc_driver}
 config.dbpool.jdbcUrl=${jdbc_url?replace('&', '&amp;')}
