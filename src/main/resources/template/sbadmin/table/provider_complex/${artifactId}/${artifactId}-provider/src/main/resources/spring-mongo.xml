@@ -5,10 +5,16 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
        http://www.springframework.org/schema/data/mongo http://www.springframework.org/schema/data/mongo/spring-mongo.xsd">
 
-	<mongo:db-factory id="mongoDBFactory" dbname="activityDB" mongo-ref="mongoDB" username="${config.mongo.username}" password="${config.mongo.password}"/>
+	<mongo:mongo id="mongo" replica-set="${config.mongo.hosts}">
+		<mongo:options connections-per-host="10"
+					   threads-allowed-to-block-for-connection-multiplier="4"
+					   connect-timeout="10000" max-wait-time="30000" auto-connect-retry="true"
+					   socket-keep-alive="true" socket-timeout="60000" slave-ok="true"
+					   write-number="1" write-timeout="0" write-fsync="true" />
+	</mongo:mongo>
+	<mongo:db-factory dbname="mongoDBName" mongo-ref="mongo" />
 	<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
-		<constructor-arg name="mongoDbFactory" ref="mongoDBFactory" />
+		<constructor-arg name="mongoDbFactory" ref="mongoDbFactory" />
 	</bean>
-	<mongo:mongo id="mongoDB" host="${config.mongo.host}" port="${config.mongo.port}" />
 
 </beans>

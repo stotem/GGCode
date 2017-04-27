@@ -4,10 +4,7 @@ config.redis.host2=
 config.redis.host3=
 </#if>
 <#if support_mongoDB == "true">
-config.mongo.host=
-config.mongo.port=
-config.mongo.username=
-config.mongo.password=
+config.mongo.hosts=
 </#if>
 config.dbpool.driverClass=${jdbc_driver}
 config.dbpool.jdbcUrl=${jdbc_url?replace('&', '&amp;')}
