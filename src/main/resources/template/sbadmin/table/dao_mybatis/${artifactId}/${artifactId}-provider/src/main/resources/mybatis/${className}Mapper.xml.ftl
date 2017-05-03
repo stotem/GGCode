@@ -13,6 +13,9 @@
 </#list>
     </resultMap>
 
+    <sql id="from_table"><![CDATA[FROM ${table.sqlName}]]></sql>
+    <sql id="update_table"><![CDATA[UPDATE ${table.sqlName}]]></sql>
+
     <!--select field-->
     <sql id="table-field-select">
     <#assign isFirst=true />
@@ -33,6 +36,7 @@
 
     <!--where field normal-->
     <sql id="where-field-normal">
+        <where>
         DEL_FLAG = 1
     <#list table.columns as column>
         <#if column.columnNameLowerCase != "delflag" && column.columnNameLowerCase != "createtime"
@@ -46,10 +50,12 @@
         </if>
         </#if>
     </#list>
+        </where>
     </sql>
 
     <!--update set field normal first check null or empty string-->
     <sql id="set-field-normal-check">
+    <set>
 <#assign isFirst=true />
 <#list table.columns as column>
     <#if column.columnNameLowerCase == table.pkColumn.columnNameLowerCase>
@@ -65,10 +71,12 @@
         </if>
     </#if>
 </#list>
+        </set>
     </sql>
 
     <!--update set field normal-->
     <sql id="set-field-normal">
+        <set>
 <#assign isFirst=true />
 <#list table.columns as column>
     <#if column.columnNameLowerCase == table.pkColumn.columnNameLowerCase>
@@ -82,10 +90,12 @@
         <#if isFirst==false>, </#if><#assign isFirst=false />`${column.sqlName}` = <#noparse>#{</#noparse>${column.columnNameFirstLower}<#noparse>}</#noparse>
     </#if>
 </#list>
+        </set>
     </sql>
 
     <!-- where field full-->
     <sql id="where-field-full">
+        <where>
         DEL_FLAG = 1
     <#list table.columns as column>
         <#if column.columnNameLowerCase == table.pkColumn.columnNameLowerCase>
@@ -98,16 +108,16 @@
         </if>
         </#if>
     </#list>
+        </where>
     </sql>
 
     <!--Get data by primary key-->
     <select id="getById" parameterType="Long" resultMap="${className}RM">
         <![CDATA[ SELECT ]]>
         <include refid="table-field-select"/>
+        <include refid="from_table"/>
         <![CDATA[
-        FROM ${table.sqlName}
-        WHERE ${table.pkColumn.sqlName}=<#noparse>#{pk}
-    </#noparse>
+        WHERE ${table.pkColumn.sqlName}=<#noparse>#{pk}</#noparse>
         ]]>
     </select>
 
@@ -137,33 +147,28 @@
     </insert>
 
     <update id="update" parameterType="${groupId}.${artifactId}.domain.${className}">
-        <![CDATA[ UPDATE ${table.sqlName} SET]]>
+        <include refid="update_table"/>
         <include refid="set-field-normal" />
         <![CDATA[ WHERE del_flag = 1 AND ${table.pkColumn.sqlName} =<#noparse> #{id}</#noparse> ]]>
     </update>
 
     <update id="updateByCheck" parameterType="${groupId}.${artifactId}.domain.${className}">
-        <![CDATA[ UPDATE ${table.sqlName} set ]]>
+        <include refid="update_table"/>
         <include refid="set-field-normal-check" />
         <![CDATA[ WHERE del_flag = 1 AND ${table.pkColumn.sqlName} =<#noparse> #{id}</#noparse> ]]>
     </update>
 
     <select id="countByCondition" parameterType="map" resultType="Long">
-        <![CDATA[
-        SELECT COUNT(1) FROM ${table.sqlName}
-        ]]>
-        <where>
+        <![CDATA[ SELECT COUNT(1) ]]>
+        <include refid="from_table"/>
         <include refid="where-field-normal" />
-        </where>
     </select>
 
     <select id="listPageByCondition" parameterType="map" resultMap="${className}RM">
         <![CDATA[ SELECT ]]>
         <include refid="table-field-select"/>
-        <![CDATA[ FROM ${table.sqlName}]]>
-        <where>
+        <include refid="from_table"/>
         <include refid="where-field-normal" />
-        </where>
     <#noparse>
         <![CDATA[
         LIMIT #{K_START_ROW},#{K_DATA_SIZE}
@@ -174,38 +179,30 @@
     <select id="listFullByMapCondition" parameterType="map" resultMap="${className}RM">
         <![CDATA[ SELECT ]]>
         <include refid="table-field-select"/>
-        <![CDATA[
-        FROM ${table.sqlName}
-        ]]>
-        <where>
-            <include refid="where-field-full" />
-        </where>
+        <include refid="from_table"/>
+        <include refid="where-field-full" />
     </select>
 
     <select id="listByCondition" parameterType="map" resultMap="${className}RM">
         <![CDATA[ SELECT ]]>
         <include refid="table-field-select"/>
-        <![CDATA[
-        FROM ${table.sqlName}
-        ]]>
-        <where>
+        <include refid="from_table"/>
         <include refid="where-field-normal" />
-        </where>
     </select>
 
     <update id="deleteById" parameterType="Long">
+        <include refid="update_table"/>
         <![CDATA[
-        UPDATE ${table.sqlName} SET <#noparse>del_flag = 2,update_time = NOW(),version=version+1 where </#noparse>${table.pkColumn.sqlName} = <#noparse>#{id}</#noparse>
+        SET <#noparse>del_flag = 2,update_time = NOW(),version=version+1 where </#noparse>${table.pkColumn.sqlName} = <#noparse>#{id}</#noparse>
         ]]>
     </update>
 
     <update id="deleteByCondition" parameterType="map">
+        <include refid="update_table"/>
         <![CDATA[
-        UPDATE ${table.sqlName} SET <#noparse>del_flag = 2,update_time = NOW(),version=version+1 </#noparse>
+        SET <#noparse>del_flag = 2,update_time = NOW(),version=version+1 </#noparse>
         ]]>
-        <where>
-            <include refid="where-field-normal" />
-        </where>
+        <include refid="where-field-normal" />
     </update>
 
 </mapper>
