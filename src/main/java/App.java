@@ -26,8 +26,9 @@ public class App {
         String outRootFilePath = GeneratorProperties.getProperty("dir_crud_out_root");
         if (outRootFilePath == null || outRootFilePath.trim().length() == 0) {
             outRootFilePath = "code_out";
-            GeneratorProperties.setProperty("dir_crud_out_root", outRootFilePath);
         }
+        outRootFilePath += File.separator + "sourcecode";
+        GeneratorProperties.setProperty("dir_crud_out_root", outRootFilePath);
         g.getGenerator().setOutRootDir(outRootFilePath);
         g.getGenerator().setExcludes(".scss,.ttf,.eot,.woff");
         String templatesRoot = GeneratorProperties.getProperty("dir_crud_template_root");
