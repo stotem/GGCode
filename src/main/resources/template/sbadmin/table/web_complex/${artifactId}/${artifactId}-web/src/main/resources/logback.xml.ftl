@@ -37,8 +37,6 @@
 		</encoder>
 	</appender>
 
-	<logger name="${groupId}.${artifactId}.dao" level="DEBUG"/>
-	<logger name="org.ibatis" level="DEBUG" />
 	<logger name="net.sf.ehcache" level="WARN" />
 	<logger name="org.springframework" level="INFO" />
 	<logger name="org.apache.mina" level="WARN" />
