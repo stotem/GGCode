@@ -450,6 +450,11 @@
                 <artifactId>jackson-dataformat-xml</artifactId>
                 <version><#noparse>${fasterxml.jackson.databind.version}</#noparse></version>
             </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>1.1.46.sec01</version>
+            </dependency>
             <!-- container -->
             <dependency>
                 <groupId>javax.servlet</groupId>
@@ -579,6 +584,10 @@
         <dependency>
             <groupId>com.fasterxml.jackson.dataformat</groupId>
             <artifactId>jackson-dataformat-xml</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
         </dependency>
         <dependency>
             <groupId>org.aspectj</groupId>
