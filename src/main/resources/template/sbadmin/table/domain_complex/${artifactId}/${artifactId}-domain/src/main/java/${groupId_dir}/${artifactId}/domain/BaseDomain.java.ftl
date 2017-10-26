@@ -14,6 +14,8 @@ public abstract class BaseDomain implements Serializable {
     private DelFlag delFlag;
     private Timestamp createTime;
     private Timestamp updateTime;
+    private String createdBy;
+    private String updatedBy;
     private Long version;
 
     public Long getVersion() {
@@ -71,11 +73,31 @@ public abstract class BaseDomain implements Serializable {
         this.updateTime = updateTime;
     }
 
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public String getUpdatedBy() {
+        return updatedBy;
+    }
+
+    public void setUpdatedBy(String updatedBy) {
+        this.updatedBy = updatedBy;
+    }
+
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
+        if (this == o) {
+            return true;
+        }
 
-        if (o == null || getClass() != o.getClass()) return false;
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         BaseDomain that = (BaseDomain) o;
 
