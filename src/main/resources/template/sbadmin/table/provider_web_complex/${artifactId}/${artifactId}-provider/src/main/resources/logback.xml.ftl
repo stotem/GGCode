@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configuration>
-	<appender name="FILEINFO"
-		class="ch.qos.logback.core.rolling.RollingFileAppender">
+<configuration debug="false">
+
+    <jmxConfigurator />
+
+	<appender name="FILEINFO" class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<file><#noparse>${catalina.base}</#noparse>/logs/${artifactId}_warn.log</file>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
 			<FileNamePattern><#noparse>${catalina.base}</#noparse>/logs/%d{yyyy-MM-dd}/${artifactId}_warn.log</FileNamePattern>
@@ -12,11 +14,10 @@
 			<onMismatch>DENY</onMismatch>
 		</filter>
 		<encoder>
-			<pattern>%date [%thread] %logger{10} [%file:%line] %msg%n</pattern>
+			<pattern>[${artifactId}] %d{yyyy-MM-dd HH:mm:ss.SSS}:[%t]{%logger{0}:%L}-%m%n</pattern>
 		</encoder>
 	</appender>
-	<appender name="FILEERROR"
-		class="ch.qos.logback.core.rolling.RollingFileAppender">
+	<appender name="FILEERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<file><#noparse>${catalina.base}</#noparse>/logs/${artifactId}_error.log</file>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
 			<FileNamePattern><#noparse>${catalina.base}</#noparse>/logs/%d{yyyy-MM-dd}/${artifactId}_error.log</FileNamePattern>
@@ -27,13 +28,12 @@
 			<onMismatch>DENY</onMismatch>
 		</filter>
 		<encoder>
-			<pattern>%date [%thread] %logger{10} [%file:%line] %msg%n
-			</pattern>
+			<pattern>[${artifactId}] %d{yyyy-MM-dd HH:mm:ss.SSS}:[%t]{%logger{0}:%L}-%m%n</pattern>
 		</encoder>
 	</appender>
-	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
 		<encoder>
-			<pattern>[${artifactId}] %d{yyyy-MM-dd HH:mm:ss.SSS}:[%thread] %-5level %logger{36} - %msg%n</pattern>
+			<pattern>[${artifactId}|console] %d{yyyy-MM-dd HH:mm:ss.SSS}:[%t]{%logger{0}:%L}-%m%n</pattern>
 		</encoder>
 	</appender>
 
@@ -46,6 +46,6 @@
 	<logger name="org.springframework.flex" level="ERROR" />
 
 	<root level="<#noparse>${catalina.log.priority}</#noparse>">
-		<appender-ref ref="STDOUT" />
+		<appender-ref ref="console" />
 	</root>
 </configuration> 

@@ -29,6 +29,7 @@
         <findbugs-maven-plugin.version>2.5.5</findbugs-maven-plugin.version>
         <org.aspectj.version>1.7.4</org.aspectj.version>
         <bonecp.version>0.8.0.RELEASE</bonecp.version>
+        <logback.version>1.1.7</logback.version>
     <#if spring_viewresolver?lower_case?trim == 'velocity'>
         <velocity-dep.version>1.4</velocity-dep.version>
         <velocity-tools.version>2.0</velocity-tools.version>
@@ -105,6 +106,22 @@
                         <uriEncoding>UTF-8</uriEncoding>
                     </configuration>
                 </plugin>
+                <plugin>
+                    <groupId>org.eclipse.jetty</groupId>
+                    <artifactId>jetty-maven-plugin</artifactId>
+                    <version>9.2.21.v20170120</version>
+                    <configuration>
+                        <stopPort>9966</stopPort>
+                        <stopKey>foo</stopKey>
+                        <scanIntervalSeconds>10</scanIntervalSeconds>
+                        <webApp>
+                            <contextPath><#noparse>${project.web.basePath}</#noparse></contextPath>
+                        </webApp>
+                        <httpConnector>
+                            <port>8080</port>
+                        </httpConnector>
+                    </configuration>
+                </plugin>
             </plugins>
         </pluginManagement>
         <plugins>
@@ -171,8 +188,18 @@
             </dependency>
             <dependency>
                 <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-core</artifactId>
+                <version>${logback.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-access</artifactId>
+                <version>${logback.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
                 <artifactId>logback-classic</artifactId>
-                <version>1.1.2</version>
+                <version>${logback.version}</version>
             </dependency>
             <dependency>
                 <groupId>commons-logging</groupId>
@@ -334,6 +361,16 @@
                 <groupId>com.101tec</groupId>
                 <artifactId>zkclient</artifactId>
                 <version><#noparse>${zkclient.version}</#noparse></version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>slf4j-log4j12</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>log4j</groupId>
+                        <artifactId>log4j</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
         </#if>
         <#if support_Shiro == "true">
@@ -453,6 +490,14 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-access</artifactId>
         </dependency>
         <dependency>
             <groupId>ch.qos.logback</groupId>
