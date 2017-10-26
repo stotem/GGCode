@@ -189,17 +189,17 @@
             <dependency>
                 <groupId>ch.qos.logback</groupId>
                 <artifactId>logback-core</artifactId>
-                <version>${logback.version}</version>
+                <version><#noparse>${logback.version}</#noparse></version>
             </dependency>
             <dependency>
                 <groupId>ch.qos.logback</groupId>
                 <artifactId>logback-access</artifactId>
-                <version>${logback.version}</version>
+                <version><#noparse>${logback.version}</#noparse></version>
             </dependency>
             <dependency>
                 <groupId>ch.qos.logback</groupId>
                 <artifactId>logback-classic</artifactId>
-                <version>${logback.version}</version>
+                <version><#noparse>${logback.version}</#noparse></version>
             </dependency>
             <dependency>
                 <groupId>commons-logging</groupId>
