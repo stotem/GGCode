@@ -9,4 +9,7 @@
     <dubbo:registry address="<#noparse>${config.dubbo.registry.address}</#noparse>" check="false"/>
     <dubbo:protocol name="dubbo" port="<#noparse>${config.dubbo.local.port}</#noparse>" />
     <!-- config remote service in here -->
+    <!-- example:
+        <dubbo:service interface="com.wujianjun.service.DictionaryService" version="1.0" group="default" ref="dictionaryServiceImpl"/>
+    -->
 </beans>

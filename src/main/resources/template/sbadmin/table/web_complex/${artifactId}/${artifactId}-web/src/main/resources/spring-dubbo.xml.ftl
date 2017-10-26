@@ -6,6 +6,9 @@
        http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
     <dubbo:application name="${artifactId}-customer" logger="slf4j"/>
     <dubbo:annotation/>
-    <dubbo:registry address="<#noparse>${config.dubbo.registry.address}</#noparse>" check="false"/>
+    <dubbo:registry address="<#noparse>${config.dubbo.registry.address}</#noparse>" timeout="20000" check="false"/>
     <!-- config remote service in here -->
+    <!-- example:
+         <dubbo:reference interface="com.wujianjun.service.DictionaryService" version="1.0" group="default" id="dictionaryService" />
+    -->
 </beans>
