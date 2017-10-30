@@ -27,7 +27,7 @@
     </bean>
 
     <bean id="readDataSource" class="com.jolbox.bonecp.BoneCPDataSource" destroy-method="close">
-        <property name="driverClass" value="<#noparse>${config.dbpool.read.driverClass}</#noparse>"/>
+        <property name="driverClass" value="<#noparse>${config.dbpool.driverClass}</#noparse>"/>
         <property name="jdbcUrl" value="<#noparse>${config.dbpool.read.jdbcUrl}</#noparse>"/>
         <property name="username" value="<#noparse>${config.dbpool.read.username}</#noparse>"/>
         <property name="password" value="<#noparse>${config.dbpool.read.password}</#noparse>"/>
