@@ -19,11 +19,16 @@
     <cache:annotation-driven cache-manager="cacheManager" key-generator="cacheKeyGenerator"/>
 
 	<bean id="processTimeAspect" class="${groupId}.${artifactId}.common.aspect.ProcessTimeAspect" />
+	<bean id="dataSourceAspect" class="${groupId}.${artifactId}.common.aspect.DataSourceAspect" />
+
     <aop:aspectj-autoproxy/>
 	<aop:config>
 		<aop:aspect ref="processTimeAspect">
 			<aop:around method="loggerProcessTime" pointcut="within(${groupId}.${artifactId}.provider..*)" />
 		</aop:aspect>
+		<aop:aspect ref="dataSourceAspect">
+            <aop:before method="setDataSourceType" pointcut="@annotation(${groupId}.${artifactId}.common.datasource.DataSource)" />
+        </aop:aspect>
 	</aop:config>
 
 	<bean id="configure" class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
