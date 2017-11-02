@@ -1,6 +1,6 @@
 package ${groupId}.${artifactId}.common;
 
-import ${groupId}.${artifactId}.common.objects.expt.BusinessException;
+import ${groupId}.${artifactId}.common.objects.expt.AssertionException;
 import ${groupId}.${artifactId}.common.tools.Tools;
 
 import java.util.Collection;
@@ -25,7 +25,7 @@ public abstract class Asserts {
 
     public static void isTrue(boolean expression, String code, String message, Object... formats) {
         if(!expression) {
-            BusinessException exception = (BusinessException) getThrowException(BusinessException.class, message, formats);
+            AssertionException exception = (AssertionException) getThrowException(AssertionException.class, message, formats);
             exception.setErrorCode(code);
             throw exception;
         }
@@ -33,7 +33,7 @@ public abstract class Asserts {
 
     public static void isTrue(boolean expression, String message, Object... formats) {
         if(!expression) {
-            throw getThrowException(BusinessException.class, message, formats);
+            throw getThrowException(AssertionException.class, message, formats);
         }
     }
 
@@ -43,7 +43,7 @@ public abstract class Asserts {
 
     public static void isNull(Object object, String code, String message, Object... formats) {
         if(object != null) {
-            BusinessException exception = (BusinessException) getThrowException(BusinessException.class, message, formats);
+            AssertionException exception = (AssertionException) getThrowException(AssertionException.class, message, formats);
             exception.setErrorCode(code);
             throw exception;
         }
@@ -51,7 +51,7 @@ public abstract class Asserts {
 
     public static void isNull(Object object, String message, Object... formats) {
         if(object != null) {
-            throw getThrowException(BusinessException.class, message, formats);
+            throw getThrowException(AssertionException.class, message, formats);
         }
     }
 
@@ -61,7 +61,7 @@ public abstract class Asserts {
 
     public static void notNull(Object object, String code, String message, Object... formats) {
         if(object == null) {
-            BusinessException exception = (BusinessException) getThrowException(BusinessException.class, message, formats);
+            AssertionException exception = (AssertionException) getThrowException(AssertionException.class, message, formats);
             exception.setErrorCode(code);
             throw exception;
         }
@@ -69,7 +69,7 @@ public abstract class Asserts {
 
     public static void notNull(Object object, String message, Object... formats) {
         if(object == null) {
-            throw getThrowException(BusinessException.class, message, formats);
+            throw getThrowException(AssertionException.class, message, formats);
         }
     }
 
@@ -79,13 +79,13 @@ public abstract class Asserts {
 
     public static void hasLength(String text, String message, Object... formats) {
         if(text == null || text.trim().length() == 0) {
-            throw getThrowException(BusinessException.class, message, formats);
+            throw getThrowException(AssertionException.class, message, formats);
         }
     }
 
     public static void hasLength(String text, String code, String message, Object... formats) {
         if(text == null || text.trim().length() == 0) {
-            BusinessException exception = (BusinessException) getThrowException(BusinessException.class, message, formats);
+            AssertionException exception = (AssertionException) getThrowException(AssertionException.class, message, formats);
             exception.setErrorCode(code);
             throw exception;
         }
@@ -97,19 +97,19 @@ public abstract class Asserts {
 
     public static void notEmpty(Object[] array, String message, Object... formats) {
         if(array == null || array.length ==0) {
-            throw getThrowException(BusinessException.class, message, formats);
+            throw getThrowException(AssertionException.class, message, formats);
         }
     }
     public static void isEmpty(Collection<?> collection, String code, String message, Object... formats) {
         if(collection != null && !collection.isEmpty()) {
-            BusinessException exception = (BusinessException) getThrowException(BusinessException.class, message, formats);
+            AssertionException exception = (AssertionException) getThrowException(AssertionException.class, message, formats);
             exception.setErrorCode(code);
             throw exception;
         }
     }
     public static void isEmpty(Collection<?> collection, String message, Object... formats) {
         if(collection != null && !collection.isEmpty()) {
-            throw getThrowException(BusinessException.class, message, formats);
+            throw getThrowException(AssertionException.class, message, formats);
         }
     }
 
@@ -119,7 +119,7 @@ public abstract class Asserts {
 
     public static void notEmpty(Collection<?> collection, String code, String message, Object... formats) {
         if(collection == null || collection.isEmpty()) {
-            BusinessException exception = (BusinessException) getThrowException(BusinessException.class, message, formats);
+            AssertionException exception = (AssertionException) getThrowException(AssertionException.class, message, formats);
             exception.setErrorCode(code);
             throw exception;
         }
@@ -127,7 +127,7 @@ public abstract class Asserts {
 
     public static void notEmpty(Collection<?> collection, String message, Object... formats) {
         if(collection == null || collection.isEmpty()) {
-            throw getThrowException(BusinessException.class, message, formats);
+            throw getThrowException(AssertionException.class, message, formats);
         }
     }
 
@@ -137,7 +137,7 @@ public abstract class Asserts {
 
     public static void notEmpty(Map<?, ?> map, String message, Object... formats) {
         if(map == null || map.isEmpty()) {
-            throw getThrowException(BusinessException.class, message, formats);
+            throw getThrowException(AssertionException.class, message, formats);
         }
     }
 
@@ -149,7 +149,7 @@ public abstract class Asserts {
         if(array != null) {
             for (Object element : array) {
                 if(element == null) {
-                    throw getThrowException(BusinessException.class, message, formats);
+                    throw getThrowException(AssertionException.class, message, formats);
                 }
             }
         }
@@ -162,7 +162,7 @@ public abstract class Asserts {
     public static void isInstanceOf(Class<?> type, Object obj, String message, Object... formats) {
         notNull(type, "Type to check against must not be null");
         if(!type.isInstance(obj)) {
-            throw getThrowException(BusinessException.class, message, formats);
+            throw getThrowException(AssertionException.class, message, formats);
         }
     }
 
@@ -173,7 +173,7 @@ public abstract class Asserts {
     public static void isAssignable(Class<?> superType, Class<?> subType, String message, Object... formats) {
         notNull(superType, "Type to check against must not be null");
         if(subType == null || !superType.isAssignableFrom(subType)) {
-            throw getThrowException(BusinessException.class, message, formats);
+            throw getThrowException(AssertionException.class, message, formats);
         }
     }
 }

@@ -16,8 +16,8 @@ public class ${className} extends BaseDomain {
     <#if column.columnNameLowerCase == table.pkColumn.columnNameLowerCase
     || column.columnNameLowerCase == "createtime"
     || column.columnNameLowerCase == "updatetime"
-    || column.columnNameLowerCase == "createdBy"
-    || column.columnNameLowerCase == "updatedBy"
+    || column.columnNameLowerCase == "createdby"
+    || column.columnNameLowerCase == "updatedby"
     || column.columnNameLowerCase == "version"
     || column.columnNameLowerCase == "delflag"
     ><#else>
@@ -51,8 +51,8 @@ public class ${className} extends BaseDomain {
     <#if column.columnNameLowerCase == table.pkColumn.columnNameLowerCase
     || column.columnNameLowerCase == "createtime"
     || column.columnNameLowerCase == "updatetime"
-    || column.columnNameLowerCase == "createdBy"
-    || column.columnNameLowerCase == "updatedBy"
+    || column.columnNameLowerCase == "createdby"
+    || column.columnNameLowerCase == "updatedby"
     || column.columnNameLowerCase == "delflag"
     || column.columnNameLowerCase == "version"
     ><#else>
@@ -82,10 +82,10 @@ public class ${className} extends BaseDomain {
         stringBuffer.append("createTime = ").append(super.getCreateTime());
         <#elseif column.columnNameLowerCase == "updatetime">
         stringBuffer.append("updateTime = ").append(super.getUpdateTime());
-        <#elseif column.columnNameLowerCase == "createdBy">
-        stringBuffer.append("createdBy = ").append(super.getCreatedBy());
-        <#elseif column.columnNameLowerCase == "updatedBy">
-        stringBuffer.append("updatedBy = ").append(super.getUpdatedBy());
+        <#elseif column.columnNameLowerCase == "createdby">
+        stringBuffer.append("createdby = ").append(super.getCreatedBy());
+        <#elseif column.columnNameLowerCase == "updatedby">
+        stringBuffer.append("updatedby = ").append(super.getUpdatedBy());
         <#elseif column.columnNameLowerCase == "version">
         stringBuffer.append("version = ").append(super.getVersion());
         <#else>

@@ -15,6 +15,8 @@ package ${groupId}.${artifactId}.common.objects.expt;
  **/
 public class ServiceException extends Exception {
 
+    private String errorCode;
+
     /**
      * create ServiceException instance
      * @author Wujianjun
@@ -53,6 +55,14 @@ public class ServiceException extends Exception {
      */
     public ServiceException(Throwable cause) {
         super(cause);
+    }
+
+    public String getErrorCode() {
+        return errorCode;
+    }
+
+    public void setErrorCode(String errorCode) {
+        this.errorCode = errorCode;
     }
 
 }
