@@ -120,7 +120,7 @@
         <property name="defaultErrorView" value="/common/error" />
         <property name="exceptionMappings">
             <props>
-                <prop key="${groupId}.${artifactId}.common.objects.expt.ServiceException">/common/error</prop>
+                <prop key="${groupId}.${artifactId}.common.objects.expt.ServiceException">/common/service_exception</prop>
             <#if support_Shiro == "true">
                 <prop key="org.apache.shiro.authz.UnauthorizedException">/common/unauthorized</prop>
             </#if>
