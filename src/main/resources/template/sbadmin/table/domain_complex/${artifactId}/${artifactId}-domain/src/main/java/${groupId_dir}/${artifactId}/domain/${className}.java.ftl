@@ -79,13 +79,13 @@ public class ${className} extends BaseDomain {
         <#elseif column.columnNameLowerCase == "delflag">
         stringBuffer.append("delFlag = ").append(super.getDelFlag());
         <#elseif column.columnNameLowerCase == "createtime">
-        stringBuffer.append("createTime = ").append(super.getCreateTime());
+        stringBuffer.append("createdTime = ").append(super.getCreatedTime());
         <#elseif column.columnNameLowerCase == "updatetime">
-        stringBuffer.append("updateTime = ").append(super.getUpdateTime());
+        stringBuffer.append("updatedTime = ").append(super.getUpdatedTime());
         <#elseif column.columnNameLowerCase == "createdby">
-        stringBuffer.append("createdby = ").append(super.getCreatedBy());
+        stringBuffer.append("createdBy = ").append(super.getCreatedBy());
         <#elseif column.columnNameLowerCase == "updatedby">
-        stringBuffer.append("updatedby = ").append(super.getUpdatedBy());
+        stringBuffer.append("updatedBy = ").append(super.getUpdatedBy());
         <#elseif column.columnNameLowerCase == "version">
         stringBuffer.append("version = ").append(super.getVersion());
         <#else>

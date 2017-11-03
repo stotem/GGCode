@@ -39,8 +39,8 @@
         <where>
         DEL_FLAG = 1
     <#list table.columns as column>
-        <#if column.columnNameLowerCase != "delflag" && column.columnNameLowerCase != "createtime"
-        && column.columnNameLowerCase != "updatetime">
+        <#if column.columnNameLowerCase != "delflag" && column.columnNameLowerCase != "createdtime"
+        && column.columnNameLowerCase != "updatedtime">
         <if test="${column.columnNameFirstLower} != null and ${column.columnNameFirstLower} != ''">
             AND `${column.sqlName}` = <#noparse>#{</#noparse>${column.columnNameFirstLower}<#noparse>}</#noparse>
         </if>
@@ -60,10 +60,10 @@
 <#list table.columns as column>
     <#if column.columnNameLowerCase == table.pkColumn.columnNameLowerCase>
     <#elseif column.columnNameLowerCase == "delflag">
-    <#elseif column.columnNameLowerCase == "createtime">
+    <#elseif column.columnNameLowerCase == "createdtime">
     <#elseif column.columnNameLowerCase == "version">
         <#if isFirst==false>, </#if><#assign isFirst=false />`${column.sqlName}` = `${column.sqlName}`+1
-    <#elseif column.columnNameLowerCase == "updatetime">
+    <#elseif column.columnNameLowerCase == "updatedtime">
         <#if isFirst==false>, </#if><#assign isFirst=false />`${column.sqlName}` = NOW()
     <#else>
         <if test="${column.columnNameFirstLower} != null and ${column.columnNameFirstLower} != ''">
@@ -81,10 +81,10 @@
 <#list table.columns as column>
     <#if column.columnNameLowerCase == table.pkColumn.columnNameLowerCase>
     <#elseif column.columnNameLowerCase == "delflag">
-    <#elseif column.columnNameLowerCase == "createtime">
+    <#elseif column.columnNameLowerCase == "createdtime">
     <#elseif column.columnNameLowerCase == "version">
         <#if isFirst==false>, </#if><#assign isFirst=false />`${column.sqlName}` = `${column.sqlName}`+1
-    <#elseif column.columnNameLowerCase == "updatetime">
+    <#elseif column.columnNameLowerCase == "updatedtime">
         <#if isFirst==false>, </#if><#assign isFirst=false />`${column.sqlName}` = NOW()
     <#else>
         <#if isFirst==false>, </#if><#assign isFirst=false />`${column.sqlName}` = <#noparse>#{</#noparse>${column.columnNameFirstLower}<#noparse>}</#noparse>
@@ -132,9 +132,9 @@
         <#if column.columnNameLowerCase == table.pkColumn.columnNameLowerCase>
         <#elseif column.columnNameLowerCase == "delflag">
             <#if isFirst==false>, </#if><#assign isFirst=false />1
-        <#elseif column.columnNameLowerCase == "createtime">
+        <#elseif column.columnNameLowerCase == "createdtime">
             <#if isFirst==false>, </#if><#assign isFirst=false />NOW()
-        <#elseif column.columnNameLowerCase == "updatetime">
+        <#elseif column.columnNameLowerCase == "updatedtime">
             <#if isFirst==false>, </#if><#assign isFirst=false />NOW()
         <#elseif column.columnNameLowerCase == "version">
             <#if isFirst==false>, </#if><#assign isFirst=false />1
@@ -193,14 +193,14 @@
     <update id="deleteById" parameterType="Long">
         <include refid="update_table"/>
         <![CDATA[
-        SET <#noparse>del_flag = 2,update_time = NOW(),version=version+1 where </#noparse>${table.pkColumn.sqlName} = <#noparse>#{id}</#noparse>
+        SET <#noparse>del_flag = 2,updated_time = NOW(),version=version+1 where </#noparse>${table.pkColumn.sqlName} = <#noparse>#{id}</#noparse>
         ]]>
     </update>
 
     <update id="deleteByCondition" parameterType="map">
         <include refid="update_table"/>
         <![CDATA[
-        SET <#noparse>del_flag = 2,update_time = NOW(),version=version+1 </#noparse>
+        SET <#noparse>del_flag = 2,updated_time = NOW(),version=version+1 </#noparse>
         ]]>
         <include refid="where-field-normal" />
     </update>

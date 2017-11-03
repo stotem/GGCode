@@ -12,8 +12,8 @@ public abstract class BaseDomain implements Serializable {
 
     private Long id;
     private DelFlag delFlag;
-    private Timestamp createTime;
-    private Timestamp updateTime;
+    private Timestamp createdTime;
+    private Timestamp updatedTime;
     private String createdBy;
     private String updatedBy;
     private Long version;
@@ -57,20 +57,20 @@ public abstract class BaseDomain implements Serializable {
         this.delFlag = delFlag;
     }
 
-    public Timestamp getCreateTime() {
-        return createTime;
+    public Timestamp getCreatedTime() {
+        return createdTime;
     }
 
-    public void setCreateTime(Timestamp createTime) {
-        this.createTime = createTime;
+    public void setCreatedTime(Timestamp createdTime) {
+        this.createdTime = createdTime;
     }
 
-    public Timestamp getUpdateTime() {
-        return updateTime;
+    public Timestamp getUpdatedTime() {
+        return updatedTime;
     }
 
-    public void setUpdateTime(Timestamp updateTime) {
-        this.updateTime = updateTime;
+    public void setUpdatedTime(Timestamp updatedTime) {
+        this.updatedTime = updatedTime;
     }
 
     public String getCreatedBy() {
