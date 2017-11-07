@@ -36,14 +36,6 @@
         <!-- drivers & middle ware -->
         <dependency>
             <groupId>com.jolbox</groupId>
-            <artifactId>bonecp-spring</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.jolbox</groupId>
-            <artifactId>bonecp-provider</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.jolbox</groupId>
             <artifactId>bonecp</artifactId>
         </dependency>
         <dependency>

@@ -14,7 +14,7 @@
 			<onMismatch>DENY</onMismatch>
 		</filter>
 		<encoder>
-			<pattern>[${artifactId}] %d{yyyy-MM-dd HH:mm:ss.SSS}:[%t]{%logger{0}:%L}-%m%n</pattern>
+			<pattern>[${artifactId}] %d{yyyy-MM-dd HH:mm:ss.SSS}:[%-5level][%t]{%logger{0}:%L}-%m%n</pattern>
 		</encoder>
 	</appender>
 	<appender name="FILEERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
@@ -28,12 +28,12 @@
 			<onMismatch>DENY</onMismatch>
 		</filter>
 		<encoder>
-			<pattern>[${artifactId}] %d{yyyy-MM-dd HH:mm:ss.SSS}:[%t]{%logger{0}:%L}-%m%n</pattern>
+			<pattern>[${artifactId}] %d{yyyy-MM-dd HH:mm:ss.SSS}:[%-5level][%t]{%logger{0}:%L}-%m%n</pattern>
 		</encoder>
 	</appender>
 	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
 		<encoder>
-			<pattern>[${artifactId}|console] %d{yyyy-MM-dd HH:mm:ss.SSS}:[%t]{%logger{0}:%L}-%m%n</pattern>
+			<pattern>[${artifactId}|console] %d{yyyy-MM-dd HH:mm:ss.SSS}:[%-5level][%t]{%logger{0}:%L}-%m%n</pattern>
 		</encoder>
 	</appender>
 
