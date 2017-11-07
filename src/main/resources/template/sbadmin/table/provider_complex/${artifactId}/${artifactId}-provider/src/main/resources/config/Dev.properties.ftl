@@ -18,7 +18,6 @@ config.dbpool.maxConnectionsPerPartition=30
 config.dbpool.minConnectionsPerPartition=2
 config.dbpool.acquireIncrement=2
 config.dbpool.statementsCacheSize=50
-config.dbpool.releaseHelperThreads=3
 
 config.dbpool.read.jdbcUrl=${jdbc_url?replace('&', '&amp;')}
 config.dbpool.read.username=${jdbc_username}
@@ -30,7 +29,6 @@ config.dbpool.read.maxConnectionsPerPartition=10
 config.dbpool.read.minConnectionsPerPartition=2
 config.dbpool.read.acquireIncrement=1
 config.dbpool.read.statementsCacheSize=10
-config.dbpool.read.releaseHelperThreads=2
 <#if support_Dubbo == "true">
 config.dubbo.registry.address=
 config.dubbo.local.port=20881

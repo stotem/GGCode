@@ -10,36 +10,42 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
         http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
-    <bean id="writeDataSource" class="com.jolbox.bonecp.BoneCPDataSource" destroy-method="close">
-        <property name="driverClass" value="<#noparse>${config.dbpool.driverClass}</#noparse>"/>
-        <property name="jdbcUrl" value="<#noparse>${config.dbpool.jdbcUrl}</#noparse>"/>
-        <property name="username" value="<#noparse>${config.dbpool.username}</#noparse>"/>
-        <property name="password" value="<#noparse>${config.dbpool.password}</#noparse>"/>
-        <property name="idleConnectionTestPeriodInMinutes" value="<#noparse>${config.dbpool.idleConnectionTestPeriodInMinutes}</#noparse>"/>
-        <property name="idleMaxAgeInMinutes" value="<#noparse>${config.dbpool.idleMaxAgeInMinutes}</#noparse>"/>
-        <property name="partitionCount" value="<#noparse>${config.dbpool.partitionCount}</#noparse>"/>
-        <property name="maxConnectionsPerPartition" value="<#noparse>${config.dbpool.maxConnectionsPerPartition}</#noparse>"/>
-        <property name="minConnectionsPerPartition" value="<#noparse>${config.dbpool.minConnectionsPerPartition}</#noparse>"/>
-        <property name="acquireIncrement" value="<#noparse>${config.dbpool.acquireIncrement}</#noparse>"/>
-        <property name="statementsCacheSize" value="<#noparse>${config.dbpool.statementsCacheSize}</#noparse>"/>
-        <property name="releaseHelperThreads" value="<#noparse>${config.dbpool.releaseHelperThreads}</#noparse>"/>
-        <property name="connectionTestStatement" value="select 1"/>
+    <bean id="writeDataSource" class="org.springframework.jdbc.datasource.LazyConnectionDataSourceProxy">
+        <property name="targetDataSource">
+            <bean class="com.jolbox.bonecp.BoneCPDataSource" destroy-method="close">
+                <property name="driverClass" value="<#noparse>${config.dbpool.driverClass}</#noparse>"/>
+                <property name="jdbcUrl" value="<#noparse>${config.dbpool.jdbcUrl}</#noparse>"/>
+                <property name="username" value="<#noparse>${config.dbpool.username}</#noparse>"/>
+                <property name="password" value="<#noparse>${config.dbpool.password}</#noparse>"/>
+                <property name="idleConnectionTestPeriodInMinutes" value="<#noparse>${config.dbpool.idleConnectionTestPeriodInMinutes}</#noparse>"/>
+                <property name="idleMaxAgeInMinutes" value="<#noparse>${config.dbpool.idleMaxAgeInMinutes}</#noparse>"/>
+                <property name="partitionCount" value="<#noparse>${config.dbpool.partitionCount}</#noparse>"/>
+                <property name="maxConnectionsPerPartition" value="<#noparse>${config.dbpool.maxConnectionsPerPartition}</#noparse>"/>
+                <property name="minConnectionsPerPartition" value="<#noparse>${config.dbpool.minConnectionsPerPartition}</#noparse>"/>
+                <property name="acquireIncrement" value="<#noparse>${config.dbpool.acquireIncrement}</#noparse>"/>
+                <property name="statementsCacheSize" value="<#noparse>${config.dbpool.statementsCacheSize}</#noparse>"/>
+                <property name="connectionTestStatement" value="select 1"/>
+            </bean>
+        </property>
     </bean>
 
-    <bean id="readDataSource" class="com.jolbox.bonecp.BoneCPDataSource" destroy-method="close">
-        <property name="driverClass" value="<#noparse>${config.dbpool.driverClass}</#noparse>"/>
-        <property name="jdbcUrl" value="<#noparse>${config.dbpool.read.jdbcUrl}</#noparse>"/>
-        <property name="username" value="<#noparse>${config.dbpool.read.username}</#noparse>"/>
-        <property name="password" value="<#noparse>${config.dbpool.read.password}</#noparse>"/>
-        <property name="idleConnectionTestPeriodInMinutes" value="<#noparse>${config.dbpool.read.idleConnectionTestPeriodInMinutes}</#noparse>"/>
-        <property name="idleMaxAgeInMinutes" value="<#noparse>${config.dbpool.read.idleMaxAgeInMinutes}</#noparse>"/>
-        <property name="partitionCount" value="<#noparse>${config.dbpool.read.partitionCount}</#noparse>"/>
-        <property name="maxConnectionsPerPartition" value="<#noparse>${config.dbpool.read.maxConnectionsPerPartition}</#noparse>"/>
-        <property name="minConnectionsPerPartition" value="<#noparse>${config.dbpool.read.minConnectionsPerPartition}</#noparse>"/>
-        <property name="acquireIncrement" value="<#noparse>${config.dbpool.read.acquireIncrement}</#noparse>"/>
-        <property name="statementsCacheSize" value="<#noparse>${config.dbpool.read.statementsCacheSize}</#noparse>"/>
-        <property name="releaseHelperThreads" value="<#noparse>${config.dbpool.read.releaseHelperThreads}</#noparse>"/>
-        <property name="connectionTestStatement" value="select 1"/>
+    <bean id="readDataSource" class="org.springframework.jdbc.datasource.LazyConnectionDataSourceProxy">
+        <property name="targetDataSource">
+            <bean class="com.jolbox.bonecp.BoneCPDataSource" destroy-method="close">
+                <property name="driverClass" value="<#noparse>${config.dbpool.driverClass}</#noparse>"/>
+                <property name="jdbcUrl" value="<#noparse>${config.dbpool.read.jdbcUrl}</#noparse>"/>
+                <property name="username" value="<#noparse>${config.dbpool.read.username}</#noparse>"/>
+                <property name="password" value="<#noparse>${config.dbpool.read.password}</#noparse>"/>
+                <property name="idleConnectionTestPeriodInMinutes" value="<#noparse>${config.dbpool.read.idleConnectionTestPeriodInMinutes}</#noparse>"/>
+                <property name="idleMaxAgeInMinutes" value="<#noparse>${config.dbpool.read.idleMaxAgeInMinutes}</#noparse>"/>
+                <property name="partitionCount" value="<#noparse>${config.dbpool.read.partitionCount}</#noparse>"/>
+                <property name="maxConnectionsPerPartition" value="<#noparse>${config.dbpool.read.maxConnectionsPerPartition}</#noparse>"/>
+                <property name="minConnectionsPerPartition" value="<#noparse>${config.dbpool.read.minConnectionsPerPartition}</#noparse>"/>
+                <property name="acquireIncrement" value="<#noparse>${config.dbpool.read.acquireIncrement}</#noparse>"/>
+                <property name="statementsCacheSize" value="<#noparse>${config.dbpool.read.statementsCacheSize}</#noparse>"/>
+                <property name="connectionTestStatement" value="select 1"/>
+            </bean>
+        </property>
     </bean>
 
     <bean id="dataSource" class="${groupId}.${artifactId}.common.datasource.DynamicRouteDataSource">
