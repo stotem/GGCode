@@ -13,14 +13,14 @@
 </#list>
     </resultMap>
 
-    <sql id="from_table"><![CDATA[FROM ${table.sqlName}]]></sql>
-    <sql id="update_table"><![CDATA[UPDATE ${table.sqlName}]]></sql>
+    <sql id="from_table"><![CDATA[FROM ${table.sqlName} AS t]]></sql>
+    <sql id="update_table"><![CDATA[UPDATE ${table.sqlName}] AS t]></sql>
 
     <!--select field-->
     <sql id="table-field-select">
     <#assign isFirst=true />
     <#list table.columns as column>
-        <#if isFirst==false>, </#if><#assign isFirst=false />`${column.sqlName}`
+        <#if isFirst==false>, </#if><#assign isFirst=false />t.`${column.sqlName}`
     </#list>
     </sql>
 
@@ -29,7 +29,7 @@
     <#assign isFirst=true />
     <#list table.columns as column>
         <#if column.columnNameLowerCase != table.pkColumn.columnNameLowerCase>
-        <#if isFirst==false>, </#if><#assign isFirst=false />`${column.sqlName}`
+        <#if isFirst==false>, </#if><#assign isFirst=false />t.`${column.sqlName}`
         </#if>
     </#list>
     </sql>
@@ -37,16 +37,16 @@
     <!--where field normal-->
     <sql id="where-field-normal">
         <where>
-        DEL_FLAG = 1
+        t.`del_flag` = 1
     <#list table.columns as column>
         <#if column.columnNameLowerCase != "delflag" && column.columnNameLowerCase != "createdtime"
         && column.columnNameLowerCase != "updatedtime">
         <if test="${column.columnNameFirstLower} != null and ${column.columnNameFirstLower} != ''">
-            AND `${column.sqlName}` = <#noparse>#{</#noparse>${column.columnNameFirstLower}<#noparse>}</#noparse>
+            AND t.`${column.sqlName}` = <#noparse>#{</#noparse>${column.columnNameFirstLower}<#noparse>}</#noparse>
         </if>
         <#elseif column.columnNameLowerCase == table.pkColumn.columnNameLowerCase>
         <if test="id != null and id != ''">
-            AND `${column.sqlName}` = <#noparse>#{</#noparse>id<#noparse>}</#noparse>
+            AND t.`${column.sqlName}` = <#noparse>#{</#noparse>id<#noparse>}</#noparse>
         </if>
         </#if>
     </#list>
@@ -62,12 +62,12 @@
     <#elseif column.columnNameLowerCase == "delflag">
     <#elseif column.columnNameLowerCase == "createdtime">
     <#elseif column.columnNameLowerCase == "version">
-        <#if isFirst==false>, </#if><#assign isFirst=false />`${column.sqlName}` = `${column.sqlName}`+1
+        <#if isFirst==false>, </#if><#assign isFirst=false />t.`${column.sqlName}` = `${column.sqlName}`+1
     <#elseif column.columnNameLowerCase == "updatedtime">
-        <#if isFirst==false>, </#if><#assign isFirst=false />`${column.sqlName}` = NOW()
+        <#if isFirst==false>, </#if><#assign isFirst=false />t.`${column.sqlName}` = NOW()
     <#else>
         <if test="${column.columnNameFirstLower} != null and ${column.columnNameFirstLower} != ''">
-        <#if isFirst==false>, </#if><#assign isFirst=false />`${column.sqlName}` = <#noparse>#{</#noparse>${column.columnNameFirstLower}<#noparse>}</#noparse>
+        <#if isFirst==false>, </#if><#assign isFirst=false />t.`${column.sqlName}` = <#noparse>#{</#noparse>${column.columnNameFirstLower}<#noparse>}</#noparse>
         </if>
     </#if>
 </#list>
@@ -83,11 +83,11 @@
     <#elseif column.columnNameLowerCase == "delflag">
     <#elseif column.columnNameLowerCase == "createdtime">
     <#elseif column.columnNameLowerCase == "version">
-        <#if isFirst==false>, </#if><#assign isFirst=false />`${column.sqlName}` = `${column.sqlName}`+1
+        <#if isFirst==false>, </#if><#assign isFirst=false />t.`${column.sqlName}` = `${column.sqlName}`+1
     <#elseif column.columnNameLowerCase == "updatedtime">
-        <#if isFirst==false>, </#if><#assign isFirst=false />`${column.sqlName}` = NOW()
+        <#if isFirst==false>, </#if><#assign isFirst=false />t.`${column.sqlName}` = NOW()
     <#else>
-        <#if isFirst==false>, </#if><#assign isFirst=false />`${column.sqlName}` = <#noparse>#{</#noparse>${column.columnNameFirstLower}<#noparse>}</#noparse>
+        <#if isFirst==false>, </#if><#assign isFirst=false />t.`${column.sqlName}` = <#noparse>#{</#noparse>${column.columnNameFirstLower}<#noparse>}</#noparse>
     </#if>
 </#list>
         </set>
@@ -96,15 +96,15 @@
     <!-- where field full-->
     <sql id="where-field-full">
         <where>
-        DEL_FLAG = 1
+        t.`del_flag` = 1
     <#list table.columns as column>
         <#if column.columnNameLowerCase == table.pkColumn.columnNameLowerCase>
         <if test="id != null and id != ''">
-            AND `${column.sqlName}` = <#noparse>#{</#noparse>id<#noparse>}</#noparse>
+            AND t.`${column.sqlName}` = <#noparse>#{</#noparse>id<#noparse>}</#noparse>
         </if>
         <#else>
         <if test="${column.columnNameFirstLower} != null and ${column.columnNameFirstLower} != ''">
-            AND `${column.sqlName}` = <#noparse>#{</#noparse>${column.columnNameFirstLower}<#noparse>}</#noparse>
+            AND t.`${column.sqlName}` = <#noparse>#{</#noparse>${column.columnNameFirstLower}<#noparse>}</#noparse>
         </if>
         </#if>
     </#list>
@@ -117,7 +117,7 @@
         <include refid="table-field-select"/>
         <include refid="from_table"/>
         <![CDATA[
-        WHERE ${table.pkColumn.sqlName}=<#noparse>#{pk}</#noparse>
+        WHERE t.`${table.pkColumn.sqlName}`=<#noparse>#{pk}</#noparse>
         ]]>
     </select>
 
@@ -149,13 +149,13 @@
     <update id="update" parameterType="${groupId}.${artifactId}.domain.${className}">
         <include refid="update_table"/>
         <include refid="set-field-normal" />
-        <![CDATA[ WHERE del_flag = 1 AND ${table.pkColumn.sqlName} =<#noparse> #{id}</#noparse> ]]>
+        <![CDATA[ WHERE t.`del_flag` = 1 AND t.`${table.pkColumn.sqlName}` =<#noparse> #{id}</#noparse> ]]>
     </update>
 
     <update id="updateByCheck" parameterType="${groupId}.${artifactId}.domain.${className}">
         <include refid="update_table"/>
         <include refid="set-field-normal-check" />
-        <![CDATA[ WHERE del_flag = 1 AND ${table.pkColumn.sqlName} =<#noparse> #{id}</#noparse> ]]>
+        <![CDATA[ WHERE t.`del_flag` = 1 AND t.`${table.pkColumn.sqlName}` =<#noparse> #{id}</#noparse> ]]>
     </update>
 
     <select id="countByCondition" parameterType="map" resultType="Long">
@@ -193,14 +193,14 @@
     <update id="deleteById" parameterType="Long">
         <include refid="update_table"/>
         <![CDATA[
-        SET <#noparse>del_flag = 2,updated_time = NOW(),version=version+1 where </#noparse>${table.pkColumn.sqlName} = <#noparse>#{id}</#noparse>
+        SET <#noparse>t.`del_flag` = 2,t.`updated_time` = NOW(),t.`version`=t.`version`+1 where </#noparse>t.`${table.pkColumn.sqlName}` = <#noparse>#{id}</#noparse>
         ]]>
     </update>
 
     <update id="deleteByCondition" parameterType="map">
         <include refid="update_table"/>
         <![CDATA[
-        SET <#noparse>del_flag = 2,updated_time = NOW(),version=version+1 </#noparse>
+        SET <#noparse>t.`del_flag` = 2,t.`updated_time` = NOW(),t.`version`=t.`version`+1 </#noparse>
         ]]>
         <include refid="where-field-normal" />
     </update>
