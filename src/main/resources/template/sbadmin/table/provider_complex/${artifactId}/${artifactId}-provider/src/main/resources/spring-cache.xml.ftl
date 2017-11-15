@@ -72,6 +72,7 @@
     <bean id="stringRedisSerializer" class="${groupId}.${artifactId}.provider.utils.StringRedisSerializer">
         <property name="prefix" value="<#noparse>${config.cache.key.prefix}</#noparse>"/>
     </bean>
+    <bean id="fastjsonRedisSerializer" class="${groupId}.${artifactId}.provider.utils.FastJson2JsonRedisSerializer" />
 
 	<bean id="redis.poolConfig" class="redis.clients.jedis.JedisPoolConfig">
 		<!-- <property name="maxActive" value="1000" /> -->
@@ -96,10 +97,12 @@
         <constructor-arg index="1" ref="redis.poolConfig" />
         <property name="usePool" value="true" />
 	</bean>
-	<bean id="cache.template" class="org.springframework.data.redis.core.StringRedisTemplate">
+	<bean id="cache.template" class="org.springframework.data.redis.core.RedisTemplate">
         <property name="connectionFactory" ref="cache.connectionFactory" />
         <property name="keySerializer" ref="stringRedisSerializer" />
         <property name="hashKeySerializer" ref="stringRedisSerializer" />
+        <property name="valueSerializer" ref="fastjsonRedisSerializer" />
+		<property name="hashValueSerializer" ref="fastjsonRedisSerializer" />
 	</bean>
     </#if>
 </beans>
