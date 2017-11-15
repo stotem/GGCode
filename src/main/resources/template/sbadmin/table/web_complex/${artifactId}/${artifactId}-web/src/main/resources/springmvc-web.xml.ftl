@@ -38,9 +38,7 @@
                </property>
             </bean>
             <!-- 将Jackson2HttpMessageConverter的默认格式化输出设为true -->
-            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
-                <property name="prettyPrint" value="true"/>
-            </bean>
+            <bean class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter"/>
         </mvc:message-converters>
     </mvc:annotation-driven>
 
@@ -83,7 +81,7 @@
 		</property>
   		<property name="defaultViews">
 			<list>
-                <bean class="org.springframework.web.servlet.view.json.MappingJackson2JsonView" />
+                <bean class="com.alibaba.fastjson.support.spring.FastJsonJsonView" />
                	<bean class="org.springframework.web.servlet.view.xml.MappingJackson2XmlView" />
 			</list>
 		</property>

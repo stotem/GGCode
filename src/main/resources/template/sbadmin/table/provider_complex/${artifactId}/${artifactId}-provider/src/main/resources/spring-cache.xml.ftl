@@ -96,7 +96,7 @@
         <constructor-arg index="1" ref="redis.poolConfig" />
         <property name="usePool" value="true" />
 	</bean>
-	<bean id="cache.template" class="org.springframework.data.redis.core.RedisTemplate">
+	<bean id="cache.template" class="org.springframework.data.redis.core.StringRedisTemplate">
         <property name="connectionFactory" ref="cache.connectionFactory" />
         <property name="keySerializer" ref="stringRedisSerializer" />
         <property name="hashKeySerializer" ref="stringRedisSerializer" />
