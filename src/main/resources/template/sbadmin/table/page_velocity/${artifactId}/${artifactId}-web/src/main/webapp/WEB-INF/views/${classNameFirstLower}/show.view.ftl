@@ -30,9 +30,9 @@
                 && column.columnNameLowerCase != "version"
                 && column.columnNameLowerCase != "delflag">
                 <div class="form-group">
-                <#if column.columnNameLowerCase == "createtime">
+                <#if column.columnNameLowerCase == "createdtime">
                     <label>创建时间</label>
-                <#elseif column.columnNameLowerCase == "updatetime">
+                <#elseif column.columnNameLowerCase == "updatedtime">
                     <label>更新时间</label>
                 <#else>
                     <label>${column.columnAlias}</label>

@@ -35,7 +35,7 @@
                         <!--Search Items -->
                 <#list table.columns as column>
                     <#if column.nullable == false && column.columnNameLowerCase != "delflag"
-                        && column.columnNameLowerCase != "createtime" && column.columnNameLowerCase != "updatetime"
+                        && column.columnNameLowerCase != "createdtime" && column.columnNameLowerCase != "updatedtime"
                         && column.columnNameLowerCase != "version">
                         <div class="form-group">
                             <label>${column.columnAlias}</label>
@@ -76,9 +76,9 @@
         <#list table.columns as column>
             <#if column.columnNameLowerCase != "delflag" && column.columnNameLowerCase != "version"
                     && column.columnNameLowerCase != table.pkColumn.columnNameLowerCase>
-                <#if column.columnNameLowerCase == "createtime">
+                <#if column.columnNameLowerCase == "createdtime">
                     <th>创建时间</th>
-                <#elseif column.columnNameLowerCase == "updatetime">
+                <#elseif column.columnNameLowerCase == "updatedtime">
                     <th>更新时间</th>
                 <#else>
                     <th>${column.columnAlias}</th>

@@ -14,7 +14,7 @@
     </resultMap>
 
     <sql id="from_table"><![CDATA[FROM ${table.sqlName} AS t]]></sql>
-    <sql id="update_table"><![CDATA[UPDATE ${table.sqlName}] AS t]></sql>
+    <sql id="update_table"><![CDATA[UPDATE ${table.sqlName} AS t]]></sql>
 
     <!--select field-->
     <sql id="table-field-select">

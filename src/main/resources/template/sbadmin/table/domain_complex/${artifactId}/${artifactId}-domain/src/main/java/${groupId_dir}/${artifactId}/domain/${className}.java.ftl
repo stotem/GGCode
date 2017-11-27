@@ -14,8 +14,8 @@ public class ${className} extends BaseDomain {
 <#--字段-->
 <#list table.columns as column>
     <#if column.columnNameLowerCase == table.pkColumn.columnNameLowerCase
-    || column.columnNameLowerCase == "createtime"
-    || column.columnNameLowerCase == "updatetime"
+    || column.columnNameLowerCase == "createdtime"
+    || column.columnNameLowerCase == "updatedtime"
     || column.columnNameLowerCase == "createdby"
     || column.columnNameLowerCase == "updatedby"
     || column.columnNameLowerCase == "version"
@@ -49,8 +49,8 @@ public class ${className} extends BaseDomain {
 <#--set get方法-->
 <#list table.columns as column>
     <#if column.columnNameLowerCase == table.pkColumn.columnNameLowerCase
-    || column.columnNameLowerCase == "createtime"
-    || column.columnNameLowerCase == "updatetime"
+    || column.columnNameLowerCase == "createdtime"
+    || column.columnNameLowerCase == "updatedtime"
     || column.columnNameLowerCase == "createdby"
     || column.columnNameLowerCase == "updatedby"
     || column.columnNameLowerCase == "delflag"
@@ -78,9 +78,9 @@ public class ${className} extends BaseDomain {
         stringBuffer.append("id = ").append(super.getId());
         <#elseif column.columnNameLowerCase == "delflag">
         stringBuffer.append("delFlag = ").append(super.getDelFlag());
-        <#elseif column.columnNameLowerCase == "createtime">
+        <#elseif column.columnNameLowerCase == "createdtime">
         stringBuffer.append("createdTime = ").append(super.getCreatedTime());
-        <#elseif column.columnNameLowerCase == "updatetime">
+        <#elseif column.columnNameLowerCase == "updatedtime">
         stringBuffer.append("updatedTime = ").append(super.getUpdatedTime());
         <#elseif column.columnNameLowerCase == "createdby">
         stringBuffer.append("createdBy = ").append(super.getCreatedBy());

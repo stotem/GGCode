@@ -31,8 +31,8 @@
                     <input type="hidden" class="form-stay-flag" name="stay"/>
             <#list table.columns as column>
                 <#if column.columnNameLowerCase != "delflag"
-                    && column.columnNameLowerCase != "createtime"
-                    && column.columnNameLowerCase != "updatetime"
+                    && column.columnNameLowerCase != "createdtime"
+                    && column.columnNameLowerCase != "updatedtime"
                     && column.columnNameLowerCase != "version"
                     && column.columnNameLowerCase != table.pkColumn.columnNameLowerCase>
                     <div class="form-group">
