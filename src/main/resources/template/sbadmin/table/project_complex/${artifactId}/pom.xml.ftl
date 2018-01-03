@@ -48,9 +48,10 @@
     <modules>
         <module>${artifactId}-service</module>
         <module>${artifactId}-web</module>
-        <module>${artifactId}-provider</module>
+        <module>service-provider</module>
         <module>${artifactId}-domain</module>
         <module>${artifactId}-common</module>
+        <module>${artifactId}-persistence</module>
     </modules>
     <build>
         <pluginManagement>

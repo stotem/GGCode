@@ -102,7 +102,7 @@
     </#if>
     <#if export_provider_service != "true">
         <dependency>
-            <artifactId>${artifactId}-provider</artifactId>
+            <artifactId>service-provider</artifactId>
             <groupId>${groupId}</groupId>
             <version><#noparse>${project.parent.version}</#noparse></version>
         </dependency>

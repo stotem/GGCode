@@ -1,2 +1,17 @@
 <#assign className = table.className/>
 <#assign classNameLower = table.classNameFirstLower/>
+<#assign delFlagColName = '' />
+<#assign versionColName = '' />
+<#assign updatedTimeColName = '' />
+
+<#list table.columns as column>
+    <#if column.columnNameLowerCase != table.pkColumn.columnNameLowerCase>
+        <#if (delFlagColName=='' && column.columnNameLowerCase=='delflag')>
+            <#assign delFlagColName = column.sqlName />
+        <#elseif (versionColName=='' && column.columnNameLowerCase=='version')>
+            <#assign versionColName = column.sqlName />
+        <#elseif (updatedTimeColName=='' && column.columnNameLowerCase=='updatedtime')>
+            <#assign updatedTimeColName = column.sqlName />
+        </#if>
+    </#if>
+</#list>

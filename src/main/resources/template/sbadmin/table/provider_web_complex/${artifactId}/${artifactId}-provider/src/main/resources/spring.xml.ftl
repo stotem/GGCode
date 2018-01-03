@@ -19,16 +19,19 @@
     <cache:annotation-driven cache-manager="cacheManager" key-generator="cacheKeyGenerator"/>
 
 	<bean id="processTimeAspect" class="${groupId}.${artifactId}.common.aspect.ProcessTimeAspect" />
-	<bean id="dataSourceAspect" class="${groupId}.${artifactId}.common.aspect.DataSourceAspect" />
-
+	<#if database_split_read == "true">
+	<bean id="dataSourceAspect" class="${groupId}.${artifactId}.provider.persistence.aspect.DataSourceAspect" />
+    </#if>
     <aop:aspectj-autoproxy/>
 	<aop:config>
 		<aop:aspect ref="processTimeAspect">
 			<aop:around method="loggerProcessTime" pointcut="within(${groupId}.${artifactId}.provider..*)" />
 		</aop:aspect>
+		<#if database_split_read == "true">
 		<aop:aspect ref="dataSourceAspect">
-            <aop:before method="setDataSourceType" pointcut="@annotation(${groupId}.${artifactId}.common.datasource.DataSource)" />
+            <aop:around method="aroundDataSourceType" pointcut="@annotation(${groupId}.${artifactId}.provider.persistence.datasource.DataSource)" />
         </aop:aspect>
+        </#if>
 	</aop:config>
 
 	<bean id="configure" class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">

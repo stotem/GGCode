@@ -37,6 +37,13 @@
                    </list>
                </property>
             </bean>
+            <bean id="jsonpMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>application/javascript;charset=UTF-8</value>
+                    </list>
+                </property>
+            </bean>
             <!-- 将Jackson2HttpMessageConverter的默认格式化输出设为true -->
             <bean class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter"/>
         </mvc:message-converters>
@@ -70,6 +77,7 @@
                     <map>
                         <entry key="xml" value="application/xml" />
                         <entry key="json" value="application/json" />
+                        <entry key="jsonp" value="application/javascript" />
                     </map>
                 </property>
             </bean>
