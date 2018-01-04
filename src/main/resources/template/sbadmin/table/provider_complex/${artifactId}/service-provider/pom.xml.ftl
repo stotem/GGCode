@@ -38,17 +38,6 @@
             <groupId>${groupId}</groupId>
             <version><#noparse>${project.parent.version}</#noparse></version>
         </dependency>
-    <#if support_Redis == "true">
-        <!-- redis & spring -->
-        <dependency>
-            <groupId>redis.clients</groupId>
-            <artifactId>jedis</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.data</groupId>
-            <artifactId>spring-data-redis</artifactId>
-        </dependency>
-    </#if>
     <#if support_Dubbo == "true">
         <dependency>
             <groupId>com.alibaba</groupId>

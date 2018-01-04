@@ -16,7 +16,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.build.sourceVersion>1.7</project.build.sourceVersion>
         <project.build.targetVersion>1.7</project.build.targetVersion>
-        <spring.version>4.1.9.RELEASE</spring.version>
+        <spring.version>4.2.9.RELEASE</spring.version>
         <servlet.api.version>3.0.1</servlet.api.version>
         <dependency.junit.version>4.12</dependency.junit.version>
         <fasterxml.jackson.databind.version>2.7.5</fasterxml.jackson.databind.version>
@@ -29,7 +29,8 @@
         <findbugs-maven-plugin.version>2.5.5</findbugs-maven-plugin.version>
         <org.aspectj.version>1.7.4</org.aspectj.version>
         <bonecp.version>0.8.0.RELEASE</bonecp.version>
-        <logback.version>1.1.7</logback.version>
+        <bonecp.provider.version>0.8.0-alpha1</bonecp.provider.version>
+        <logback.version>1.1.11</logback.version>
     <#if spring_viewresolver?lower_case?trim == 'velocity'>
         <velocity-dep.version>1.4</velocity-dep.version>
         <velocity-tools.version>2.0</velocity-tools.version>
@@ -185,7 +186,7 @@
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
-                <version>1.7.7</version>
+                <version>1.7.25</version>
             </dependency>
             <dependency>
                 <groupId>ch.qos.logback</groupId>
@@ -296,7 +297,7 @@
             <dependency>
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
-                <version>19.0</version>
+                <version>20.0</version>
             </dependency>
             <!-- url rewrite -->
             <dependency>
@@ -314,7 +315,7 @@
             <dependency>
                 <groupId>org.springframework.data</groupId>
                 <artifactId>spring-data-mongodb</artifactId>
-                <version>1.5.6.RELEASE</version>
+                <version>1.10.9.RELEASE</version>
                 <exclusions>
                     <exclusion>
                         <groupId>org.springframework</groupId>
@@ -328,7 +329,7 @@
             <dependency>
                 <groupId>org.springframework.data</groupId>
                 <artifactId>spring-data-redis</artifactId>
-                <version>1.6.4.RELEASE</version>
+                <version>1.8.9.RELEASE</version>
                 <exclusions>
                     <exclusion>
                         <groupId>org.springframework</groupId>
@@ -339,7 +340,7 @@
             <dependency>
                 <groupId>redis.clients</groupId>
                 <artifactId>jedis</artifactId>
-                <version>2.7.3</version>
+                <version>2.9.0</version>
             </dependency>
         </#if>
         <#if support_Dubbo == "true">
@@ -414,7 +415,7 @@
             <dependency>
                 <groupId>com.jolbox</groupId>
                 <artifactId>bonecp-provider</artifactId>
-                <version>0.8.0-alpha1</version>
+                <version><#noparse>${bonecp.provider.version}</#noparse></version>
             </dependency>
             <dependency>
                 <groupId>com.jolbox</groupId>
@@ -429,12 +430,12 @@
             <dependency>
                 <groupId>org.mybatis</groupId>
                 <artifactId>mybatis</artifactId>
-                <version>3.2.2</version>
+                <version>3.3.1</version>
             </dependency>
             <dependency>
                 <groupId>org.mybatis</groupId>
                 <artifactId>mybatis-spring</artifactId>
-                <version>1.2.0</version>
+                <version>1.2.5</version>
             </dependency>
             <dependency>
                 <groupId>org.codehaus.jackson</groupId>

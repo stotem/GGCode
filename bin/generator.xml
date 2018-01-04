@@ -10,6 +10,7 @@
 	<!-- 配置需要生成代码的数据表:默认为扫描数据库所有的数据表,多个使用","隔开 -->
 	<entry key="gg_crud_tables"></entry>
 	<entry key="export_provider_service">true</entry>
+	<entry key="database_split_read">false</entry>
 	<!-- 需要移除的表名前缀,使用逗号进行分隔多个前缀,示例值: t_,v_ -->
 	<entry key="tableRemovePrefixes">t_</entry>
 	<entry key="tableNameSingularize">true</entry>
@@ -30,7 +31,7 @@
 	<entry key="java_typemapping.java.sql.Clob">String</entry>
 
 	<entry key="dir_templates_root">classpath:template/sbadmin</entry>
-	<entry key="dir_crud_template_root">${dir_templates_root}/share,${dir_templates_root}/table/common_complex,${dir_templates_root}/table/web_complex,${dir_templates_root}/table/dao_mybatis,${dir_templates_root}/table/domain_complex,${dir_templates_root}/table/project_complex,${dir_templates_root}/table/provider_complex,${dir_templates_root}/table/service_complex,${dir_templates_root}/table/page_velocity</entry>
+	<entry key="dir_crud_template_root">${dir_templates_root}/share,${dir_templates_root}/table/domain_complex,${dir_templates_root}/table/common_complex,${dir_templates_root}/table/web_complex,${dir_templates_root}/table/persistence_mybatis,${dir_templates_root}/table/project_complex,${dir_templates_root}/table/provider_complex,${dir_templates_root}/table/service_complex</entry>
 	<!-- template/sbadmin模块专属参数配置 -->
 	<entry key="artifactId">support</entry>
 	<entry key="groupId">org.wujianjun.apps</entry>
