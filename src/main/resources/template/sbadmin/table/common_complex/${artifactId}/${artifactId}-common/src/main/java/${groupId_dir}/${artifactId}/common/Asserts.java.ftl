@@ -24,7 +24,7 @@ public abstract class Asserts {
 
     public static void isTrue(boolean expression, String code, String message, Object... formats) throws ServiceException {
         if(!expression) {
-            ServiceException exception = (ServiceException) getThrowException(ServiceException.class, message, formats);
+            ServiceException exception = getThrowException(ServiceException.class, message, formats);
             exception.setErrorCode(code);
             throw exception;
         }
@@ -42,7 +42,7 @@ public abstract class Asserts {
 
     public static void isNull(Object object, String code, String message, Object... formats) throws ServiceException {
         if(object != null) {
-            ServiceException exception = (ServiceException) getThrowException(ServiceException.class, message, formats);
+            ServiceException exception = getThrowException(ServiceException.class, message, formats);
             exception.setErrorCode(code);
             throw exception;
         }

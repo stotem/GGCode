@@ -409,16 +409,6 @@
             <!-- drivers & middle ware -->
             <dependency>
                 <groupId>com.jolbox</groupId>
-                <artifactId>bonecp-spring</artifactId>
-                <version><#noparse>${bonecp.version}</#noparse></version>
-            </dependency>
-            <dependency>
-                <groupId>com.jolbox</groupId>
-                <artifactId>bonecp-provider</artifactId>
-                <version><#noparse>${bonecp.provider.version}</#noparse></version>
-            </dependency>
-            <dependency>
-                <groupId>com.jolbox</groupId>
                 <artifactId>bonecp</artifactId>
                 <version><#noparse>${bonecp.version}</#noparse></version>
             </dependency>
