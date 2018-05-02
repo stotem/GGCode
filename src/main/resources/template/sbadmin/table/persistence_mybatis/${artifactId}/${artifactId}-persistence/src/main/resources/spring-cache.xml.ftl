@@ -65,14 +65,14 @@
             </set>
         </property>
     </bean>
-    <bean id="cacheKeyGenerator" class="${groupId}.${artifactId}.provider.utils.CacheKeyGenerator">
+    <bean id="cacheKeyGenerator" class="${base_pkg}.provider.utils.CacheKeyGenerator">
         <property name="prefix" value="<#noparse>${config.cache.key.prefix}</#noparse>"/>
     </bean>
     <#if support_Redis == "true">
-    <bean id="stringRedisSerializer" class="${groupId}.${artifactId}.provider.utils.StringRedisSerializer">
+    <bean id="stringRedisSerializer" class="${base_pkg}.provider.utils.StringRedisSerializer">
         <property name="prefix" value="<#noparse>${config.cache.key.prefix}</#noparse>"/>
     </bean>
-    <bean id="fastjsonRedisSerializer" class="${groupId}.${artifactId}.provider.utils.FastJson2JsonRedisSerializer" />
+    <bean id="fastjsonRedisSerializer" class="${base_pkg}.provider.utils.FastJson2JsonRedisSerializer" />
 
 	<bean id="redis.poolConfig" class="redis.clients.jedis.JedisPoolConfig">
 		<!-- <property name="maxActive" value="1000" /> -->

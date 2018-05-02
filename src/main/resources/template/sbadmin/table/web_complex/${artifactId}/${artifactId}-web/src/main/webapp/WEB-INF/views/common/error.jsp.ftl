@@ -1,5 +1,5 @@
 <%@ page pageEncoding="UTF-8" %>
-<%@ page import="${groupId}.${artifactId}.common.objects.*" %>
+<%@ page import="${base_pkg}.common.objects.*" %>
 <%
 response.setCharacterEncoding("UTF-8");
 response.setContentType("application/json;charset=UTF-8");

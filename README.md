@@ -3,7 +3,7 @@
 ## 基础框架
 源代码生成框架: [rapid-framework](https://code.google.com/archive/p/rapid-framework/)
 
-UI框架: [sb-admin-2](https://startbootstrap.com/template-overviews/sb-admin-2/) 
+UI框架: [sb-admin-2](https://startbootstrap.com/template-overviews/sb-admin-2/)
 
 代码框架: SpringMVC + mybatis + Velocity。
 
@@ -39,8 +39,8 @@ UI框架: [sb-admin-2](https://startbootstrap.com/template-overviews/sb-admin-2/
 ```
 id bigint PRIMARY KEY COMMENT '数据主键(与业务主键区分)',
 del_flag tinyint(1) DEFAULT 1 COMMENT '数据删除标识(1: 有效，2: 失效)',
-created_time timestamp COMMENT '数据创建时间',
-updated_time timestamp COMMENT '数据最后update时间',
+created_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP '数据创建时间',
+updated_time timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '数据最后update时间',
 created_by varchar(50) DEFAULT NULL COMMENT '数据创建者',
 updated_by varchar(50) DEFAULT NULL COMMENT '数据最近更新者',
 version int(11) NOT NULL DEFAULT '0' COMMENT '乐观锁版本号',

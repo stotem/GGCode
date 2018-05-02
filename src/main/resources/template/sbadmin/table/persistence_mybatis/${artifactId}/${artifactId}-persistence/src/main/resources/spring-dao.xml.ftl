@@ -48,7 +48,7 @@
         </property>
     </bean>
 </#if>
-    <bean id="dataSource" class="${groupId}.${artifactId}.provider.persistence.datasource.DynamicRouteDataSource">
+    <bean id="dataSource" class="${base_pkg}.provider.persistence.datasource.DynamicRouteDataSource">
         <property name="targetDataSources">
             <map key-type="java.lang.String">
                 <#if database_split_read == "true">
@@ -81,7 +81,7 @@
 
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="annotationClass" value="org.springframework.stereotype.Component"/>
-        <property name="basePackage" value="${groupId}.${artifactId}.provider.persistence"/>
+        <property name="basePackage" value="${base_pkg}.provider.persistence"/>
         <property name="sqlSessionTemplateBeanName" value="sqlSessionTemplate"/>
     </bean>
 

@@ -19,7 +19,7 @@
         <property name="ignoreUnresolvablePlaceholders" value="true" />
     </bean>
 
-    <context:component-scan base-package="${groupId}.${artifactId}" use-default-filters="false">
+    <context:component-scan base-package="${base_pkg}" use-default-filters="false">
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
     </context:component-scan>
 
@@ -52,7 +52,7 @@
         <property name="registerDefaultFormatters" value="true" />
         <property name="formatters">
             <set>
-                <bean class="${groupId}.${artifactId}.common.formatter.TimestampFormatter" />
+                <bean class="${base_pkg}.common.formatter.TimestampFormatter" />
             </set>
         </property>
     </bean>
@@ -91,12 +91,12 @@
 	<util:map id="viewTools">
         <#if support_Shiro == "true">
         <entry key="shiro">
-            <bean class="${groupId}.${artifactId}.web.utils.ShiroUtils"/>
+            <bean class="${base_pkg}.web.utils.ShiroUtils"/>
         </entry>
         </#if>
         <entry key="basePath" value="<#noparse>${app.basePath}</#noparse>" />
         <entry key="tools">
-            <bean class="${groupId}.${artifactId}.common.tools.Tools" />
+            <bean class="${base_pkg}.common.tools.Tools" />
         </entry>
         <entry key="Long">
             <bean class="java.lang.Long" >
@@ -115,11 +115,11 @@
     </bean>
 </#if>
 
-    <bean class="${groupId}.${artifactId}.common.resolver.ExceptionMappingResolver">
+    <bean class="${base_pkg}.common.resolver.ExceptionMappingResolver">
         <property name="defaultErrorView" value="/common/error" />
         <property name="exceptionMappings">
             <props>
-                <prop key="${groupId}.${artifactId}.common.objects.expt.ServiceException">/common/service_exception</prop>
+                <prop key="${base_pkg}.common.objects.expt.ServiceException">/common/service_exception</prop>
             <#if support_Shiro == "true">
                 <prop key="org.apache.shiro.authz.UnauthorizedException">/common/unauthorized</prop>
             </#if>
@@ -198,7 +198,7 @@
     <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/**/*"/>
-            <bean class="${groupId}.${artifactId}.common.interceptor.ThreadContextInterceptor" />
+            <bean class="${base_pkg}.common.interceptor.ThreadContextInterceptor" />
         </mvc:interceptor>
     </mvc:interceptors>
 

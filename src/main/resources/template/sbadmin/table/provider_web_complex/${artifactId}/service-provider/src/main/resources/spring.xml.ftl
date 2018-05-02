@@ -12,24 +12,24 @@
         http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
         http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache-3.2.xsd">
 
-	<context:component-scan base-package="${groupId}.${artifactId}">
+	<context:component-scan base-package="${base_pkg}">
 		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
 	<!-- 启用缓存注解功能，这个是必须的，否则注解不会生效，另外，该注解一定要声明在spring主配置文件中才会生效 -->
     <cache:annotation-driven cache-manager="cacheManager" key-generator="cacheKeyGenerator"/>
 
-	<bean id="processTimeAspect" class="${groupId}.${artifactId}.common.aspect.ProcessTimeAspect" />
+	<bean id="processTimeAspect" class="${base_pkg}.common.aspect.ProcessTimeAspect" />
 	<#if database_split_read == "true">
-	<bean id="dataSourceAspect" class="${groupId}.${artifactId}.provider.persistence.aspect.DataSourceAspect" />
+	<bean id="dataSourceAspect" class="${base_pkg}.provider.persistence.aspect.DataSourceAspect" />
     </#if>
     <aop:aspectj-autoproxy/>
 	<aop:config>
 		<aop:aspect ref="processTimeAspect">
-			<aop:around method="loggerProcessTime" pointcut="within(${groupId}.${artifactId}.provider..*)" />
+			<aop:around method="loggerProcessTime" pointcut="within(${base_pkg}.provider..*)" />
 		</aop:aspect>
 		<#if database_split_read == "true">
 		<aop:aspect ref="dataSourceAspect">
-            <aop:around method="aroundDataSourceType" pointcut="@annotation(${groupId}.${artifactId}.provider.persistence.datasource.DataSource)" />
+            <aop:around method="aroundDataSourceType" pointcut="@annotation(${base_pkg}.provider.persistence.datasource.DataSource)" />
         </aop:aspect>
         </#if>
 	</aop:config>

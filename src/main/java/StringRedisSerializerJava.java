@@ -23,10 +23,9 @@ public class StringRedisSerializerJava extends PreTemplateFile {
         utilFilePath.append(File.separator).append("src");
         utilFilePath.append(File.separator).append("main");
         utilFilePath.append(File.separator).append("java");
-        String groupIdDir = GeneratorProperties.getProperty("groupId");
-        groupIdDir = groupIdDir.replace(".",File.separator);
-        utilFilePath.append(File.separator).append(groupIdDir);
-        utilFilePath.append(File.separator).append(artifactId);
+        String basePkgDir = GeneratorProperties.getProperty("base_pkg");
+        basePkgDir = basePkgDir.replace(".",File.separator);
+        utilFilePath.append(File.separator).append(basePkgDir);
         utilFilePath.append(File.separator).append("provider");
         utilFilePath.append(File.separator).append("utils");
         utilFilePath.append(File.separator).append("StringRedisSerializer.java");

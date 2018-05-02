@@ -35,6 +35,7 @@
 	<!-- template/sbadmin模块专属参数配置 -->
 	<entry key="artifactId">support</entry>
 	<entry key="groupId">org.wujianjun.apps</entry>
+	<entry key="base_pkg">org.wujianjun.apps</entry>
 	<entry key="mvnURL">http://www.wujianjun.org</entry>
 	<entry key="mvnVersion">1.0-SNAPSHOT</entry>
 	<entry key="contentPath">/support</entry>

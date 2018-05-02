@@ -15,11 +15,11 @@
 	</settings>
 
 	<typeAliases>
-	    <package name="${groupId}.${artifactId}.domain" />
+	    <package name="${base_pkg}.domain" />
 	</typeAliases>
 
 	<typeHandlers>
-	    <package name="${groupId}.${artifactId}.provider.persistence.typehandler" />
+	    <package name="${base_pkg}.provider.persistence.typehandler" />
 	</typeHandlers>
 
 	<mappers />
