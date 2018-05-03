@@ -4,9 +4,9 @@
     <jmxConfigurator />
 
 	<appender name="FILEINFO" class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<file><#noparse>${catalina.base}</#noparse>/logs/${artifactId}_warn.log</file>
+		<file><#noparse>${catalina.base}</#noparse>/logs/${artifactId}-web_warn.log</file>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<FileNamePattern><#noparse>${catalina.base}</#noparse>/logs/%d{yyyy-MM-dd}/${artifactId}_warn.log</FileNamePattern>
+			<FileNamePattern><#noparse>${catalina.base}</#noparse>/logs/%d{yyyy-MM-dd}/${artifactId}-web_warn.log</FileNamePattern>
 		</rollingPolicy>
 		<filter class="ch.qos.logback.classic.filter.LevelFilter">
 			<level>WARN</level>
@@ -14,13 +14,13 @@
 			<onMismatch>DENY</onMismatch>
 		</filter>
 		<encoder>
-			<pattern>[${artifactId}] %d{yyyy-MM-dd HH:mm:ss.SSS}:[%-5level][%t]{%logger{0}:%L}-%m%n</pattern>
+			<pattern>[${artifactId}-web] %d{yyyy-MM-dd HH:mm:ss.SSS}:[%-5level][%t]{%logger{0}:%L}-%m%n</pattern>
 		</encoder>
 	</appender>
 	<appender name="FILEERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<file><#noparse>${catalina.base}</#noparse>/logs/${artifactId}_error.log</file>
+		<file><#noparse>${catalina.base}</#noparse>/logs/${artifactId}-web_error.log</file>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<FileNamePattern><#noparse>${catalina.base}</#noparse>/logs/%d{yyyy-MM-dd}/${artifactId}_error.log</FileNamePattern>
+			<FileNamePattern><#noparse>${catalina.base}</#noparse>/logs/%d{yyyy-MM-dd}/${artifactId}-web_error.log</FileNamePattern>
 		</rollingPolicy>
 		<filter class="ch.qos.logback.classic.filter.LevelFilter">
 			<level>ERROR</level>
@@ -28,12 +28,12 @@
 			<onMismatch>DENY</onMismatch>
 		</filter>
 		<encoder>
-			<pattern>[${artifactId}] %d{yyyy-MM-dd HH:mm:ss.SSS}:[%-5level][%t]{%logger{0}:%L}-%m%n</pattern>
+			<pattern>[${artifactId}-web] %d{yyyy-MM-dd HH:mm:ss.SSS}:[%-5level][%t]{%logger{0}:%L}-%m%n</pattern>
 		</encoder>
 	</appender>
 	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
 		<encoder>
-			<pattern>[${artifactId}|console] %d{yyyy-MM-dd HH:mm:ss.SSS}:[%-5level][%t]{%logger{0}:%L}-%m%n</pattern>
+			<pattern>[${artifactId}-web|console] %d{yyyy-MM-dd HH:mm:ss.SSS}:[%-5level][%t]{%logger{0}:%L}-%m%n</pattern>
 		</encoder>
 	</appender>
 
