@@ -10,7 +10,9 @@ if (exMessage != null && exMessage.indexOf("dubbo") >= 0) {
     exMessage = "服务器繁忙, 请稍后重试";
 }
 MapOutput exceptionResp = MapOutput.createFail(Output.CODE_EXCEPTION, exMessage);
-exceptionResp.setErrorCode(ex.getErrorCode());
+if (ex.getErrorCode() != null) {
+    exceptionResp.addResult("errorCode", ex.getErrorCode());
+}
 String message = com.alibaba.fastjson.JSON.toJSONString(exceptionResp);
 response.getWriter().write(message);
 %>

@@ -28,7 +28,7 @@
     <#assign isFirst=true />
     <#list table.columns as column>
         <#if column.columnNameLowerCase != table.pkColumn.columnNameLowerCase>
-        <#if isFirst==false>, </#if><#assign isFirst=false />t.`${column.sqlName}`
+        <#if isFirst==false>, </#if><#assign isFirst=false />`${column.sqlName}`
         </#if>
     </#list>
     </sql>
