@@ -17,18 +17,16 @@
 
     <!--select field-->
     <sql id="table-field-select">
-    <#assign isFirst=true />
     <#list table.columns as column>
-        <#if isFirst==false>, </#if><#assign isFirst=false />t.`${column.sqlName}`
+        t.`${column.sqlName}`<#if (column_has_next)>,</#if>
     </#list>
     </sql>
 
     <!--insert field-->
     <sql id="table-field-insert">
-    <#assign isFirst=true />
     <#list table.columns as column>
         <#if column.columnNameLowerCase != table.pkColumn.columnNameLowerCase>
-        <#if isFirst==false>, </#if><#assign isFirst=false />`${column.sqlName}`
+        `${column.sqlName}`<#if (column_has_next)>,</#if>
         </#if>
     </#list>
     </sql>
@@ -55,18 +53,17 @@
     <!--update set field normal first check null or empty string-->
     <sql id="set-field-normal-check">
     <set>
-<#assign isFirst=true />
 <#list table.columns as column>
     <#if column.columnNameLowerCase == table.pkColumn.columnNameLowerCase>
     <#elseif column.columnNameLowerCase == "delflag">
     <#elseif column.columnNameLowerCase == "createdtime">
     <#elseif column.columnNameLowerCase == "version">
-        <#if isFirst==false>, </#if><#assign isFirst=false />t.`${column.sqlName}` = `${column.sqlName}`+1
+        t.`${column.sqlName}` = `${column.sqlName}`+1<#if (column_has_next)>,</#if>
     <#elseif column.columnNameLowerCase == "updatedtime">
-        <#if isFirst==false>, </#if><#assign isFirst=false />t.`${column.sqlName}` = NOW()
+        t.`${column.sqlName}` = NOW()<#if (column_has_next)>,</#if>
     <#else>
         <if test="${column.columnNameFirstLower} != null and ${column.columnNameFirstLower} != ''">
-        <#if isFirst==false>, </#if><#assign isFirst=false />t.`${column.sqlName}` = <#noparse>#{</#noparse>${column.columnNameFirstLower}<#noparse>}</#noparse>
+        t.`${column.sqlName}` = <#noparse>#{</#noparse>${column.columnNameFirstLower}<#noparse>}</#noparse><#if (column_has_next)>,</#if>
         </if>
     </#if>
 </#list>
@@ -76,17 +73,16 @@
     <!--update set field normal-->
     <sql id="set-field-normal">
         <set>
-<#assign isFirst=true />
 <#list table.columns as column>
     <#if column.columnNameLowerCase == table.pkColumn.columnNameLowerCase>
     <#elseif column.columnNameLowerCase == "delflag">
     <#elseif column.columnNameLowerCase == "createdtime">
     <#elseif column.columnNameLowerCase == "version">
-        <#if isFirst==false>, </#if><#assign isFirst=false />t.`${column.sqlName}` = `${column.sqlName}`+1
+        t.`${column.sqlName}` = `${column.sqlName}`+1<#if (column_has_next)>,</#if>
     <#elseif column.columnNameLowerCase == "updatedtime">
-        <#if isFirst==false>, </#if><#assign isFirst=false />t.`${column.sqlName}` = NOW()
+        t.`${column.sqlName}` = NOW()<#if (column_has_next)>,</#if>
     <#else>
-        <#if isFirst==false>, </#if><#assign isFirst=false />t.`${column.sqlName}` = <#noparse>#{</#noparse>${column.columnNameFirstLower}<#noparse>}</#noparse>
+        t.`${column.sqlName}` = <#noparse>#{</#noparse>${column.columnNameFirstLower}<#noparse>}</#noparse><#if (column_has_next)>,</#if>
     </#if>
 </#list>
         </set>
@@ -129,19 +125,18 @@
         <include refid="table-field-insert" />
         <![CDATA[
         ) VALUES(
-    <#assign isFirst=true />
     <#list table.columns as column>
         <#if column.columnNameLowerCase == table.pkColumn.columnNameLowerCase>
         <#elseif column.columnNameLowerCase == "delflag">
-            <#if isFirst==false>, </#if><#assign isFirst=false />1
+            1<#if (column_has_next)>,</#if>
         <#elseif column.columnNameLowerCase == "createdtime">
-            <#if isFirst==false>, </#if><#assign isFirst=false />NOW()
+            NOW()<#if (column_has_next)>,</#if>
         <#elseif column.columnNameLowerCase == "updatedtime">
-            <#if isFirst==false>, </#if><#assign isFirst=false />NOW()
+            NOW()<#if (column_has_next)>,</#if>
         <#elseif column.columnNameLowerCase == "version">
-            <#if isFirst==false>, </#if><#assign isFirst=false />1
+            1<#if (column_has_next)>,</#if>
         <#else>
-            <#if isFirst==false>, </#if><#assign isFirst=false /><#noparse>#{</#noparse>${column.columnNameFirstLower}<#noparse>}</#noparse>
+            <#noparse>#{</#noparse>${column.columnNameFirstLower}<#noparse>}</#noparse><#if (column_has_next)>,</#if>
         </#if>
     </#list>
         )
