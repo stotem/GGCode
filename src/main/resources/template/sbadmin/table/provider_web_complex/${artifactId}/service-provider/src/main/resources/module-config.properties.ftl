@@ -1,1 +1,0 @@
-config.cache.key.prefix=${artifactId}#
