@@ -23,6 +23,7 @@
                 <property name="maxConnectionsPerPartition" value="<#noparse>${config.dbpool.maxConnectionsPerPartition}</#noparse>"/>
                 <property name="minConnectionsPerPartition" value="<#noparse>${config.dbpool.minConnectionsPerPartition}</#noparse>"/>
                 <property name="connectionTimeoutInMs" value="<#noparse>${config.dbpool.connectionTimeoutInMs}</#noparse>"/>
+                <property name="maxConnectionAge" value="<#noparse>${config.dbpool.maxConnectionAge}</#noparse>"/>
                 <property name="acquireIncrement" value="<#noparse>${config.dbpool.acquireIncrement}</#noparse>"/>
                 <property name="statementsCacheSize" value="<#noparse>${config.dbpool.statementsCacheSize}</#noparse>"/>
                 <property name="connectionTestStatement" value="select 1"/>
@@ -43,6 +44,7 @@
                 <property name="maxConnectionsPerPartition" value="<#noparse>${config.dbpool.read.maxConnectionsPerPartition}</#noparse>"/>
                 <property name="minConnectionsPerPartition" value="<#noparse>${config.dbpool.read.minConnectionsPerPartition}</#noparse>"/>
                 <property name="connectionTimeoutInMs" value="<#noparse>${config.dbpool.read.connectionTimeoutInMs}</#noparse>"/>
+                <property name="maxConnectionAge" value="<#noparse>${config.dbpool.read.maxConnectionAge}</#noparse>"/>
                 <property name="acquireIncrement" value="<#noparse>${config.dbpool.read.acquireIncrement}</#noparse>"/>
                 <property name="statementsCacheSize" value="<#noparse>${config.dbpool.read.statementsCacheSize}</#noparse>"/>
                 <property name="connectionTestStatement" value="select 1"/>
