@@ -621,7 +621,28 @@
             </properties>
         </profile>
         <profile>
+            <id>Test</id>
+            <activation>
+                <property>
+                    <name>env</name>
+                    <value>Test</value>
+                </property>
+            </activation>
+            <properties>
+                <profile-name>Test</profile-name>
+                <!--Log Configuration-->
+                <catalina.base>~/apps</catalina.base>
+                <catalina.log.priority>WARN</catalina.log.priority>
+            </properties>
+        </profile>
+        <profile>
             <id>Pro</id>
+            <activation>
+                <property>
+                    <name>env</name>
+                    <value>Pro</value>
+                </property>
+            </activation>
             <properties>
                 <profile-name>Pro</profile-name>
                 <!--Log Configuration-->

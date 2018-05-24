@@ -48,6 +48,10 @@ version int(11) NOT NULL DEFAULT '0' COMMENT '乐观锁版本号',
 ## 其它说明
 1. controller的访问URI不带后缀.
 2. 所有的页面文件后缀为view.
+3. pom多profile映射多套环境配置，默认开启以下三套环境配置（如需配置请在pom.xml中profiles节点下添加即可）:
+    `开发环境` Dev -> config/Dev.properties，maven编译时通过参数env=Dev生效
+    `测试环境` Test -> config/Test.properties，maven编译时通过参数env=Test生效
+    `生产环境` Pro -> config/Pro.properties，maven编译时通过参数env=Pro生效
 
 ## 生成后程序截图
 ![](http://www.wujianjun.org/images/list.png)
