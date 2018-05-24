@@ -18,8 +18,7 @@ public class SpringMongoXMLFile extends PreTemplateFile {
         StringBuffer filePath = new StringBuffer(outRootDir.getAbsolutePath());
         final String artifactId = GeneratorProperties.getProperty("artifactId");
         filePath.append(File.separator).append(artifactId);
-        filePath.append(File.separator).append(artifactId);
-        filePath.append("-provider");
+        filePath.append(File.separator).append("service-provider");
         filePath.append(File.separator).append("src");
         filePath.append(File.separator).append("main");
         filePath.append(File.separator).append("resources");

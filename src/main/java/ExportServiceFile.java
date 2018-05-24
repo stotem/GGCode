@@ -15,9 +15,8 @@ public class ExportServiceFile extends PreTemplateFile {
         StringBuffer providerFilePath = new StringBuffer(outRootDir.getAbsolutePath());
         final String artifactId = GeneratorProperties.getProperty("artifactId");
         providerFilePath.append(File.separator).append(artifactId);
-        providerFilePath.append(File.separator).append(artifactId);
+        providerFilePath.append(File.separator).append("service-provider");
 
-        providerFilePath.append("-provider");
         providerFilePath.append(File.separator).append("src");
         providerFilePath.append(File.separator).append("main");
         providerFilePath.append(File.separator).append("resources");

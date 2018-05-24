@@ -18,8 +18,7 @@ public class SpringShiroXMLFile extends PreTemplateFile {
         StringBuffer shiroxmlFilePath = new StringBuffer(outRootDir.getAbsolutePath());
         final String artifactId = GeneratorProperties.getProperty("artifactId");
         shiroxmlFilePath.append(File.separator).append(artifactId);
-        shiroxmlFilePath.append(File.separator).append(artifactId);
-        shiroxmlFilePath.append("-web");
+        shiroxmlFilePath.append(File.separator).append(artifactId).append("-web");
         shiroxmlFilePath.append(File.separator).append("src");
         shiroxmlFilePath.append(File.separator).append("main");
         StringBuffer utilFilePath = new StringBuffer(shiroxmlFilePath.toString());

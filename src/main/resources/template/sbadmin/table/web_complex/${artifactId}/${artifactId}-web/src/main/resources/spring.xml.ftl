@@ -32,7 +32,7 @@
 	<bean id="configure" class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
 		<property name="locations">
 			<list>
-				<value>classpath:module-config.properties</value>
+				<value>classpath*:META-INF/*-config.properties</value>
 			</list>
 		</property>
 		<property name="ignoreUnresolvablePlaceholders" value="true" />

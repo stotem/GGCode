@@ -15,27 +15,26 @@ public class DubboXMLFile extends PreTemplateFile {
         StringBuffer providerFilePath = new StringBuffer(outRootDir.getAbsolutePath());
         final String artifactId = GeneratorProperties.getProperty("artifactId");
         providerFilePath.append(File.separator).append(artifactId);
-        providerFilePath.append(File.separator).append(artifactId);
 
-        StringBuffer customerFilePath = new StringBuffer(providerFilePath.toString());
-        providerFilePath.append("-provider");
+        StringBuffer consumerFilePath = new StringBuffer(providerFilePath.toString());
+        providerFilePath.append(File.separator).append("service-provider");
         providerFilePath.append(File.separator).append("src");
         providerFilePath.append(File.separator).append("main");
         providerFilePath.append(File.separator).append("resources");
         providerFilePath.append(File.separator).append("spring-dubbo.xml");
 
-        customerFilePath.append("-web");
-        customerFilePath.append(File.separator).append("src");
-        customerFilePath.append(File.separator).append("main");
-        customerFilePath.append(File.separator).append("resources");
-        customerFilePath.append(File.separator).append("spring-dubbo.xml");
+        consumerFilePath.append(File.separator).append(artifactId).append("-web");
+        consumerFilePath.append(File.separator).append("src");
+        consumerFilePath.append(File.separator).append("main");
+        consumerFilePath.append(File.separator).append("resources");
+        consumerFilePath.append(File.separator).append("spring-dubbo.xml");
 
         File dubboXMLFile = new File(providerFilePath.toString()).getAbsoluteFile();
         if (dubboXMLFile.exists()) {
             dubboXMLFile.delete();
         }
 
-        dubboXMLFile = new File(customerFilePath.toString()).getAbsoluteFile();
+        dubboXMLFile = new File(consumerFilePath.toString()).getAbsoluteFile();
         if (dubboXMLFile.exists()) {
             dubboXMLFile.delete();
         }
