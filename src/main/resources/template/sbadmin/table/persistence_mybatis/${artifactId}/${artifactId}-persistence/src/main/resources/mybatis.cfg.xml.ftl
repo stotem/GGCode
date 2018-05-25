@@ -11,7 +11,7 @@
 		<setting name="defaultExecutorType" value="SIMPLE" />
 		<setting name="mapUnderscoreToCamelCase" value="true" />
 		<!-- print sql，options:SLF4J|LOG4J|LOG4J2|JDK_LOGGING|COMMONS_LOGGING|STDOUT_LOGGING|NO_LOGGING -->
-        <setting name="logImpl" value="NO_LOGGING" />
+        <setting name="logImpl" value="<#noparse>${mybatis.logImpl}</#noparse>" />
 	</settings>
 
 	<typeAliases>

@@ -618,6 +618,7 @@
                 <!--Log Configuration-->
                 <catalina.base>target</catalina.base>
                 <catalina.log.priority>INFO</catalina.log.priority>
+                <mybatis.logImpl>STDOUT_LOGGING</mybatis.logImpl>
             </properties>
         </profile>
         <profile>
@@ -633,6 +634,7 @@
                 <!--Log Configuration-->
                 <catalina.base>~/apps</catalina.base>
                 <catalina.log.priority>WARN</catalina.log.priority>
+                <mybatis.logImpl>NO_LOGGING</mybatis.logImpl>
             </properties>
         </profile>
         <profile>
@@ -648,6 +650,7 @@
                 <!--Log Configuration-->
                 <catalina.base>~/apps</catalina.base>
                 <catalina.log.priority>WARN</catalina.log.priority>
+                <mybatis.logImpl>NO_LOGGING</mybatis.logImpl>
             </properties>
         </profile>
     </profiles>
