@@ -1,13 +1,18 @@
 package ${base_pkg}.provider.persistence.datasource;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import java.lang.annotation.*;
 
-<#include "/basic/author.include"/>
+/**
+ * <B>Description: 读写分离注解标识类 </B><BR/>
+ * <B>Copyright:Copyright(c)2018 by FORWAY R&D Corporation, Inc. All rights
+ * reserved.</B><BR/>
+ * @createtime May 29, 2018 11:38:15 PM
+ * @author <a href="mailto:china.wujianjun@gmail.com">Wujianjun</a>
+ * @version 1.0
+ **/
 @Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
+@Inherited
 public @interface DataSource {
     DynamicRouteDataSource.DataSourceType value() default DynamicRouteDataSource.DataSourceType.READ_DATA_SOURCE;
 }

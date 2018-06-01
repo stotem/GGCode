@@ -12,7 +12,7 @@ import org.springframework.cache.annotation.Cacheable;
 import ${base_pkg}.common.objects.expt.DataNotFoundException;
 import ${base_pkg}.common.objects.expt.DataFalsifyException;
 import ${base_pkg}.common.objects.expt.DataAlreadyExistsException;
-
+import ${base_pkg}.common.annotation.LoggerProcessTime;
 import ${base_pkg}.provider.persistence.${className}Dao;
 import ${base_pkg}.domain.${className};
 import ${base_pkg}.provider.manager.${className}Manager;
@@ -42,6 +42,7 @@ public class ${className}ManagerImpl implements ${className}Manager {
 
     @Override
     @Transactional(rollbackFor = RollbackException.class)
+    @LoggerProcessTime
     public void save(${className} ${classNameLower}) throws RollbackException {
         Integer rows = ${classNameLower}Dao.save(${classNameLower});
         if (rows < 1) {
@@ -50,6 +51,7 @@ public class ${className}ManagerImpl implements ${className}Manager {
     }
 
     @Override
+    @LoggerProcessTime
     public MapOutput getPage(PageCondition condition) throws RollbackException {
         Long totalSize = ${classNameLower}Dao.countByCondition(condition);
         condition.setTotalSize(totalSize);
@@ -61,12 +63,14 @@ public class ${className}ManagerImpl implements ${className}Manager {
     }
 
     @Override
+    @LoggerProcessTime
     @Cacheable(value = "<#if cache_ForRedis == "true" && support_Redis == "true">fiveMinutes<#else>default</#if>", key = "'${classNameLower}_'+#id")
     public ${className} getById(Long id) throws RollbackException {
         return ${classNameLower}Dao.getById(id);
     }
 
     @Override
+    @LoggerProcessTime
     @Transactional(rollbackFor = RollbackException.class)
     @CacheEvict(value = "<#if cache_ForRedis == "true" && support_Redis == "true">fiveMinutes<#else>default</#if>", key = "'${classNameLower}_'+#obj.getId()")
     public void updateByCheck(${className} obj) throws RollbackException {
@@ -76,6 +80,7 @@ public class ${className}ManagerImpl implements ${className}Manager {
     }
 
     @Override
+    @LoggerProcessTime
     @Transactional(rollbackFor = RollbackException.class)
     @CacheEvict(value = "<#if cache_ForRedis == "true" && support_Redis == "true">fiveMinutes<#else>default</#if>", key = "'${classNameLower}_'+#id")
     public void deleteById(Long id) throws RollbackException {

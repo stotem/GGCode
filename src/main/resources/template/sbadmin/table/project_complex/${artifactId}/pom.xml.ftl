@@ -40,7 +40,7 @@
         <shiro.version>1.2.5</shiro.version>
     </#if>
     <#if support_Dubbo == "true">
-        <dubbo.version>2.5.3</dubbo.version>
+        <dubbo.version>2.5.10</dubbo.version>
         <zkclient.version>0.10</zkclient.version>
     </#if>
 
