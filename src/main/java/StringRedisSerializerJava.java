@@ -14,11 +14,12 @@ public class StringRedisSerializerJava extends PreTemplateFile {
         super(outRootDir);
     }
 
+    @Override
     public void finishProcess() {
         StringBuffer utilFilePath = new StringBuffer(outRootDir.getAbsolutePath());
         final String artifactId = GeneratorProperties.getProperty("artifactId");
         utilFilePath.append(File.separator).append(artifactId);
-        utilFilePath.append(File.separator).append("service-provider");
+        utilFilePath.append(File.separator).append(artifactId + "-persistence");
         utilFilePath.append(File.separator).append("src");
         utilFilePath.append(File.separator).append("main");
         utilFilePath.append(File.separator).append("java");
@@ -26,6 +27,7 @@ public class StringRedisSerializerJava extends PreTemplateFile {
         basePkgDir = basePkgDir.replace(".",File.separator);
         utilFilePath.append(File.separator).append(basePkgDir);
         utilFilePath.append(File.separator).append("provider");
+        utilFilePath.append(File.separator).append("persistence");
         utilFilePath.append(File.separator).append("utils");
         utilFilePath.append(File.separator).append("StringRedisSerializer.java");
         File utilFile = new File(utilFilePath.toString()).getAbsoluteFile();
@@ -34,6 +36,7 @@ public class StringRedisSerializerJava extends PreTemplateFile {
         }
     }
 
+    @Override
     public boolean support() {
         final String supportRedis = GeneratorProperties.getProperty("support_Redis");
         return !(Boolean.valueOf(supportRedis));

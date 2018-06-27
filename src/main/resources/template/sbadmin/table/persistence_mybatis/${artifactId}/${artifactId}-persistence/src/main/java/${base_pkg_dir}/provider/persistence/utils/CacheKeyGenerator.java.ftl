@@ -1,4 +1,4 @@
-package ${base_pkg}.provider.utils;
+package ${base_pkg}.provider.persistence.utils;
 
 import org.springframework.cache.interceptor.KeyGenerator;
 
