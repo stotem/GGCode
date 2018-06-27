@@ -1,0 +1,34 @@
+#parse("layouts/var-pre.view")
+<style type="text/css">
+    .panel-default pre {background-color: transparent; border: none;}
+    .panel-default .panel-heading {background-color: transparent;}
+    .panel-heading h4 {display: inline-block;}
+</style>
+<div class="row">
+    <div class="col-lg-12">
+        <h3 class="page-header">哎呦,出错喽[$!{exception.errorCode}]</h3>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4>错误信息: #if($!{exception.message}) $!{exception.message} #else 暂无 #end</h4> <button type="button" class="btn btn-link show-details">细节</button>
+            </div>
+            <div class="panel-body">
+                <pre>$!{tools.getStackTrace($exception)}</pre>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(function(){
+        $(".panel-body").toggle();
+        $(".show-details").click(function(){
+            $(".panel-body").toggle(200);
+            $(".show-details").blur();
+        });
+    })
+</script>
