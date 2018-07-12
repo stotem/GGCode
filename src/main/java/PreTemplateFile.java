@@ -21,4 +21,19 @@ public abstract class PreTemplateFile {
     }
 
     public abstract boolean support();
+
+    protected void deleteFile(File file) {
+        if (!file.exists()) {
+            return;
+        }
+        if (file.isFile()) {
+            file.delete();
+        }
+        if (file.isDirectory()) {
+            for (File fileK : file.listFiles()) {
+                deleteFile(fileK);
+            }
+            file.delete();
+        }
+    }
 }

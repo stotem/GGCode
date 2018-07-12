@@ -32,13 +32,9 @@ public class SpringShiroXMLFile extends PreTemplateFile {
         shiroxmlFilePath.append(File.separator).append("resources");
         shiroxmlFilePath.append(File.separator).append("spring-shiro.xml");
         File shiroxmlFile = new File(shiroxmlFilePath.toString()).getAbsoluteFile();
-        if (shiroxmlFile.exists()) {
-            shiroxmlFile.delete();
-        }
+        super.deleteFile(shiroxmlFile);
         File utilFile = new File(utilFilePath.toString()).getAbsoluteFile();
-        if (utilFile.exists()) {
-            utilFile.delete();
-        }
+        super.deleteFile(utilFile);
     }
 
     public boolean support() {

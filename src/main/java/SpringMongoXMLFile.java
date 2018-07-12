@@ -24,9 +24,7 @@ public class SpringMongoXMLFile extends PreTemplateFile {
         filePath.append(File.separator).append("resources");
         filePath.append(File.separator).append("spring-mongo.xml");
         File springMongoXML = new File(filePath.toString()).getAbsoluteFile();
-        if (springMongoXML.exists()) {
-            springMongoXML.delete();
-        }
+        super.deleteFile(springMongoXML);
     }
 
     public boolean support() {

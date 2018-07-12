@@ -16,21 +16,21 @@ public class ExportServiceFile extends PreTemplateFile {
         final String artifactId = GeneratorProperties.getProperty("artifactId");
         providerFilePath.append(File.separator).append(artifactId);
         providerFilePath.append(File.separator).append("service-provider");
-
         providerFilePath.append(File.separator).append("src");
         providerFilePath.append(File.separator).append("main");
         providerFilePath.append(File.separator).append("resources");
-        providerFilePath.append(File.separator).append("spring-dubbo.xml");
+        File configFile = new File(providerFilePath.toString().concat(File.separator).concat("config").concat(File.separator)).getAbsoluteFile();
+        super.deleteFile(configFile);
 
-        File dubboXMLFile = new File(providerFilePath.toString()).getAbsoluteFile();
-        if (dubboXMLFile.exists()) {
-            dubboXMLFile.delete();
+        final String supportDubbo = GeneratorProperties.getProperty("support_Dubbo");
+        if(Boolean.valueOf(supportDubbo)) {
+            File dubboXMLFile = new File(providerFilePath.toString().concat(File.separator).concat("spring-dubbo.xml")).getAbsoluteFile();
+            super.deleteFile(dubboXMLFile);
         }
     }
 
     public boolean support() {
-        final String supportDubbo = GeneratorProperties.getProperty("support_Dubbo");
         final String exportProviderService = GeneratorProperties.getProperty("export_provider_service");
-        return Boolean.valueOf(supportDubbo) && !(Boolean.valueOf(exportProviderService));
+        return !Boolean.valueOf(exportProviderService);
     }
 }

@@ -30,14 +30,10 @@ public class DubboXMLFile extends PreTemplateFile {
         consumerFilePath.append(File.separator).append("spring-dubbo.xml");
 
         File dubboXMLFile = new File(providerFilePath.toString()).getAbsoluteFile();
-        if (dubboXMLFile.exists()) {
-            dubboXMLFile.delete();
-        }
+        super.deleteFile(dubboXMLFile);
 
         dubboXMLFile = new File(consumerFilePath.toString()).getAbsoluteFile();
-        if (dubboXMLFile.exists()) {
-            dubboXMLFile.delete();
-        }
+        super.deleteFile(dubboXMLFile);
     }
 
     public boolean support() {

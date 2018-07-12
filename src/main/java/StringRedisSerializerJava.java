@@ -31,9 +31,7 @@ public class StringRedisSerializerJava extends PreTemplateFile {
         utilFilePath.append(File.separator).append("utils");
         utilFilePath.append(File.separator).append("StringRedisSerializer.java");
         File utilFile = new File(utilFilePath.toString()).getAbsoluteFile();
-        if (utilFile.exists()) {
-            utilFile.delete();
-        }
+        super.deleteFile(utilFile);
     }
 
     @Override
