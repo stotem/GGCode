@@ -1,5 +1,7 @@
 package ${base_pkg}.web.controller;
 
+import com.google.common.collect.Sets;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -80,15 +82,18 @@ public abstract class BasicController {
         return new ModelAndView(view, param);
     }
 
-    protected String getBindingErrorMessage(BindingResult result) {
+    protected String getBindingErrorMessage(BindingResult result, String... ignoreFields) {
         if (result.hasErrors()) {
             final List<ObjectError> allErrors = result.getAllErrors();
-            StringBuffer buffer = new StringBuffer();
+            final Set<String> ignoreFieldList = Sets.newHashSet(ignoreFields);
+            final StringBuffer buffer = new StringBuffer();
             for (ObjectError objectError : allErrors) {
-                buffer.append("\n");
                 if (objectError instanceof FieldError) {
                     FieldError fieldError = (FieldError) objectError;
-                    buffer.append("[");
+                    if (ignoreFieldList.contains(fieldError.getField())) {
+                        continue;
+                    }
+                    buffer.append("\n[");
                     buffer.append(fieldError.getObjectName());
                     buffer.append(".");
                     buffer.append(fieldError.getField());
@@ -103,14 +108,14 @@ public abstract class BasicController {
                     buffer.append("' ]");
                 }
                 else {
-                    buffer.append("[");
+                    buffer.append("\n[");
                     buffer.append(objectError.getObjectName());
                     buffer.append(" - ");
                     buffer.append(objectError.getDefaultMessage());
                     buffer.append("]");
                 }
             }
-            return buffer.substring(1);
+            return buffer.length() > 1 ? buffer.substring(1):null;
         }
         return null;
     }

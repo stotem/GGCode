@@ -7,6 +7,7 @@ import org.apache.shiro.authz.annotation.RequiresPermissions;
 import ${base_pkg}.domain.${className};
 import ${base_pkg}.service.${className}Service;
 
+import org.springframework.util.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -97,7 +98,8 @@ public class ${className}Controller extends BasicController {
                                     @RequestParam(required = false, value = PageCondition.PAGE_NUM) Long pageNum,
                                     @RequestParam(required = false) boolean stay)
                                     throws ServiceException {
-        Asserts.isTrue(!result.hasErrors(), super.getBindingErrorMessage(result));
+        final String errorMsg = super.getBindingErrorMessage(result);
+        Asserts.isTrue(StringUtils.isEmpty(errorMsg), errorMsg);
         Asserts.notNull(${classNameLower}, "未获取到用户录入数据");
         final long id = ${classNameLower}.getId();
         Asserts.isTrue(id > 0, "未获取到数据ID");
@@ -130,7 +132,8 @@ public class ${className}Controller extends BasicController {
     public ModelAndView doSave(@Valid @ModelAttribute ${className} ${classNameLower}, BindingResult result,
                                 @RequestParam(required = false, value = PageCondition.PAGE_NUM) Long pageNum,
                                 @RequestParam(required = false) boolean stay) throws ServiceException {
-        Asserts.isTrue(!result.hasErrors(), super.getBindingErrorMessage(result));
+        final String errorMsg = super.getBindingErrorMessage(result);
+        Asserts.isTrue(StringUtils.isEmpty(errorMsg), errorMsg);
         Asserts.notNull(${classNameLower}, "未获取到用户录入数据");
         ${classNameLower}Service.save(${classNameLower});
         Map<String, Object> param = new HashMap<>();
