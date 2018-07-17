@@ -16,7 +16,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.build.sourceVersion>1.7</project.build.sourceVersion>
         <project.build.targetVersion>1.7</project.build.targetVersion>
-        <spring.version>4.2.9.RELEASE</spring.version>
+        <spring.version>4.3.18.RELEASE</spring.version>
         <servlet.api.version>3.0.1</servlet.api.version>
         <dependency.junit.version>4.12</dependency.junit.version>
         <fasterxml.jackson.databind.version>2.7.5</fasterxml.jackson.databind.version>
@@ -315,7 +315,7 @@
             <dependency>
                 <groupId>org.springframework.data</groupId>
                 <artifactId>spring-data-mongodb</artifactId>
-                <version>1.10.9.RELEASE</version>
+                <version>1.10.13.RELEASE</version>
                 <exclusions>
                     <exclusion>
                         <groupId>org.springframework</groupId>
@@ -329,7 +329,7 @@
             <dependency>
                 <groupId>org.springframework.data</groupId>
                 <artifactId>spring-data-redis</artifactId>
-                <version>1.8.9.RELEASE</version>
+                <version>1.8.13.RELEASE</version>
                 <exclusions>
                     <exclusion>
                         <groupId>org.springframework</groupId>
