@@ -75,21 +75,16 @@
     <bean id="fastjsonRedisSerializer" class="${base_pkg}.provider.persistence.utils.FastJson2JsonRedisSerializer" />
 
 	<bean id="redis.poolConfig" class="redis.clients.jedis.JedisPoolConfig">
-		<!-- <property name="maxActive" value="1000" /> -->
-		<property name="maxIdle" value="500" />
-		<!-- <property name="maxWait" value="1000" /> -->
-		<property name="testOnBorrow" value="true" />
+		<property name="maxTotal" value="<#noparse>${config.redis.pool.maxTotal}</#noparse>" />
+		<property name="maxIdle" value="<#noparse>${config.redis.pool.maxIdle}</#noparse>" />
+		<property name="minIdle" value="<#noparse>${config.redis.pool.minIdle}</#noparse>" />
+		<property name="blockWhenExhausted" value="<#noparse>${config.redis.pool.blockWhenExhausted}</#noparse>" />
+		<property name="maxWaitMillis" value="<#noparse>${config.redis.pool.maxWaitMillis}</#noparse>" />
 	</bean>
 
     <bean id="redis.sentinelConfig" class="org.springframework.data.redis.connection.RedisSentinelConfiguration">
         <constructor-arg index="0" value="<#noparse>${config.redis.mastername}</#noparse>" />
-        <constructor-arg index="1">
-            <set>
-                <value><#noparse>${config.redis.host1}</#noparse></value>
-                <value><#noparse>${config.redis.host2}</#noparse></value>
-                <value><#noparse>${config.redis.host3}</#noparse></value>
-            </set>
-        </constructor-arg>
+        <constructor-arg index="1" value="<#noparse>#{'${config.redis.hosts}'.split(',')}</#noparse>" />
     </bean>
 
 	<bean id="cache.connectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">

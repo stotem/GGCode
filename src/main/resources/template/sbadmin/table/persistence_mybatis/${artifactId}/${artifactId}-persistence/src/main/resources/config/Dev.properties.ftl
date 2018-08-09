@@ -1,8 +1,6 @@
 <#if support_Redis == "true">
 # redis config
-config.redis.host1=
-config.redis.host2=
-config.redis.host3=
+config.redis.hosts=127.0.0.1:6379,127.0.0.1:6379
 config.redis.mastername=mymaster
 </#if>
 <#if support_mongoDB == "true">
