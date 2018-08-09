@@ -37,7 +37,7 @@ UI框架: [sb-admin-2](https://startbootstrap.com/template-overviews/sb-admin-2/
 ## 数据库设计要求
 为了规范生成的Code，针对数据表的设计，需要满足每张表包含以下字段，请使用者遵守：
 ```
-id bigint PRIMARY KEY COMMENT '数据主键(与业务主键区分)',
+id bigint PRIMARY KEY AUTO_INCREMENT COMMENT '数据主键(与业务主键区分)',
 del_flag tinyint(1) DEFAULT 1 COMMENT '数据删除标识(1: 有效，2: 失效)',
 created_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '数据创建时间',
 updated_time timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '数据最后update时间',
