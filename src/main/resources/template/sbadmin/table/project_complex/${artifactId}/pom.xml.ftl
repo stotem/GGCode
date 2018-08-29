@@ -37,7 +37,7 @@
         <velocity.version>1.7</velocity.version>
     </#if>
     <#if support_Shiro == "true">
-        <shiro.version>1.2.5</shiro.version>
+        <shiro.version>1.3.2</shiro.version>
     </#if>
     <#if support_Dubbo == "true">
         <dubbo.version>2.5.10</dubbo.version>

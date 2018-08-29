@@ -51,7 +51,7 @@
     </dependencies>
     <build>
         <finalName>service-provider</finalName>
-        <#if export_provider_service != "true">
+        <#if export_provider_service == "true">
         <filters>
             <filter>src/main/resources/config/<#noparse>${profile-name}.properties</#noparse></filter>
         </filters>
