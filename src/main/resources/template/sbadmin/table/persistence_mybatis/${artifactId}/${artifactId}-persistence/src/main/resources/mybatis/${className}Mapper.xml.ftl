@@ -36,14 +36,16 @@
         <where>
         <#if (delFlagColName!='')>t.`${delFlagColName}`<#else>1</#if> = 1
     <#list table.columns as column>
-        <#if column.columnNameLowerCase != "delflag" && column.columnNameLowerCase != "createdtime"
-        && column.columnNameLowerCase != "updatedtime">
-        <if test="${column.columnNameFirstLower} != null and ${column.columnNameFirstLower} != ''">
-            AND t.`${column.sqlName}` = <#noparse>#{</#noparse>${column.columnNameFirstLower}<#noparse>}</#noparse>
-        </if>
-        <#elseif column.columnNameLowerCase == table.pkColumn.columnNameLowerCase>
+        <#if column.columnNameLowerCase == table.pkColumn.columnNameLowerCase>
         <if test="id != null and id != ''">
             AND t.`${column.sqlName}` = <#noparse>#{</#noparse>id<#noparse>}</#noparse>
+        </if>
+        <#elseif column.columnNameLowerCase == "delflag"
+                || column.columnNameLowerCase == "createdtime"
+                || column.columnNameLowerCase || "updatedtime">
+        <#else>
+        <if test="${column.columnNameFirstLower} != null and ${column.columnNameFirstLower} != ''">
+            AND t.`${column.sqlName}` = <#noparse>#{</#noparse>${column.columnNameFirstLower}<#noparse>}</#noparse>
         </if>
         </#if>
     </#list>
@@ -96,6 +98,10 @@
         <#if column.columnNameLowerCase == table.pkColumn.columnNameLowerCase>
         <if test="id != null and id != ''">
             AND t.`${column.sqlName}` = <#noparse>#{</#noparse>id<#noparse>}</#noparse>
+        </if>
+        <#elseif column.columnNameLowerCase == "delflag">
+        <if test="${column.columnNameFirstLower} != null">
+            AND t.`${column.sqlName}` = <#noparse>#{</#noparse>${column.columnNameFirstLower}<#noparse>}</#noparse>
         </if>
         <#else>
         <if test="${column.columnNameFirstLower} != null and ${column.columnNameFirstLower} != ''">
