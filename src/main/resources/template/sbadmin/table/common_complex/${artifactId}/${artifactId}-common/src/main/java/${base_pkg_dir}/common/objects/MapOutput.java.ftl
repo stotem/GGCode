@@ -5,7 +5,7 @@
  */
 package ${base_pkg}.common.objects;
 
-import java.util.Hashtable;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -39,7 +39,7 @@ public class MapOutput extends Output<Map<String,Object>> {
         synchronized (this) {
             Map<String, Object> result = getResult();
             if ( result == null ) {
-                setResult(new Hashtable<String, Object>(INIT_MAP_SIZE));
+                setResult(new HashMap<String, Object>(INIT_MAP_SIZE));
             }
         }
         getResult().putAll(values);
@@ -50,7 +50,7 @@ public class MapOutput extends Output<Map<String,Object>> {
         synchronized (this) {
             Map<String, Object> result = getResult();
             if ( result == null ) {
-                setResult(new Hashtable<String, Object>(INIT_MAP_SIZE));
+                setResult(new HashMap<String, Object>(INIT_MAP_SIZE));
             }
         }
         getResult().put(key, value);
