@@ -37,14 +37,14 @@
         <#if (delFlagColName!='')>t.`${delFlagColName}`<#else>1</#if> = 1
     <#list table.columns as column>
         <#if column.columnNameLowerCase == table.pkColumn.columnNameLowerCase>
-        <if test="id != null and id != ''">
+        <if test="id != null">
             AND t.`${column.sqlName}` = <#noparse>#{</#noparse>id<#noparse>}</#noparse>
         </if>
         <#elseif column.columnNameLowerCase == "delflag"
                 || column.columnNameLowerCase == "createdtime"
                 || column.columnNameLowerCase || "updatedtime">
         <#else>
-        <if test="${column.columnNameFirstLower} != null and ${column.columnNameFirstLower} != ''">
+        <if test="${column.columnNameFirstLower} != null">
             AND t.`${column.sqlName}` = <#noparse>#{</#noparse>${column.columnNameFirstLower}<#noparse>}</#noparse>
         </if>
         </#if>
@@ -64,7 +64,7 @@
     <#elseif column.columnNameLowerCase == "updatedtime">
         t.`${column.sqlName}` = NOW()<#if (column_has_next)>,</#if>
     <#else>
-        <if test="${column.columnNameFirstLower} != null and ${column.columnNameFirstLower} != ''">
+        <if test="${column.columnNameFirstLower} != null">
         t.`${column.sqlName}` = <#noparse>#{</#noparse>${column.columnNameFirstLower}<#noparse>}</#noparse><#if (column_has_next)>,</#if>
         </if>
     </#if>
@@ -96,7 +96,7 @@
         <#if (delFlagColName!='')>t.`${delFlagColName}`<#else>1</#if> = 1
     <#list table.columns as column>
         <#if column.columnNameLowerCase == table.pkColumn.columnNameLowerCase>
-        <if test="id != null and id != ''">
+        <if test="id != null">
             AND t.`${column.sqlName}` = <#noparse>#{</#noparse>id<#noparse>}</#noparse>
         </if>
         <#elseif column.columnNameLowerCase == "delflag">
@@ -104,7 +104,7 @@
             AND t.`${column.sqlName}` = <#noparse>#{</#noparse>${column.columnNameFirstLower}<#noparse>}</#noparse>
         </if>
         <#else>
-        <if test="${column.columnNameFirstLower} != null and ${column.columnNameFirstLower} != ''">
+        <if test="${column.columnNameFirstLower} != null">
             AND t.`${column.sqlName}` = <#noparse>#{</#noparse>${column.columnNameFirstLower}<#noparse>}</#noparse>
         </if>
         </#if>
