@@ -42,7 +42,7 @@
         </if>
         <#elseif column.columnNameLowerCase == "delflag"
                 || column.columnNameLowerCase == "createdtime"
-                || column.columnNameLowerCase || "updatedtime">
+                || column.columnNameLowerCase == "updatedtime">
         <#else>
         <if test="${column.columnNameFirstLower} != null">
             AND t.`${column.sqlName}` = <#noparse>#{</#noparse>${column.columnNameFirstLower}<#noparse>}</#noparse>
